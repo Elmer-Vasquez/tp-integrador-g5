@@ -9,7 +9,7 @@
 
 
 <!-- Etiquetas que ayudan a encontrar tags. Debe escanear el paquete para buscar controllers -->
-<context:component-scan base-package="controller"></context:component-scan>
+<context:component-scan base-package="tp"></context:component-scan>
 
 <mvc:annotation-driven />
 
