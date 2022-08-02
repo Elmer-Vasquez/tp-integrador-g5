@@ -95,13 +95,15 @@
         <form action="login.html" method="post">
           <img class="mb-4" src="../img/logo-footer.png" alt="" width="100" height="100">
           <h1 class="h3 mb-3 fw-normal">Sistema de gestión</h1>
-      
+          
+          <div class="+"p-2 text-danger fs-5"+">Usuario y contraseña incorrectos</div>
+          
           <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <input type="email" class="form-control" id="floatingInput" name="email">
             <label for="floatingInput">Usuario</label>
           </div>
           <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <input type="password" class="form-control" id="floatingPassword" name="password">
             <label for="floatingPassword">Contraseña</label>
           </div>
           <input class="w-100 btn btn-lg btn-primary" type="submit" name="btnInicio" value="Iniciar sesión"/>
