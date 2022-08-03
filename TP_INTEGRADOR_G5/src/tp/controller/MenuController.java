@@ -18,20 +18,13 @@ public class MenuController {
 		_usuarioService = usuarioService;
 	}
 
-	@RequestMapping("menu_principal.html")
+	@RequestMapping("principal.html")
 	public ModelAndView getMenuPrincipal(String usuario, String password) 
 	{
 		ModelAndView MV = new ModelAndView();
 		MV.addObject("usuario", usuario);
-		MV.setViewName("MenuPrincipal");
+		MV.setViewName("principal");
 		return MV;
 	}
-	
-	@RequestMapping("menu_inicio.html")
-	public ModelAndView getMenuInicio() 
-	{
-		ModelAndView MV = new ModelAndView();
-		MV.setViewName("MenuInicio");
-		return MV;
-	}
+
 }

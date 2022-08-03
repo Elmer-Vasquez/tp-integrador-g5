@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -64,6 +65,7 @@
                     <th scope="col">Nombre </th>
                     <th scope="col">Apellido</th>
                     <th scope="col">Nacionalidad</th>
+                    <th scope="col">Sexo</th>
                     <th scope="col">Fecha de nacimiento</th>
                     <th scope="col">Localidad</th>
                     <th scope="col">Correo electrónico</th>
@@ -72,6 +74,19 @@
                 </tr>
             </thead>
             <tbody>
+            <c:forEach var ="cliente" items="${clientesList}">
+            <tr class="table-dark">
+            <td class="table-dark"> ${cliente.persona.getDni()} </td>
+            <td class="table-dark"> ${cliente.persona.getNombre()} </td>
+            <td class="table-dark"> ${cliente.persona.getApellido()} </td>
+            <td class="table-dark"> ${cliente.persona.getNacionalidad().getDescripcion()} </td>
+            <td class="table-dark"> ${cliente.persona.getSexo()} </td>
+            <td class="table-dark"> ${cliente.persona.getFechaNacimiento()} </td>
+            <td class="table-dark"> ${cliente.getLocalidad().getDescripcion()} </td>
+            <td class="table-dark"> ${cliente.persona.getEmail()} </td>
+            <td class="table-dark"> ${cliente.persona.getTelefono()} </td>
+            </tr>
+            </c:forEach>
             </tbody>
     </div>
     </div>

@@ -47,8 +47,7 @@ public class ClienteService implements IClienteService{
 
 	@Override
 	public List<Cliente> selectList() {
-		// TODO Auto-generated method stub
-		return null;
+		return _clienteDao.selectList();
 	}
 
 }

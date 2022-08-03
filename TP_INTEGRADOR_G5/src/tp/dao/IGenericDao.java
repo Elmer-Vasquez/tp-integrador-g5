@@ -8,5 +8,6 @@ public interface IGenericDao<T> {
 	T update(T entity);
 	void delete(T entity);
 	List<T> selectList(String query);
+	List<T> selectList();
 	T selectUnique(String query);
 }

@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class Conexion {
-
+	
+	private static Conexion instance;
 	private SessionFactory sessionFactory;
 	private Session session;
 	private Configuration configuration;
@@ -21,11 +22,18 @@ public class Conexion {
         configuration.configure();
         ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+        System.out.print("Instancia de conexión" + "\n");
 	}
 	
-	public Session abrirConexion()
-	{
-		session=sessionFactory.openSession();
+	public static Conexion getInstance() {
+		if (instance == null) {
+            instance = new Conexion();
+        }
+        return instance;
+	}
+	
+	public Session abrirConexion() {
+		session = sessionFactory.openSession();
 		return session;
 	}
 	

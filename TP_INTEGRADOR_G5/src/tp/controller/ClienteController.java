@@ -1,11 +1,14 @@
 package tp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import tp.dominio.Cliente;
 import tp.servicio.IClienteService;
 
 @Controller
@@ -23,7 +26,8 @@ public class ClienteController {
 	public ModelAndView getMenuPrincipal() 
 	{
 		ModelAndView MV = new ModelAndView();
-		MV.addObject("clientesList", false);
+		List<Cliente> lista = _clienteService.selectList();
+		MV.addObject("clientesList", lista);
 		MV.setViewName("cliente");
 		return MV;
 	}

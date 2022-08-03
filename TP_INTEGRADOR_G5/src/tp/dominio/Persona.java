@@ -33,6 +33,8 @@ public class Persona implements Serializable{
 	
 	private String email;
 	
+	private String sexo;
+	
 	private Date fechaNacimiento;
 	
 	private int dni;
@@ -109,4 +111,11 @@ public class Persona implements Serializable{
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+	
+	public String getSexo() {
+		return this.sexo;
+	}
 }

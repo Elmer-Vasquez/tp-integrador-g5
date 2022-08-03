@@ -3,14 +3,16 @@ package tp.daoImpl;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import tp.dao.IGenericDao;
 
 public abstract class GenericDao<T> implements IGenericDao<T>{
 	private Class<T> entityClass;
 	
-	@Autowired
+	/*
+	 * No usamos autowired ya que arroja error cuando se quiere acceder desde otros navegadores
+	 * Se realiza una nueva instancia de conexión cada vez que se quiere realizar un transaction
+	 */
 	public Conexion conexion;
 	
 	public GenericDao(Class<T> entityClass) {
@@ -61,6 +63,16 @@ public abstract class GenericDao<T> implements IGenericDao<T>{
 		session.beginTransaction();
 		List<T> list = session.createQuery("FROM " + entityClass.getName() + " " + query).list();
         conexion.cerrarSession();
+        return list;
+	}
+	
+	public List<T> selectList()
+	{
+		this.conexion = new Conexion();
+		Session session= conexion.abrirConexion();
+		session.beginTransaction();
+		List<T> list = session.createQuery("FROM " + entityClass.getName()).list();
+        this.conexion.cerrarSession();
         return list;
 	}
 
