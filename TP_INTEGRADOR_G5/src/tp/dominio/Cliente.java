@@ -9,14 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-public class Autor implements Serializable {
-	
+public class Cliente implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -30,11 +31,11 @@ public class Autor implements Serializable {
 	@JoinColumn(name="persona_id")
 	private Persona persona;
 	
-	public Autor() {}
-
-	public Autor(int id, String nombre, String apellido, Nacionalidad nacionalidad) {
-		this.id = id;
-	}
+	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+	@JoinColumn(name = "localidad_id")
+	private Localidad localidad;
+	
+	public Cliente() { }
 
 	public int getId() {
 		return id;
@@ -50,6 +51,14 @@ public class Autor implements Serializable {
 
 	public void setPersona(Persona persona) {
 		this.persona = persona;
+	}
+
+	public Localidad getLocalidad() {
+		return localidad;
+	}
+
+	public void setLocalidad(Localidad localidad) {
+		this.localidad = localidad;
 	}
 	
 }

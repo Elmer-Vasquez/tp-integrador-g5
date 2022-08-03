@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -93,10 +94,10 @@
 <body class="text-center">
       <main class="form-signin w-100 m-auto">
         <form action="login.html" method="post">
-          <img class="mb-4" src="../img/logo-footer.png" alt="" width="100" height="100">
+          <img class="mb-4" src='<c:url value="/img/logo-footer.png"></c:url>' alt="" width="100" height="100">
           <h1 class="h3 mb-3 fw-normal">Sistema de gestión</h1>
           
-          <div class="+"p-2 text-danger fs-5"+">Usuario y contraseña incorrectos</div>
+          <!--  <div class="+"p-2 text-danger fs-5"+">Usuario y contraseña incorrectos</div> -->
           
           <div class="form-floating">
             <input type="email" class="form-control" id="floatingInput" name="email">

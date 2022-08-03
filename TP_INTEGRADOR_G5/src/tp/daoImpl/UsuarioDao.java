@@ -8,5 +8,8 @@ import tp.dominio.Usuario;
 @Repository("usuarioDao")
 public class UsuarioDao extends GenericDao<Usuario> implements IUsuarioDao{
 
+	public UsuarioDao() {
+		super(Usuario.class);
+	}
 
 }

@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 public class Biblioteca implements Serializable {
 	
@@ -22,7 +25,7 @@ public class Biblioteca implements Serializable {
 	private int id;
 	
 	@ManyToOne(cascade= {CascadeType.ALL}, fetch = FetchType.EAGER)
-	@JoinColumn(name="idLibro")
+	@JoinColumn(name="libro_id")
 	private Libro libro;
 	
 	private Date fechaAlta;

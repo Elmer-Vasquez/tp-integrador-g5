@@ -11,25 +11,20 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-public class Genero implements Serializable {
-	
+public class Localidad implements Serializable{
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	private String descripcion;
 	
-	public Genero(){}
-	
-	public Genero(int id, String descripcion) {
-		this.id = id;
-		this.descripcion = descripcion;
-	}
+	public Localidad() { }
 
 	public int getId() {
 		return id;
@@ -47,8 +42,4 @@ public class Genero implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	@Override
-	public String toString() {
-		return "\nGenero [id=" + id + ", descripcion=" + descripcion + "]";
-	}
 }

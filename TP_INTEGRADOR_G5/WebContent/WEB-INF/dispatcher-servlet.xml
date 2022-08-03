@@ -13,6 +13,8 @@
 
 <mvc:annotation-driven />
 
+<mvc:resources mapping="/img/**" location="/img/"></mvc:resources>
+
 <!-- Configuracion para las vistas que se devuelve al usuario y donde se encuentran-->
 <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>

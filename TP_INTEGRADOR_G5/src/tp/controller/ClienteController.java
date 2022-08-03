@@ -6,28 +6,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import tp.servicio.IUsuarioService;
+import tp.servicio.IClienteService;
 
 @Controller
-public class UserController {
-//	private ModelAndView MV;
+public class ClienteController {
 	
-	private IUsuarioService _usuarioService;
-
+	private IClienteService _clienteService;
+	
 	@Autowired
-	public UserController(@Qualifier("usuarioService") IUsuarioService usuarioService) {
-//		MV = new ModelAndView();
+	public ClienteController(@Qualifier("clienteService") IClienteService clienteService)
+	{
+		_clienteService = clienteService;
 	}
 	
-	@RequestMapping("inicio.html")
+	@RequestMapping("lista_clientes.html")
 	public ModelAndView getMenuPrincipal() 
 	{
 		ModelAndView MV = new ModelAndView();
-		MV.addObject("error", false);
-		MV.setViewName("index");
+		MV.addObject("clientesList", false);
+		MV.setViewName("cliente");
 		return MV;
 	}
-//	
+	
 //	@RequestMapping("login.html")
 //	public ModelAndView postLogin(String email, String password) {
 //		// Buscamos email y Password

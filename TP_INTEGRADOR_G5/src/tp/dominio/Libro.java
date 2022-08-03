@@ -17,6 +17,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 public class Libro implements Serializable {
 	
@@ -38,7 +41,7 @@ public class Libro implements Serializable {
 	private int cantidadPaginas;
 	
 	@ManyToOne(cascade= {CascadeType.ALL}, fetch = FetchType.EAGER)
-	@JoinColumn(name="idAutor")
+	@JoinColumn(name="autor_id")
 	private Autor autor;
 	
 	private String descripcion;
@@ -46,9 +49,9 @@ public class Libro implements Serializable {
 	@ManyToMany(cascade= {CascadeType.ALL}, fetch = FetchType.EAGER)
 	@JoinTable(name="libros_x_generos",
 	    joinColumns=
-	        @JoinColumn(name="id_libro"),
+	        @JoinColumn(name="libro_id"),
 	    inverseJoinColumns=
-	        @JoinColumn(name="id_genero")
+	        @JoinColumn(name="genero_id")
     )
 	private Set<Genero> generos;
 	
