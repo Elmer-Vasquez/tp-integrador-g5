@@ -10,13 +10,13 @@ import tp.servicio.IUsuarioService;
 
 @Controller
 public class UserController {
-//	private ModelAndView MV;
+	private ModelAndView MV;
 	
 	private IUsuarioService _usuarioService;
 
 	@Autowired
 	public UserController(@Qualifier("usuarioService") IUsuarioService usuarioService) {
-//		MV = new ModelAndView();
+		MV = new ModelAndView();
 	}
 	
 	@RequestMapping("inicio.html")
@@ -27,16 +27,16 @@ public class UserController {
 		MV.setViewName("index");
 		return MV;
 	}
-//	
-//	@RequestMapping("login.html")
-//	public ModelAndView postLogin(String email, String password) {
-//		// Buscamos email y Password
-//		// De coincidir seguimos la ruta
-//		//if(true) MV.setViewName("siguente");
-//		// de no coincidir volvemos al inicio
-//		MV.addObject("error", true);
-//		MV.setViewName("index");
-//		return MV;
-//	}
+	
+	@RequestMapping("login.html")
+	public ModelAndView postLogin(String email, String password) {
+		// Buscamos email y Password
+		// De coincidir seguimos la ruta
+		//if(true) MV.setViewName("siguente");
+		// de no coincidir volvemos al inicio
+		MV.addObject("error", true);
+		MV.setViewName("index");
+		return MV;
+	}
 
 }
