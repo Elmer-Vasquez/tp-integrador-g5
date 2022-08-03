@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import tp.dominio.Usuario;
 import tp.servicio.IUsuarioService;
 
 @Controller
@@ -30,12 +31,14 @@ public class UserController {
 	
 	@RequestMapping("login.html")
 	public ModelAndView postLogin(String email, String password) {
-		// Buscamos email y Password
-		// De coincidir seguimos la ruta
-		//if(true) MV.setViewName("siguente");
-		// de no coincidir volvemos al inicio
-		MV.addObject("error", true);
-		MV.setViewName("index");
+		try {
+			Usuario usuario = _usuarioService.login(email, password);
+			System.out.println(usuario);
+		}
+		catch(Exception e) {
+			MV.addObject("error", true);
+			MV.setViewName("index");
+		}
 		return MV;
 	}
 
