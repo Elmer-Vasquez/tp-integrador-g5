@@ -18,6 +18,7 @@ public class UserController {
 	@Autowired
 	public UserController(@Qualifier("usuarioService") IUsuarioService usuarioService) {
 		MV = new ModelAndView();
+		_usuarioService = usuarioService;
 	}
 	
 	@RequestMapping("inicio.html")
@@ -33,7 +34,8 @@ public class UserController {
 	public ModelAndView postLogin(String email, String password) {
 		try {
 			Usuario usuario = _usuarioService.login(email, password);
-			System.out.println(usuario);
+			MV.addObject("usuario", usuario);
+			MV.setViewName("principal");
 		}
 		catch(Exception e) {
 			MV.addObject("error", true);

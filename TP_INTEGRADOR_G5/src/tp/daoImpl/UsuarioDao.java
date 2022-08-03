@@ -10,8 +10,6 @@ import tp.dominio.Usuario;
 @Repository("usuarioDao")
 public class UsuarioDao extends GenericDao<Usuario> implements IUsuarioDao{
 	
-	@Autowired
-	public Conexion conexion;
 	public Usuario usuario;
 
 	public UsuarioDao() {
@@ -19,12 +17,11 @@ public class UsuarioDao extends GenericDao<Usuario> implements IUsuarioDao{
 	}
 	
 	public Usuario login(String email, String password) {
+		conexion = new Conexion();
 		usuario = new Usuario();
 		Session session= conexion.abrirConexion();
 		session.beginTransaction();
-		usuario = (Usuario)session.createQuery(String.format
-				("from Usuario where email='{0}', password='{1}'",
-						email, password)).uniqueResult();
+		usuario = (Usuario)session.createQuery("from Usuario where password='" + password + "'").uniqueResult();
         conexion.cerrarSession();
 		return usuario;
 	}
