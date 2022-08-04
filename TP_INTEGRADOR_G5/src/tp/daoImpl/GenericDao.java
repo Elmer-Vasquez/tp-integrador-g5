@@ -82,22 +82,42 @@ public abstract class GenericDao<T> implements IGenericDao<T>{
         return list;
 	}
 	
-	public List<T> selectListByProperty(String property, String value) {
-		String posibleQuery = QueryUtil.buildQueryByProperty(property, this.entityClass.getSimpleName(), value);
+	public List<T> selectListByStringProperty(String property, String value) {
+		String posibleQuery = QueryUtil.buildQueryByStringProperty(property, this.entityClass.getSimpleName(), value);
 		this.conexion = new Conexion();
 		Session session = conexion.abrirConexion();
 		session.beginTransaction();
-		List<T> list = session.createQuery(QueryUtil.buildQueryByProperty(property, this.entityClass.getSimpleName(), value)).list();
+		List<T> list = session.createQuery(QueryUtil.buildQueryByStringProperty(property, this.entityClass.getSimpleName(), value)).list();
 		this.conexion.cerrarSession();
 		return list;
 	}
 	
-	public List<Object[]> selectListByInnerProperty(String property, String value){
-		String posibleQuery = QueryUtil.buildQueryByInnerProperty1(property, this.entityClass.getSimpleName(), value);
+	public List<T> selectListByIntegerProperty(String property, String value) {
+		String posibleQuery = QueryUtil.buildQueryByIntegerProperty(property, this.entityClass.getSimpleName(), value);
 		this.conexion = new Conexion();
 		Session session = conexion.abrirConexion();
 		session.beginTransaction();
-		List<Object[]> list = session.createQuery(QueryUtil.buildQueryByInnerProperty1(property, this.entityClass.getSimpleName(), value)).list();
+		List<T> list = session.createQuery(QueryUtil.buildQueryByIntegerProperty(property, this.entityClass.getSimpleName(), value)).list();
+		this.conexion.cerrarSession();
+		return list;
+	}
+	
+	public List<Object[]> selectListByInnerStringProperty(String property, String value){
+		String posibleQuery = QueryUtil.buildQueryByInnerStringProperty(property, this.entityClass.getSimpleName(), value);
+		this.conexion = new Conexion();
+		Session session = conexion.abrirConexion();
+		session.beginTransaction();
+		List<Object[]> list = session.createQuery(QueryUtil.buildQueryByInnerStringProperty(property, this.entityClass.getSimpleName(), value)).list();
+		this.conexion.cerrarSession();
+		return list;
+	}
+	
+	public List<Object[]> selectListByInnerIntegerProperty(String property, String value){
+		String posibleQuery = QueryUtil.buildQueryByInnerIntegerProperty(property, this.entityClass.getSimpleName(), value);
+		this.conexion = new Conexion();
+		Session session = conexion.abrirConexion();
+		session.beginTransaction();
+		List<Object[]> list = session.createQuery(QueryUtil.buildQueryByInnerIntegerProperty(property, this.entityClass.getSimpleName(), value)).list();
 		this.conexion.cerrarSession();
 		return list;
 	}

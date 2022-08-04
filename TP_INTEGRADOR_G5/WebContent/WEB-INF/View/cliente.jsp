@@ -64,12 +64,13 @@
       </div>
       <div style="max-width: 13%;">
           <select class="form-select" name="propertySelect">
+          <option value="default"></option>
           <option value="persona.dni">DNI</option>
           <option value="persona.nombre">Nombre</option>
           <option value="persona.apellido">Apellido</option>
           <option value="persona.nacionalidad">Nacionalidad</option>
           <option value="persona.sexo">Sexo</option>
-          <option value="persona.fechaNac">Fecha nacimiento</option>
+          <option value="persona.fechaNacimiento">Fecha nacimiento</option>
           <option value="localidad.descripcion">Localidad</option>
           <option value="persona.email">Correo electrónico</option>
           <option value="persona.telefono">Telefóno</option>
@@ -111,12 +112,15 @@
 							${cliente.getLocalidad().getDescripcion()}</td>
 						<td class="table-dark">${cliente.persona.getEmail()}</td>
 						<td class="table-dark">${cliente.persona.getTelefono()}</td>
-						<td class="table-dark"><i class="fas fa-trash-alt"></i> <i
-							class="fas fa-search"></i> <i class="fas fa-pencil-alt"></i></td>
+						<td class="table-dark">
+						<button class="btn" style="color: currentColor;" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt"></i></button>
+						<i class="fas fa-search"></i>
+						<i class="fas fa-pencil-alt"></i>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
-    </div>
+			</table>
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -198,5 +202,24 @@
           </div>
         </div>
       </div>
+	<div class="modal fade" id="deleteModal" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">Eliminar cliente</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">¿Esta seguro que desea eliminar al cliente?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary">Aceptar</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

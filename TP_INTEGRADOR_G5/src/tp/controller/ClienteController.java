@@ -81,7 +81,7 @@ public class ClienteController {
 		ModelAndView MV = new ModelAndView();
 		try {
 			List<Cliente> lista = new ArrayList<Cliente>();
-			if (inputText.isEmpty()) {
+			if (propertySelect.equals("default") || inputText.isEmpty()) {
 				lista = _clienteService.selectList();
 			} else {
 				lista = _clienteService.selectListByProperty(propertySelect, inputText);

@@ -67,7 +67,13 @@ public class ClienteService implements IClienteService{
 	@Override
 	public List<Cliente> selectListByProperty(String property, String value) {
 		List<Cliente> list = new ArrayList<Cliente>();
-		List<Object[]> list2 = _clienteDao.selectListByInnerProperty(property, value);
+		
+		List<Object[]> list2 = new ArrayList<Object[]>();
+		if(property.equals("persona.telefono") || property.equals("persona.dni")) {
+			list2 = _clienteDao.selectListByInnerIntegerProperty(property, value);
+		}else {
+			list2 = _clienteDao.selectListByInnerStringProperty(property, value);
+		}
 		for (Object[] obj : list2) {
 			list.add((Cliente) obj[0]);
 		}

@@ -10,6 +10,8 @@ public interface IGenericDao<T> {
 	List<T> selectList(String query);
 	List<T> selectList();
 	T selectUnique(String query);
-	List<T> selectListByProperty(String property, String value);
-	List<Object[]> selectListByInnerProperty(String property, String value);
+	List<T> selectListByStringProperty(String property, String value);
+	List<T> selectListByIntegerProperty(String property, String value);
+	List<Object[]> selectListByInnerStringProperty(String property, String value);
+	List<Object[]> selectListByInnerIntegerProperty(String property, String value);
 }
