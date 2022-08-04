@@ -82,13 +82,24 @@ public abstract class GenericDao<T> implements IGenericDao<T>{
         return list;
 	}
 	
-	public List<T> selectListByProperty(String property, String value){
+	public List<T> selectListByProperty(String property, String value) {
+		String posibleQuery = QueryUtil.buildQueryByProperty(property, this.entityClass.getSimpleName(), value);
 		this.conexion = new Conexion();
-		Session session= conexion.abrirConexion();
+		Session session = conexion.abrirConexion();
 		session.beginTransaction();
-		List<T> list = session.createQuery(QueryUtil.buildQuery(property, this.entityClass.getName(), value)).list();
-        this.conexion.cerrarSession();
-        return list;
+		List<T> list = session.createQuery(QueryUtil.buildQueryByProperty(property, this.entityClass.getSimpleName(), value)).list();
+		this.conexion.cerrarSession();
+		return list;
+	}
+	
+	public List<Object[]> selectListByInnerProperty(String property, String value){
+		String posibleQuery = QueryUtil.buildQueryByInnerProperty1(property, this.entityClass.getSimpleName(), value);
+		this.conexion = new Conexion();
+		Session session = conexion.abrirConexion();
+		session.beginTransaction();
+		List<Object[]> list = session.createQuery(QueryUtil.buildQueryByInnerProperty1(property, this.entityClass.getSimpleName(), value)).list();
+		this.conexion.cerrarSession();
+		return list;
 	}
 
 	public T selectUnique(String query) 

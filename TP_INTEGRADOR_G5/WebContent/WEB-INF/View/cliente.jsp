@@ -70,9 +70,9 @@
           <option value="persona.nacionalidad">Nacionalidad</option>
           <option value="persona.sexo">Sexo</option>
           <option value="persona.fechaNac">Fecha nacimiento</option>
-          <option value="localidad">Localidad</option>
-          <option value="email">Correo electrónico</option>
-          <option value="telefono">Telefóno</option>
+          <option value="localidad.descripcion">Localidad</option>
+          <option value="persona.email">Correo electrónico</option>
+          <option value="persona.telefono">Telefóno</option>
           </select>
       </div>
 		<div style="margin-left: 12px;">

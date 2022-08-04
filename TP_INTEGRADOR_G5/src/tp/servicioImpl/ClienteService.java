@@ -1,5 +1,6 @@
 package tp.servicioImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,8 +66,12 @@ public class ClienteService implements IClienteService{
 
 	@Override
 	public List<Cliente> selectListByProperty(String property, String value) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Cliente> list = new ArrayList<Cliente>();
+		List<Object[]> list2 = _clienteDao.selectListByInnerProperty(property, value);
+		for (Object[] obj : list2) {
+			list.add((Cliente) obj[0]);
+		}
+		return list;
 	}
 
 }
