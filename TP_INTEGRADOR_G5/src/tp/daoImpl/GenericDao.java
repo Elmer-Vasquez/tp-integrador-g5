@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 
+import common.QueryUtil;
 import tp.dao.IGenericDao;
 
 public abstract class GenericDao<T> implements IGenericDao<T>{
@@ -21,48 +22,53 @@ public abstract class GenericDao<T> implements IGenericDao<T>{
 
 	public int create(T entity)
 	{
+		this.conexion = new Conexion();
 		Session session= conexion.abrirConexion();
 		session.beginTransaction();
 	    int id = (Integer) session.save(entity);
 	    session.getTransaction().commit();
-		conexion.cerrarSession();
+		this.conexion.cerrarSession();
 		return id;
 	}
 	
 	public T readOne(int id)
 	{
+		this.conexion = new Conexion();
 		Session session= conexion.abrirConexion();
 		session.beginTransaction();
         T entity = (T) session.get(entityClass, id);
-        conexion.cerrarSession();
+        this.conexion.cerrarSession();
         return entity;
 	}
 	
 	public T update(T entity)
 	{
+		this.conexion = new Conexion();
 		Session session= conexion.abrirConexion();
         session.beginTransaction();
         session.update(entity);
         session.getTransaction().commit();     
-        conexion.cerrarSession();
+        this.conexion.cerrarSession();
         return entity;
 	}
 
 	public void delete(T entity)
 	{
+		this.conexion = new Conexion();
 		Session session= conexion.abrirConexion();
         session.beginTransaction();
         session.delete(entity);
         session.getTransaction().commit();
-        conexion.cerrarSession();
+        this.conexion.cerrarSession();
 	}
 	
 	public List<T> selectList(String query)
 	{
+		this.conexion = new Conexion();
 		Session session= conexion.abrirConexion();
 		session.beginTransaction();
 		List<T> list = session.createQuery("FROM " + entityClass.getName() + " " + query).list();
-        conexion.cerrarSession();
+        this.conexion.cerrarSession();
         return list;
 	}
 	
@@ -75,13 +81,23 @@ public abstract class GenericDao<T> implements IGenericDao<T>{
         this.conexion.cerrarSession();
         return list;
 	}
+	
+	public List<T> selectListByProperty(String property, String value){
+		this.conexion = new Conexion();
+		Session session= conexion.abrirConexion();
+		session.beginTransaction();
+		List<T> list = session.createQuery(QueryUtil.buildQuery(property, this.entityClass.getName(), value)).list();
+        this.conexion.cerrarSession();
+        return list;
+	}
 
 	public T selectUnique(String query) 
 	{
+		this.conexion = new Conexion();
 		Session session= conexion.abrirConexion();
 		session.beginTransaction();
         T entity = (T) session.createQuery("FROM " + entityClass.getName() + " " + query).uniqueResult();
-        conexion.cerrarSession();
+        this.conexion.cerrarSession();
         return entity;
 	}
 	

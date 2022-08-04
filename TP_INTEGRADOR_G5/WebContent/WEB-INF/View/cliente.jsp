@@ -57,6 +57,29 @@
     <div style="text-align: end; margin-right: 5%;">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-top: 50px;">+ Agregar Cliente</button>
     </div>
+    <form action="search_cliente.html" method="get">
+    <div class="d-flex justify-content-end" style="margin-top: 10px;margin-right: 5%;">
+      <div style="max-width: 18%;margin-right: 12px;">
+          <input class="form-control" name="inputText">
+      </div>
+      <div style="max-width: 13%;">
+          <select class="form-select" name="propertySelect">
+          <option value="persona.dni">DNI</option>
+          <option value="persona.nombre">Nombre</option>
+          <option value="persona.apellido">Apellido</option>
+          <option value="persona.nacionalidad">Nacionalidad</option>
+          <option value="persona.sexo">Sexo</option>
+          <option value="persona.fechaNac">Fecha nacimiento</option>
+          <option value="localidad">Localidad</option>
+          <option value="email">Correo electrónico</option>
+          <option value="telefono">Telefóno</option>
+          </select>
+      </div>
+		<div style="margin-left: 12px;">
+				<button type="submit" class="btn btn-primary">Buscar</button>
+		</div>
+	</div>
+	</form>
     <div class="col d-flex justify-content-center" style="margin-top: 20px;">
         <table class="table table-dark table-hover" style="text-align: center; width: 90%;">
             <thead>
@@ -74,20 +97,25 @@
                 </tr>
             </thead>
             <tbody>
-            <c:forEach var ="cliente" items="${clientesList}">
-            <tr class="table-dark">
-            <td class="table-dark"> ${cliente.persona.getDni()} </td>
-            <td class="table-dark"> ${cliente.persona.getNombre()} </td>
-            <td class="table-dark"> ${cliente.persona.getApellido()} </td>
-            <td class="table-dark"> ${cliente.persona.getNacionalidad().getDescripcion()} </td>
-            <td class="table-dark"> ${cliente.persona.getSexo()} </td>
-            <td class="table-dark"> ${cliente.persona.getFechaNacimiento()} </td>
-            <td class="table-dark"> ${cliente.getLocalidad().getDescripcion()} </td>
-            <td class="table-dark"> ${cliente.persona.getEmail()} </td>
-            <td class="table-dark"> ${cliente.persona.getTelefono()} </td>
-            </tr>
-            </c:forEach>
-            </tbody>
+				<c:forEach var="cliente" items="${clientesList}">
+					<tr class="table-dark">
+						<td class="table-dark">${cliente.persona.getDni()}</td>
+						<td class="table-dark">${cliente.persona.getNombre()}</td>
+						<td class="table-dark">${cliente.persona.getApellido()}</td>
+						<td class="table-dark">
+							${cliente.persona.getNacionalidad().getDescripcion()}</td>
+						<td class="table-dark">${cliente.persona.getSexo()}</td>
+						<td class="table-dark">
+							${cliente.persona.getFechaNacimiento()}</td>
+						<td class="table-dark">
+							${cliente.getLocalidad().getDescripcion()}</td>
+						<td class="table-dark">${cliente.persona.getEmail()}</td>
+						<td class="table-dark">${cliente.persona.getTelefono()}</td>
+						<td class="table-dark"><i class="fas fa-trash-alt"></i> <i
+							class="fas fa-search"></i> <i class="fas fa-pencil-alt"></i></td>
+					</tr>
+				</c:forEach>
+			</tbody>
     </div>
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -1,6 +1,9 @@
 package tp.dominio;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -59,6 +62,18 @@ public class Cliente implements Serializable {
 
 	public void setLocalidad(Localidad localidad) {
 		this.localidad = localidad;
+	}
+	
+	//Metodo sin implementar, a futuro se puede buscar las propiedades por nombre y devolver una lista para manipular
+	//Para que funcione es necesario tener las propiedades en public
+	public static List<String> getPropertiesToString()
+	{
+		Field properties[] = Cliente.class.getFields();
+		List<String> propToString = new ArrayList<String>();
+		for (int i = 0; i < properties.length; i++) {
+			propToString.add(properties[i].getName().toUpperCase());
+		}
+		return propToString;
 	}
 	
 }

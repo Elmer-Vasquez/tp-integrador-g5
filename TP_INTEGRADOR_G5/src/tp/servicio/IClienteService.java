@@ -2,16 +2,19 @@ package tp.servicio;
 
 import java.util.List;
 
+import common.Response;
 import tp.dominio.Cliente;
 
 public interface IClienteService {
-	int create(Cliente entity);
+	Response create(Cliente entity);
 
 	Cliente readOne(int id);
 
-	Cliente update(Cliente entity);
+	Response update(Cliente entity);
 
-	void delete(int id);
+	Response delete(Cliente entity);
 
 	List<Cliente> selectList();
+
+	List<Cliente> selectListByProperty(String property, String value);
 }
