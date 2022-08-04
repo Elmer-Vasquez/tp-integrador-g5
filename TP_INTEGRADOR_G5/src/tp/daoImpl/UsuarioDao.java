@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import tp.dao.IUsuarioDao;
+import tp.dominio.Persona;
 import tp.dominio.Usuario;
 
 @Repository("usuarioDao")
@@ -21,8 +22,10 @@ public class UsuarioDao extends GenericDao<Usuario> implements IUsuarioDao{
 		usuario = new Usuario();
 		Session session= conexion.abrirConexion();
 		session.beginTransaction();
-		usuario = (Usuario)session.createQuery("from Usuario where password='" + password + "'").uniqueResult();
-        conexion.cerrarSession();
+		Object[] objeto = (Object[])session.createQuery("from Usuario as u inner join u.persona as p where u.password='" + password + "' and p.email='" + email + "'").uniqueResult();
+        usuario = (Usuario) objeto[0];
+        usuario.setPersona((Persona)objeto[1]);
+		conexion.cerrarSession();
 		return usuario;
 	}
 

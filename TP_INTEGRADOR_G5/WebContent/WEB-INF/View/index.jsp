@@ -97,7 +97,9 @@
           <img class="mb-4" src='<c:url value="/img/logo-footer.png"></c:url>' alt="" width="100" height="100">
           <h1 class="h3 mb-3 fw-normal">Sistema de gestión</h1>
           
-          <!--  <div class="+"p-2 text-danger fs-5"+">Usuario y contraseña incorrectos</div> -->
+          <c:if test="${error == true}">
+          	<div class="p-2 text-danger fs-5">Usuario y contraseña incorrectos</div>
+          </c:if>
           
           <div class="form-floating">
             <input type="email" class="form-control" id="floatingInput" name="email">
