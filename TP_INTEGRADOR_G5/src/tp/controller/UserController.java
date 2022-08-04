@@ -34,6 +34,7 @@ public class UserController {
 	public ModelAndView postLogin(String email, String password) {
 		try {
 			Usuario usuario = _usuarioService.login(email, password);
+			if(usuario == null) throw new Exception();
 			MV.addObject("usuario", usuario);
 			MV.setViewName("principal");
 		}
