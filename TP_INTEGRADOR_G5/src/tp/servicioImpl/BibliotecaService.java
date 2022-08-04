@@ -22,26 +22,6 @@ public class BibliotecaService implements IBibliotecaService{
 	}
 
 	@Override
-	public int create(Biblioteca entity) {
-		return _bibliotecaDao.create(entity);
-	}
-
-	@Override
-	public void delete(int id) {
-		
-	}
-
-	@Override
-	public Biblioteca update(Biblioteca entity) {
-		return _bibliotecaDao.update(entity);
-	}
-
-	@Override
-	public Biblioteca readOne(int id) {
-		return _bibliotecaDao.readOne(id);
-	}
-
-	@Override
 	public List<Biblioteca> selectList() {
 		return _bibliotecaDao.selectList();
 	}

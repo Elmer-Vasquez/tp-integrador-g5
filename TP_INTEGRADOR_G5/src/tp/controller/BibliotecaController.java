@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import tp.dominio.Biblioteca;
-import tp.dominio.Cliente;
 import tp.servicio.IBibliotecaService;
+import tp.servicio.ILibroService;
 
 @Controller
 public class BibliotecaController {
@@ -31,27 +31,6 @@ public class BibliotecaController {
 		MV.addObject("bibliotecaList", lista);
 		MV.setViewName("biblioteca");
 		return MV;
-	}
-	
-	@RequestMapping("detalle_biblioteca.html")
-	public void getDetalleBiblioteca(int id) 
-	{
-		System.out.println(id+ "Detalle");
-		this.getListar();
-	}
-	
-	@RequestMapping("modificar_biblioteca.html")
-	public void getModificar(int id) 
-	{
-		System.out.println(id+ "Modificar");
-		this.getListar();
-	}
-	
-	@RequestMapping("eliminar_biblioteca.html")
-	public void getEliminar(int id) 
-	{
-		System.out.println(id+ "Eliminar");
-		this.getListar();
 	}
 
 }

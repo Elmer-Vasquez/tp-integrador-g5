@@ -43,7 +43,7 @@
         </div>
     </nav>
     <div style="text-align: end; margin-right: 18%;">
-        <button type="button" class="btn btn-primary" style="margin-top: 50px;">+ Agregar Libro</button>
+        <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-top: 50px;">+ Agregar libro</a>
     </div>
     <div class="col d-flex justify-content-center" style="margin-top: 20px;">
         <table class="table table-dark table-hover" style="text-align: center; width: 65%;">
@@ -68,15 +68,16 @@
 			            <td class="table-dark"> ${biblioteca.getFechaAlta()} </td>
 			            <td class="table-dark"> ${biblioteca.getEstado()} </td>
 			            <td class="table-dark">
-	                        <a href="eliminar_biblioteca.html?id=${biblioteca.getId()}"><i class="fas fa-trash-alt"></i></a>
-	                        <a href="detalle_biblioteca.html?id=${biblioteca.getId()}"><i class="fas fa-search"></i></a>
-	                        <a href="modificar_biblioteca.html?id=${biblioteca.getId()}"><i class="fas fa-pencil-alt"></i></a>
+	                        <a href="eliminar_libro.html?id=${biblioteca.libro.getId()}"><i class="fas fa-trash-alt"></i></a>
+	                        <a href="detalle_biblioteca.html?id=${biblioteca.libro.getId()}"><i class="fas fa-search"></i></a>
+	                        <a href="modificar_biblioteca.html?id=${biblioteca.libro.getId()}"><i class="fas fa-pencil-alt"></i></a>
 	                    </td>
 		            </tr>
 	            </c:forEach>
             </tbody>
         </table>
     </div>
+    <%@ include file = "Modal/CrearLibro.jsp" %>
 </body>
 
 </html>
