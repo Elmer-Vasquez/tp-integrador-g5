@@ -24,13 +24,34 @@ public class BibliotecaController {
 	}
 	
 	@RequestMapping("lista_biblioteca.html")
-	public ModelAndView getMenuPrincipal() 
+	public ModelAndView getListar() 
 	{
 		ModelAndView MV = new ModelAndView();
 		List<Biblioteca> lista = _bibliotecaService.selectList();
 		MV.addObject("bibliotecaList", lista);
 		MV.setViewName("biblioteca");
 		return MV;
+	}
+	
+	@RequestMapping("detalle_biblioteca.html")
+	public void getDetalleBiblioteca(int id) 
+	{
+		System.out.println(id+ "Detalle");
+		this.getListar();
+	}
+	
+	@RequestMapping("modificar_biblioteca.html")
+	public void getModificar(int id) 
+	{
+		System.out.println(id+ "Modificar");
+		this.getListar();
+	}
+	
+	@RequestMapping("eliminar_biblioteca.html")
+	public void getEliminar(int id) 
+	{
+		System.out.println(id+ "Eliminar");
+		this.getListar();
 	}
 
 }

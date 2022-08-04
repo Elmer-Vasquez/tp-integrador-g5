@@ -68,9 +68,9 @@
 			            <td class="table-dark"> ${biblioteca.getFechaAlta()} </td>
 			            <td class="table-dark"> ${biblioteca.getEstado()} </td>
 			            <td class="table-dark">
-	                        <i class="fas fa-trash-alt"></i>
-	                        <i class="fas fa-search"></i>
-	                        <i class="fas fa-pencil-alt"></i>
+	                        <a href="eliminar_biblioteca.html?id=${biblioteca.getId()}"><i class="fas fa-trash-alt"></i></a>
+	                        <a href="detalle_biblioteca.html?id=${biblioteca.getId()}"><i class="fas fa-search"></i></a>
+	                        <a href="modificar_biblioteca.html?id=${biblioteca.getId()}"><i class="fas fa-pencil-alt"></i></a>
 	                    </td>
 		            </tr>
 	            </c:forEach>
