@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.springframework.stereotype.Component;
@@ -37,6 +38,10 @@ public class Cliente implements Serializable {
 	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "localidad_id")
 	private Localidad localidad;
+	
+	@OneToMany(cascade= {CascadeType.ALL}, fetch = FetchType.EAGER)
+	@JoinColumn(name="cliente_id")
+	private ArrayList<Prestamo> prestamos;
 	
 	public Cliente() { }
 
@@ -64,6 +69,16 @@ public class Cliente implements Serializable {
 		this.localidad = localidad;
 	}
 	
+	
+	
+	public ArrayList<Prestamo> getPrestamos() {
+		return prestamos;
+	}
+
+	public void setPrestamos(ArrayList<Prestamo> prestamos) {
+		this.prestamos = prestamos;
+	}
+
 	//Metodo sin implementar, a futuro se puede buscar las propiedades por nombre y devolver una lista para manipular
 	//Para que funcione es necesario tener las propiedades en public
 	public static List<String> getPropertiesToString()

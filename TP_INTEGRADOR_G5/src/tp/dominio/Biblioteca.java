@@ -1,6 +1,7 @@
 package tp.dominio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.stereotype.Component;
 
@@ -27,6 +29,10 @@ public class Biblioteca implements Serializable {
 	@ManyToOne(cascade= {CascadeType.ALL}, fetch = FetchType.EAGER)
 	@JoinColumn(name="libro_id")
 	private Libro libro;
+	
+	@OneToMany(cascade= {CascadeType.ALL}, fetch = FetchType.EAGER)
+	@JoinColumn(name="cliente_id")
+	private ArrayList<Prestamo> prestamos;
 	
 	private Date fechaAlta;
 	
@@ -74,6 +80,14 @@ public class Biblioteca implements Serializable {
 		this.estado = estado;
 	}
 	
+	public ArrayList<Prestamo> getPrestamos() {
+		return prestamos;
+	}
+
+	public void setPrestamos(ArrayList<Prestamo> prestamos) {
+		this.prestamos = prestamos;
+	}
+
 	public String GetDatosPunto2() {
 		return "\nId: " + id + "\nFecha alta: " + fechaAlta + "\nTitulo libro: " + libro.getTitulo() + "\n";
 	}
