@@ -32,7 +32,7 @@
                         <a class="nav-link" href="lista_biblioteca.html">Biblioteca</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link">Prestámos</a>
+                        <a class="nav-link">Préstamos</a>
                     </li>
                 </ul>
             </div>

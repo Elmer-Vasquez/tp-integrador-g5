@@ -44,7 +44,7 @@
 					href="lista_clientes.html">Clientes</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="lista_biblioteca.html">Biblioteca</a></li>
-				<li class="nav-item"><a class="nav-link">Prestámos</a></li>
+				<li class="nav-item"><a class="nav-link">Préstamos</a></li>
 			</ul>
 		</div>
 	</div>
@@ -135,6 +135,7 @@
     
     <!-- MODALS -->
     <!-- CREATE_CLIENTE -->
+    <form action="create_cliente.html" method="get">
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -145,19 +146,19 @@
             <div class="modal-body">
                 <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">DNI</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="dni">
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="nombre">
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Apellido</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="apellido">
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Fecha de nacimiento</span>
-                    <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="fechaNacimiento">
                   </div>
                   <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Nacionalidad</label>
@@ -210,11 +211,12 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-primary">Guardar</button>
+              <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
           </div>
         </div>
       </div>
+      </form>
       
  <!-- ELIMINAR CLIENTE -->     
 	<div class="modal fade" id="deleteModal" data-bs-backdrop="static"

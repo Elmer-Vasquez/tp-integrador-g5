@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import tp.dominio.Cliente;
+import tp.dominio.Persona;
 import tp.servicio.IClienteService;
 import common.Dictionary;
 import common.Error;
@@ -43,7 +44,7 @@ public class ClienteController {
 	public ModelAndView postCliente(Cliente newCliente) {
 		ModelAndView MV = new ModelAndView();
 		try {
-			MV.addObject("status", Status.getGenerateStatus(_clienteService.create(newCliente)));
+//			MV.addObject("status", Status.getGenerateStatus(_clienteService.create(newCliente)));
 			MV.setViewName("cliente");
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
