@@ -19,6 +19,8 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.stereotype.Component;
 
+import common.EstadoLibro;
+
 @Component
 @Entity
 public class Libro implements Serializable {
@@ -55,6 +57,8 @@ public class Libro implements Serializable {
     )
 	private Set<Genero> generos;
 	
+	private EstadoLibro estadoLibro;
+
 	public Libro(){
 		this.generos = new HashSet<Genero>();
 	}
@@ -145,6 +149,14 @@ public class Libro implements Serializable {
 	
 	public void agregarGenero(Genero genero) {
 		this.generos.add(genero);
+	}
+	
+	public EstadoLibro getEstadoLibro() {
+		return estadoLibro;
+	}
+
+	public void setEstadoLibro(EstadoLibro estadoLibro) {
+		this.estadoLibro = estadoLibro;
 	}
 
 	@Override

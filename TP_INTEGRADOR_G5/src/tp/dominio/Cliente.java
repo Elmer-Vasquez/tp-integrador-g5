@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.springframework.stereotype.Component;
@@ -64,6 +65,7 @@ public class Cliente implements Serializable {
 		this.localidad = localidad;
 	}
 	
+
 	//Metodo sin implementar, a futuro se puede buscar las propiedades por nombre y devolver una lista para manipular
 	//Para que funcione es necesario tener las propiedades en public
 	public static List<String> getPropertiesToString()

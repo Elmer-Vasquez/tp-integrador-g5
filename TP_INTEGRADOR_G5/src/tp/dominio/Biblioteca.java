@@ -1,6 +1,7 @@
 package tp.dominio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.stereotype.Component;
 
@@ -73,7 +75,7 @@ public class Biblioteca implements Serializable {
 	public void setEstado(int estado) {
 		this.estado = estado;
 	}
-	
+
 	public String GetDatosPunto2() {
 		return "\nId: " + id + "\nFecha alta: " + fechaAlta + "\nTitulo libro: " + libro.getTitulo() + "\n";
 	}
