@@ -39,10 +39,6 @@ public class Cliente implements Serializable {
 	@JoinColumn(name = "localidad_id")
 	private Localidad localidad;
 	
-	@OneToMany(cascade= {CascadeType.ALL}, fetch = FetchType.EAGER)
-	@JoinColumn(name="cliente_id")
-	private ArrayList<Prestamo> prestamos;
-	
 	public Cliente() { }
 
 	public int getId() {
@@ -69,15 +65,6 @@ public class Cliente implements Serializable {
 		this.localidad = localidad;
 	}
 	
-	
-	
-	public ArrayList<Prestamo> getPrestamos() {
-		return prestamos;
-	}
-
-	public void setPrestamos(ArrayList<Prestamo> prestamos) {
-		this.prestamos = prestamos;
-	}
 
 	//Metodo sin implementar, a futuro se puede buscar las propiedades por nombre y devolver una lista para manipular
 	//Para que funcione es necesario tener las propiedades en public
