@@ -36,31 +36,27 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Clientes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Biblioteca</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Prestámos</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item"><a class="nav-link active"
+					aria-current="page" href="">Inicio</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="lista_clientes.html">Clientes</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="lista_biblioteca.html">Biblioteca</a></li>
+				<li class="nav-item"><a class="nav-link">Prestámos</a></li>
+			</ul>
+		</div>
+	</div>
     </nav>
     <div style="text-align: end; margin-right: 5%;">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-top: 50px;">+ Agregar Cliente</button>
     </div>
-    <form action="search_cliente.html" method="get">
+
+	<form action="search_cliente.html" method="get">
     <div class="d-flex justify-content-end" style="margin-top: 10px;margin-right: 5%;">
       <div style="max-width: 18%;margin-right: 12px;">
-          <input class="form-control" name="inputText">
+          <input class="form-control" value ="${inputValue != null ? inputValue : ''} " name="inputText">
       </div>
       <div style="max-width: 13%;">
           <select class="form-select" name="propertySelect">
@@ -81,7 +77,21 @@
 		</div>
 	</div>
 	</form>
-    <div class="col d-flex justify-content-center" style="margin-top: 20px;">
+
+<!-- Alertas para recibir, se evalua con IF -->
+	<c:if test="${ status != null }">
+		<div class="d-flex justify-content-end"
+			style="margin-top: 10px; margin-right: 5%;">
+			<div class="alert alert-primary alert-dismissible fade show"
+				role="alert" style="margin-bottom: -5px;">
+				<c:out value="${ status }"></c:out>
+				<button type="button" class="btn-close" data-bs-dismiss="alert"
+					aria-label="Close"></button>
+			</div>
+		</div>
+	</c:if>
+
+	<div class="col d-flex justify-content-center" style="margin-top: 20px;">
         <table class="table table-dark table-hover" style="text-align: center; width: 90%;">
             <thead>
                 <tr class="table-dark">
@@ -122,6 +132,9 @@
 			</tbody>
 			</table>
     </div>
+    
+    <!-- MODALS -->
+    <!-- CREATE_CLIENTE -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -202,6 +215,8 @@
           </div>
         </div>
       </div>
+      
+ <!-- ELIMINAR CLIENTE -->     
 	<div class="modal fade" id="deleteModal" data-bs-backdrop="static"
 		data-bs-keyboard="false" tabindex="-1"
 		aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -221,5 +236,6 @@
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>

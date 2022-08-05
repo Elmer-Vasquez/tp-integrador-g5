@@ -10,4 +10,8 @@ public final class Dictionary {
  	public static final String CREATE = "generar";
  	public static final String UPDATE = "actualizar";
  	public static final String DELETE = "eliminar";
+ 	
+ 	public static final boolean isNumeric(String cadena) {
+ 		return cadena != null && cadena.matches("[0-9.]+");
+ 	}
 }

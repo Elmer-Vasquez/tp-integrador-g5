@@ -18,7 +18,7 @@ public class MenuController {
 		_usuarioService = usuarioService;
 	}
 
-	@RequestMapping("principal.html")
+	@RequestMapping("menu_principal.html")
 	public ModelAndView getMenuPrincipal(String usuario, String password) 
 	{
 		ModelAndView MV = new ModelAndView();

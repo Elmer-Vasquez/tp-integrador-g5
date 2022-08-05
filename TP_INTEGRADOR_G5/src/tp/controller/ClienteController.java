@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import tp.dominio.Cliente;
 import tp.servicio.IClienteService;
+import common.Dictionary;
 import common.Error;
 import common.Status;
 
@@ -30,9 +31,7 @@ public class ClienteController {
 		ModelAndView MV = new ModelAndView();
 		try {
 			List<Cliente> lista = _clienteService.selectList();
-			List<String> properties = Cliente.getPropertiesToString();
 			MV.addObject("clientesList", lista);
-			MV.addObject("properties", properties);
 			MV.setViewName("cliente");
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
@@ -81,10 +80,11 @@ public class ClienteController {
 		ModelAndView MV = new ModelAndView();
 		try {
 			List<Cliente> lista = new ArrayList<Cliente>();
-			if (propertySelect.equals("default") || inputText.isEmpty()) {
+			if (propertySelect.equals("default") || inputText.isEmpty() || ((propertySelect.equals("persona.dni") || propertySelect.equals("persona.telefono")) && !Dictionary.isNumeric(inputText))) {
 				lista = _clienteService.selectList();
 			} else {
 				lista = _clienteService.selectListByProperty(propertySelect, inputText);
+				MV.addObject("inputValue", inputText);
 			}
 			MV.addObject("clientesList", lista);
 			MV.setViewName("cliente");
