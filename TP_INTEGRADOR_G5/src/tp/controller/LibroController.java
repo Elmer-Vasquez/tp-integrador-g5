@@ -23,8 +23,8 @@ public class LibroController {
 	@RequestMapping("eliminar_libro.html")
 	public ModelAndView getEliminar(int id) 
 	{
-		System.out.print(_libroService.readOne(id));
 		_libroService.delete(_libroService.readOne(id));
+		System.out.print(_libroService.readOne(id));
 		ModelAndView MV = new ModelAndView();
 		MV.setViewName("lista_biblioteca");
 		return MV;
