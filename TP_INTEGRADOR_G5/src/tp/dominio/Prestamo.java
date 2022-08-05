@@ -22,11 +22,15 @@ public class Prestamo implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	@ManyToOne(cascade= {CascadeType.ALL}, fetch = FetchType.EAGER)
 	@JoinColumn(name="biblioteca_id")
 	private Biblioteca biblioteca;
-	private Date fechaNacimiento;
+	
+	private Date fechaPrestamo;
+	
 	private int cantidadDias;
+	
 	@ManyToOne(cascade= {CascadeType.ALL}, fetch = FetchType.EAGER)
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
@@ -43,11 +47,11 @@ public class Prestamo implements Serializable {
 	public void setBiblioteca(Biblioteca biblioteca) {
 		this.biblioteca = biblioteca;
 	}
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
+	public Date getFechaPrestamo() {
+		return fechaPrestamo;
 	}
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+	public void setFechaPrestamo(Date fechaPrestamo) {
+		this.fechaPrestamo = fechaPrestamo;
 	}
 	public int getCantidadDias() {
 		return cantidadDias;
@@ -63,7 +67,7 @@ public class Prestamo implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Prestamo [id=" + id + ", biblioteca=" + biblioteca + ", fechaNacimiento=" + fechaNacimiento
+		return "Prestamo [id=" + id + ", biblioteca=" + biblioteca + ", fechaPrestamo=" + fechaPrestamo
 				+ ", cantidadDias=" + cantidadDias + ", cliente=" + cliente + "]";
 	}
 	

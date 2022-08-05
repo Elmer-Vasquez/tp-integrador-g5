@@ -30,10 +30,6 @@ public class Biblioteca implements Serializable {
 	@JoinColumn(name="libro_id")
 	private Libro libro;
 	
-	@OneToMany(cascade= {CascadeType.ALL}, fetch = FetchType.EAGER)
-	@JoinColumn(name="cliente_id")
-	private ArrayList<Prestamo> prestamos;
-	
 	private Date fechaAlta;
 	
 	private int estado;
@@ -78,14 +74,6 @@ public class Biblioteca implements Serializable {
 
 	public void setEstado(int estado) {
 		this.estado = estado;
-	}
-	
-	public ArrayList<Prestamo> getPrestamos() {
-		return prestamos;
-	}
-
-	public void setPrestamos(ArrayList<Prestamo> prestamos) {
-		this.prestamos = prestamos;
 	}
 
 	public String GetDatosPunto2() {

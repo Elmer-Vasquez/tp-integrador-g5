@@ -52,7 +52,7 @@ i {
 		<div class="modal-header">
 			<h5 class="modal-title" id="exampleModalLabel">Agregar libro</h5>
 		</div>
-		<form action="login.html" method="get">
+		<form action="agregar_libro.html" method="get">
 			<div id="agregarGenero" class="modal-body">
 				<div class="input-group input-group-sm mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-sm">ISBN</span>

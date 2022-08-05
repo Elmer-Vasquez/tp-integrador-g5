@@ -48,8 +48,7 @@ i {
 	</div>
 	</nav>
 	<div style="text-align: end; margin-right: 18%;">
-		<a type="button" class="btn btn-primary" data-bs-toggle="modal"
-			data-bs-target="#exampleModal" style="margin-top: 50px;">+
+		<a type="button" class="btn btn-primary" style="margin-top: 50px;" href="crearLibro.html">+
 			Agregar libro</a>
 	</div>
 	<div class="col d-flex justify-content-center"
