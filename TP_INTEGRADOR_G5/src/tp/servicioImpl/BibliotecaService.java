@@ -27,11 +27,6 @@ public class BibliotecaService implements IBibliotecaService{
 	public List<Biblioteca> selectList() {
 		return _bibliotecaDao.selectList();
 	}
-	
-	@Override
-	public Biblioteca readOne(int id) {
-		return _bibliotecaDao.readOne(id);
-	}
 
 	@Override
 	public List<Biblioteca> selectListByProperty(String propertySelect, String inputText) {

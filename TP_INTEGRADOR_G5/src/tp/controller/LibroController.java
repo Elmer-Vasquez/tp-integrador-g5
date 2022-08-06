@@ -1,5 +1,7 @@
 package tp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -12,8 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 import common.Directory;
 import common.Error;
 import tp.Request.CreateLibroRequest;
+import tp.dominio.Biblioteca;
 import tp.dominio.Libro;
 import tp.servicio.IAutorService;
+import tp.servicio.IBibliotecaService;
 import tp.servicio.IGeneroService;
 import tp.servicio.ILibroService;
 
@@ -24,16 +28,19 @@ public class LibroController {
 	private ILibroService _libroService;
 	private IAutorService _autorService;
 	private IGeneroService _generoService;
+	private IBibliotecaService _bibliotecaService;
 	
 	@Autowired
 	public LibroController(
 			@Qualifier("libroService") ILibroService libroService,
 			@Qualifier("autorService") IAutorService autorService,
-			@Qualifier("generoService") IGeneroService generoService
+			@Qualifier("generoService") IGeneroService generoService,
+			@Qualifier("bibliotecaService") IBibliotecaService bibliotecaService
 			) {
 		_libroService = libroService;
 		_autorService = autorService;
 		_generoService = generoService;
+		_bibliotecaService = bibliotecaService;
 	}
 	
 	
@@ -72,7 +79,7 @@ public class LibroController {
 			MV.addObject("libro", _libroService.readOne(id));
 			MV.addObject("autor", _autorService.selectList());
 			MV.addObject("genero", _generoService.selectList());
-			MV.setViewName(getPath("libro_update"));
+			MV.setViewName(getPath("libro-update"));
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}
@@ -96,9 +103,14 @@ public class LibroController {
 	{
 		ModelAndView MV = new ModelAndView();
 		try {
+			
 			Libro libro = _libroService.readOne(Integer.parseInt(id));
 			libro.setEstado(false);
 			_libroService.update(libro);
+			
+			List<Biblioteca> lista = _bibliotecaService.selectList();
+			MV.addObject("bibliotecaList", lista);
+			
 			MV.setViewName("biblioteca");
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
@@ -107,12 +119,12 @@ public class LibroController {
 	}
 	
 	@RequestMapping(value="detalle_libro.html", method=RequestMethod.GET)
-	public ModelAndView getDetalle(int id) 
+	public ModelAndView getDetalle(String id) 
 	{
 		ModelAndView MV = new ModelAndView();
 		try {
-			MV.addObject("libro", _libroService.readOne(id));
-			MV.setViewName("libro");
+			MV.addObject("libro", _libroService.readOne(Integer.parseInt(id)));
+			MV.setViewName(getPath("libro"));
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}

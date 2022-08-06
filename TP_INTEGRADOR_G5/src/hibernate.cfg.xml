@@ -22,5 +22,6 @@
 		<mapping class="tp.dominio.Cliente" />
 		<mapping class="tp.dominio.Persona" />
 		<mapping class="tp.dominio.Localidad" />
+		<mapping class="tp.dominio.Prestamo"/>
 	</session-factory>
 </hibernate-configuration>

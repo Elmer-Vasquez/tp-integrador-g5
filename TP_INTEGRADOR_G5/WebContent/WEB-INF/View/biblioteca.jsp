@@ -48,11 +48,6 @@ i {
 	</div>
     </nav>
 	
-	<div style="text-align: end; margin-right: 18%;">
-		<a type="button" class="btn btn-primary" style="margin-top: 50px;" href="crear_Libro.html">+
-			Agregar libro</a>
-	</div>
-	
 	<div style="text-align: end; margin-right: 5%;">
         <a type="button" class="btn btn-primary" style="margin-top: 50px;" href="crearLibro.html">+
 			Agregar libro</a>

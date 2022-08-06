@@ -66,14 +66,14 @@ i {
             </thead>
             <tbody>
                 <tr class="table-dark">
-                    <td class="table-dark">${biblioteca.libro.getIsbn()}</td>
-                    <td class="table-dark">${biblioteca.libro.getTitulo()}</td>
-                    <td class="table-dark">${biblioteca.libro.getFechaLanzamiento()}</td>
-                    <td class="table-dark">${biblioteca.libro.getIdioma()}</td>
-                    <td class="table-dark">${biblioteca.libro.getCantidadPaginas()}</td>
-                    <td class="table-dark">${biblioteca.libro.autor.persona.toString()}</td>
-                    <td class="table-dark">${biblioteca.libro.getDescripcion()}</td>
-                    <td class="table-dark">${biblioteca.libro.getEstadoLibro()}</td>
+                    <td class="table-dark">${libro.getIsbn()}</td>
+                    <td class="table-dark">${libro.getTitulo()}</td>
+                    <td class="table-dark">${libro.getFechaLanzamiento()}</td>
+                    <td class="table-dark">${libro.getIdioma()}</td>
+                    <td class="table-dark">${libro.getCantidadPaginas()}</td>
+                    <td class="table-dark">${libro.autor.persona.toString()}</td>
+                    <td class="table-dark">${libro.getDescripcion()}</td>
+                    <td class="table-dark">${libro.getEstadoLibro()}</td>
                 </tr>
             </tbody>
         </table>
