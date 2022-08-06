@@ -18,6 +18,8 @@ import javax.persistence.OneToOne;
 
 import org.springframework.stereotype.Component;
 
+import tp.Request.CreateClienteRequest;
+
 @Component
 @Entity
 public class Cliente implements Serializable {
@@ -40,6 +42,12 @@ public class Cliente implements Serializable {
 	private Localidad localidad;
 	
 	public Cliente() { }
+	
+	public Cliente(CreateClienteRequest request, Nacionalidad nac, Localidad loc) {
+		this.persona = new Persona(request.getNombre(), request.getApellido(), request.getEmail(), request.getSexo(), request.getFechaNacimiento(), request.getDni(),
+				request.getTelefono(), nac);
+		this.localidad = loc;
+	}
 
 	public int getId() {
 		return id;

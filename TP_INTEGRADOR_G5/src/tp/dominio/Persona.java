@@ -1,6 +1,8 @@
 package tp.dominio;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -45,6 +47,17 @@ public class Persona implements Serializable{
 	private Nacionalidad nacionalidad;
 	
 	public Persona() { }
+	
+	public Persona(String nombre, String apellido, String email, String sexo, Date fechaNac, int dni, int telefono, Nacionalidad nac) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.sexo = sexo;
+		this.fechaNacimiento = fechaNac;
+		this.dni = dni;
+		this.telefono = telefono;
+		this.nacionalidad = nac;
+	}
 	
 	public int getId() {
 		return id;
@@ -102,8 +115,13 @@ public class Persona implements Serializable{
 		this.telefono = telefono;
 	}
 
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
+	public String getFechaNacimiento() {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			return formatter.format(this.fechaNacimiento);
+		} catch (Exception ex) {
+			return this.fechaNacimiento.toString();
+		}
 	}
 
 	public void setFechaNacimiento(Date fechaNacimiento) {

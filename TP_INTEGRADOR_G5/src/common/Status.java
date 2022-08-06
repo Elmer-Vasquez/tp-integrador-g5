@@ -18,10 +18,10 @@ public final class Status {
 	}
 	
 	private static String genericSuccesStatus(String accion) {
-		return "El registro se " + accion + "correctamente";
+		return "El registro se " + accion + " correctamente";
 	}
 	
 	private static String genericErrorStatus(String accion) {
-		return "Ocurrió un error al " + accion + "el registro";
+		return "Ocurrió un error al " + accion + " el registro";
 	}
 }
