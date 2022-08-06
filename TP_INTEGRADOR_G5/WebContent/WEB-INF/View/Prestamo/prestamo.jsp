@@ -44,41 +44,42 @@
 					href="lista_clientes.html">Clientes</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="lista_biblioteca.html">Biblioteca</a></li>
-				<li class="nav-item" ><a class="nav-link">Préstamos</a></li>
+				<li class="nav-item" ><a class="nav-link"
+					href="lista_prestamo.html">Préstamos</a></li>
 			</ul>
 		</div>
 	</div>
     </nav>
     <div style="text-align: end; margin-right: 5%;">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-top: 50px;">+ Agregar Prestamo</button>
+    <form action="create_prestamo.html" method="get">
+    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-top: 50px;">+ Agregar Prestamo</button>
+    </form>
     </div>
 
 
-	<div class="col d-flex justify-content-center" style="margin-top: 20px;">
+<div class="col d-flex justify-content-center" style="margin-top: 20px;">
         <table class="table table-dark table-hover" style="text-align: center; width: 90%;">
             <thead>
                 <tr class="table-dark">
-                    <th scope="col">ID</th>
+                    <th scope="col">Nro de prestamo</th>
                     <th scope="col">Cantidad de dias </th>
-                    <th scope="col">fecha del prestamo</th>
-                   <th scope="col">id biblioteca</th>
-                    <th scope="col">id cliente</th>
+                    <th scope="col">Fecha del prestamo</th>
+                   <th scope="col">Libro</th>
+                    <th scope="col">Cliente</th>
                     <th scope="col">Acción</th>
                 </tr>
             </thead>
             <tbody>
 					<c:forEach var="prestamo" items="${prestamoList}">
 					<tr class="table-dark">
-						<td class="table-dark">${prestamo.getid()}</td>
+						<td class="table-dark">${prestamo.getId()}</td>
 						<td class="table-dark">${prestamo.getCantidadDias()}</td>
 						<td class="table-dark">${prestamo.getFechaPrestamo()}</td>
+						<td class="table-dark">${prestamo.biblioteca.libro.getTitulo()}</td>
+						<td class="table-dark">${prestamo.cliente.persona.getNombre()}</td>
 						<td class="table-dark">
-							${prestamo.biblioteca.getid()}</td>
-						<td class="table-dark">${prestamo.cliente.getid()}</td>
-						<td class="table-dark">
-						<button class="btn" style="color: currentColor;" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt"></i></button>
-						<i class="fas fa-search"></i>
-						<i class="fas fa-pencil-alt"></i>
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-top: 50px;">Devolución</button>
+
 						</td>
 					</tr>
 				</c:forEach>

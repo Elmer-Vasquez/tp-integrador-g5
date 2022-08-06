@@ -35,6 +35,15 @@ public class Prestamo implements Serializable {
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
 	
+	public Prestamo() {}
+	
+	public Prestamo(Biblioteca biblioteca, Cliente cli, int cantidadDias, Date fechaPrestamo) {
+		this.biblioteca = biblioteca;
+		this.cliente = cli;
+		this.cantidadDias = cantidadDias;
+		this.fechaPrestamo = fechaPrestamo;
+	}
+	
 	public int getId() {
 		return id;
 	}

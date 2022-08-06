@@ -129,8 +129,10 @@
 						<a data-bs-toggle="modal" data-bs-target="#deleteModal"
 							onClick="eliminarCliente(${cliente.getId()})"> <i
 								class="fas fa-trash-alt"></i>
-						</a> <i class="fas fa-search"></i>
+						</a>
+						<a href="update_cliente.html?id=${cliente.getId()}">
 						<i class="fas fa-pencil-alt"></i>
+						</a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -166,6 +168,7 @@
 		function eliminarCliente(id){
 			document.getElementById("clienteId").value = id;
 		}
+		
 	</script>
 
 </body>

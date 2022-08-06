@@ -9,12 +9,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import tp.Request.CreateClienteRequest;
+import tp.Request.UpdateClienteRequest;
 import tp.dominio.Cliente;
 import tp.dominio.Localidad;
 import tp.dominio.Nacionalidad;
@@ -111,12 +114,34 @@ public class ClienteController {
 		return MV;
 	}
 	
-	@RequestMapping("update_cliente.html")
-	public ModelAndView updateCliente(@ModelAttribute Cliente cliente) {
+	@RequestMapping(value="update_cliente.html", method=RequestMethod.GET)
+	public ModelAndView updateCliente(@RequestParam int id) {
 		ModelAndView MV = new ModelAndView();
 		try {
-			MV.addObject("status", Status.getUpdateStatus(_clienteService.update(cliente)));
-			MV.setViewName("cliente");
+			MV.addObject("nacionalidadList", _nacionalidadService.selectList());
+			MV.addObject("localidadList", _localidadService.selectList());
+			MV.addObject("cliente", _clienteService.readOne(id));
+			MV.setViewName(getPath("cliente-update"));
+		} catch (Exception ex) {
+			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
+		}
+		return MV;
+	}
+	
+	@RequestMapping(value="update_cliente.html", method=RequestMethod.POST)
+	public ModelAndView updateCliente(UpdateClienteRequest request) {
+		ModelAndView MV = new ModelAndView();
+		try {
+			Nacionalidad nac = _nacionalidadService.readOne(request.getNacionalidadId());
+			Localidad loc = _localidadService.readOne(request.getLocalidadId());
+			Cliente cli = _clienteService.readOne(Integer.parseInt(request.getId()));
+			
+			cli.update(nac, loc, request);
+
+			MV.addObject("status", Status.getUpdateStatus(_clienteService.update(cli)));
+			
+			MV.addObject("clientesList", _clienteService.selectList());
+			MV.setViewName(getPath("cliente"));
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}

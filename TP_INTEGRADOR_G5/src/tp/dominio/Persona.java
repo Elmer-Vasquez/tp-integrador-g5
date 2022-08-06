@@ -123,6 +123,10 @@ public class Persona implements Serializable{
 			return this.fechaNacimiento.toString();
 		}
 	}
+	
+	public Date getRealFechaNacimiento() {
+		return this.fechaNacimiento;
+	}
 
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;

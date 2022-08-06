@@ -1,5 +1,7 @@
 package tp.servicioImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -38,6 +40,11 @@ public class LibroService implements ILibroService{
 	@Override
 	public Libro readOne(int id) {
 		return _LibroDao.readOne(id);
+	}
+
+	@Override
+	public List<Libro> selectList() {
+		return _LibroDao.selectList();
 	}
 
 }

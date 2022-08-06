@@ -39,8 +39,7 @@ public class ClienteService implements IClienteService{
 
 	@Override
 	public Cliente readOne(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return _clienteDao.readOne(id);
 	}
 
 	@Override

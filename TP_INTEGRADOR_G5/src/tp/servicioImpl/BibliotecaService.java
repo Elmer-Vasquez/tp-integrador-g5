@@ -26,4 +26,9 @@ public class BibliotecaService implements IBibliotecaService{
 		return _bibliotecaDao.selectList();
 	}
 
+	@Override
+	public Biblioteca readOne(int id) {
+		return _bibliotecaDao.readOne(id);
+	}
+
 }

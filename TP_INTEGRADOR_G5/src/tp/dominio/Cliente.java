@@ -19,6 +19,7 @@ import javax.persistence.OneToOne;
 import org.springframework.stereotype.Component;
 
 import tp.Request.CreateClienteRequest;
+import tp.Request.UpdateClienteRequest;
 
 @Component
 @Entity
@@ -47,6 +48,19 @@ public class Cliente implements Serializable {
 		this.persona = new Persona(request.getNombre(), request.getApellido(), request.getEmail(), request.getSexo(), request.getFechaNacimiento(), request.getDni(),
 				request.getTelefono(), nac);
 		this.localidad = loc;
+	}
+	
+	public void update(Nacionalidad nac, Localidad loc, UpdateClienteRequest request) {
+		this.persona.setNacionalidad(nac);
+		this.persona.setNombre(request.getNombre());
+		this.persona.setApellido(request.getApellido());
+		this.persona.setEmail(request.getEmail());
+		this.persona.setSexo(request.getSexo());
+		this.persona.setFechaNacimiento(request.getFechaNacimiento());
+		this.persona.setDni(request.getDni());
+		this.persona.setTelefono(request.getTelefono());
+		this.localidad = loc;
+		
 	}
 
 	public int getId() {

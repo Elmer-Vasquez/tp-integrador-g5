@@ -1,5 +1,7 @@
 package tp.servicio;
 
+import java.util.List;
+
 import tp.dominio.Libro;
 
 public interface ILibroService {
@@ -11,5 +13,7 @@ public interface ILibroService {
 	Libro update(Libro entity);
 	
 	Libro readOne(int id);
+	
+	List<Libro> selectList();
 	
 }

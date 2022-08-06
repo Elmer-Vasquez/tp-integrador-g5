@@ -49,90 +49,89 @@
 		</div>
 	</div>
     </nav>
+    
+    <form id="goBack" action="lista_clientes.html" method="get">
+    </form>
 
     <!-- MODALS -->
     <!-- CREATE_CLIENTE -->
-    <form action="create_cliente.html" method="get">
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form action="update_cliente.html" modelAttribute="request" method="POST">
+    	<input type="hidden" value="${cliente.getId()}" name="id">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Agregar cliente</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">DNI</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="dni">
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getDni()}" name="dni">
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="nombre">
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getNombre()}" name="nombre">
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Apellido</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="apellido">
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getApellido()}" name="apellido">
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Fecha de nacimiento</span>
-                    <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="fechaNacimiento">
+                    <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getRealFechaNacimiento()}"name="fechaNacimiento">
                   </div>
                   <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Nacionalidad</label>
-                    <select class="form-select" id="inputGroupSelect01">
-                      <option selected>Elegir...</option>
-                      <option value="1">Argentina</option>
-                      <option value="2">Brasil</option>
-                      <option value="4">Uruguay</option>
-                      <option value="5">Paraguay</option>
-                      <option value="6">Chile</option>
-                      <option value="7">Bolivia</option>
-                      <option value="8">Peru</option>
-                      <option value="9">Ecuador</option>
+                    <select class="form-select" id="inputGroupSelect01" name="nacionalidadId">
+                    <c:forEach var="nacionalidad" items="${nacionalidadList}">
+                    <c:if test="${nacionalidad.getId() == cliente.getPersona().getNacionalidad().getId()}">
+                    	<option value="${nacionalidad.getId()}" selected> ${nacionalidad.getDescripcion()}</option>
+                    </c:if>
+                    <option value="${nacionalidad.getId()}"> ${nacionalidad.getDescripcion()}</option>
+                    </c:forEach>
                     </select>
                   </div>
                   <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Localidad</label>
-                    <select class="form-select" id="inputGroupSelect01">
-                      <option selected>Elegir...</option>
-                      <option value="1">Saavedra</option>
-                      <option value="2">Olivos</option>
-                      <option value="4">Munro</option>
-                      <option value="5">Nuñez</option>
-                      <option value="6">Pilar</option>
-                      <option value="7">Juan B Justo</option>
-                      <option value="8">Zarate</option>
-                      <option value="9">Tortuguitasr</option>
+                    <select class="form-select" id="inputGroupSelect01" name="localidadId">
+                    <c:forEach var="localidad" items="${localidadList}">
+                    <c:if test="${localidad.getId() == cliente.getLocalidad().getId()}">
+                    	<option value="${localidad.getId()}" selected> ${localidad.getDescripcion()}</option>
+                    </c:if>
+                    <option value="${localidad.getId()}"> ${localidad.getDescripcion()}</option>
+                    </c:forEach>  
                     </select>
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Correo electrónico</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getEmail()}" name="email">
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Telefono</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getTelefono()}" name="telefono">
                   </div>
-                  <div class="form-check mb-3">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                      Masculino
-                    </label>
-                  </div>
-                  <div class="form-check mb-3">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                    <label class="form-check-label" for="flexRadioDefault2">
-                      Femenino
-                    </label>
-                  </div>
+                  <select class="form-select" id="inputGroupSelect01" name="sexo">
+                  <c:if test="${cliente.getPersona().getSexo().equals('Masculino')}">
+                  <option value="Masculino" selected>Masculino</option>
+                  <option value="Femenino">Femenino</option>
+                  </c:if>
+                  <c:if test="${cliente.getPersona().getSexo().equals('Femenino')}">
+                  <option value="Masculino">Masculino</option>
+                  <option value="Femenino" selected>Femenino</option>
+                  </c:if>
+                  <c:if test="${cliente.getPersona().getSexo().isEmpty()}">
+                  <option value="Masculino">Masculino</option>
+                  <option value="Femenino">Femenino</option>
+                  </c:if>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Femenino">Femenino</option>
+                  </select>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-secondary" form="goBack">Cancelar</button>
               <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
           </div>
         </div>
-      </div>
       </form>
 
 </body>
