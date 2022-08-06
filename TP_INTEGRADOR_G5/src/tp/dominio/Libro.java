@@ -59,12 +59,14 @@ public class Libro implements Serializable {
 	
 	private EstadoLibro estadoLibro;
 
+	private boolean estado;
+
 	public Libro(){
 		this.generos = new HashSet<Genero>();
 	}
 	
 	public Libro(int isbn, String titulo, Date fechaLanzamiento, String idioma, int cantidadPaginas, Autor autor,
-			String descripcion, Set<Genero> generos) {
+			String descripcion, Set<Genero> generos, EstadoLibro estadoLibro, boolean estado) {
 		this.isbn = isbn;
 		this.titulo = titulo;
 		this.fechaLanzamiento = fechaLanzamiento;
@@ -73,6 +75,8 @@ public class Libro implements Serializable {
 		this.autor = autor;
 		this.descripcion = descripcion;
 		this.generos = generos;
+		this.estadoLibro = estadoLibro;
+		this.estado= estado;
 	}
 
 	public int getId() {
@@ -157,6 +161,14 @@ public class Libro implements Serializable {
 
 	public void setEstadoLibro(EstadoLibro estadoLibro) {
 		this.estadoLibro = estadoLibro;
+	}
+	
+	public boolean getEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
 	}
 
 	@Override

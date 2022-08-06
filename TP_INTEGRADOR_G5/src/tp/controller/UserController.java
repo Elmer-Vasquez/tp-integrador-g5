@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import tp.dominio.Usuario;
@@ -24,7 +25,7 @@ public class UserController {
 		_usuarioService = usuarioService;
 	}
 	
-	@RequestMapping("inicio.html")
+	@RequestMapping(value="inicio.html", method=RequestMethod.GET)
 	public ModelAndView getMenuPrincipal() 
 	{
 		ModelAndView MV = new ModelAndView();
@@ -33,7 +34,7 @@ public class UserController {
 		return MV;
 	}
 	
-	@RequestMapping("login.html")
+	@RequestMapping(value="login.html", method=RequestMethod.POST)
 	public ModelAndView postLogin(String email, String password) {
 		try {
 			Usuario usuario = _usuarioService.login(email, password);
@@ -45,6 +46,14 @@ public class UserController {
 			MV.addObject("error", true);
 			MV.setViewName("index");
 		}
+		return MV;
+	}
+	
+	@RequestMapping(value="principal.html", method=RequestMethod.GET)
+	public ModelAndView getPrincipal() 
+	{
+		ModelAndView MV = new ModelAndView();
+		MV.setViewName("principal");
 		return MV;
 	}
 	

@@ -4,8 +4,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset='utf-8'>
-<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Detalle libro</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -20,15 +20,15 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
-<title>Prestamos</title>
 </head>
 <style>
-    i {
-        margin-right: 10px;
-    }
+i {
+	margin-right: 10px;
+}
 </style>
+
 <body style="background-color: #f5f5f5;">
-    <nav class="navbar navbar-dark bg-dark">
+	    <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="principal.html">Elmer Vasquez</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -44,50 +44,40 @@
 					href="lista_clientes.html">Clientes</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="lista_biblioteca.html">Biblioteca</a></li>
-				<li class="nav-item" ><a class="nav-link"
-					href="lista_prestamo.html">Préstamos</a></li>
+				<li class="nav-item"><a class="nav-link">Préstamos</a></li>
 			</ul>
 		</div>
 	</div>
     </nav>
-    <div style="text-align: end; margin-right: 5%;">
-    <form action="create_prestamo.html" method="get">
-    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-top: 50px;">+ Agregar Prestamo</button>
-    </form>
-    </div>
-
-
-<div class="col d-flex justify-content-center" style="margin-top: 20px;">
-        <table class="table table-dark table-hover" style="text-align: center; width: 90%;">
+    
+     <div class="col d-flex justify-content-center" style="margin-top: 20px;">
+        <table class="table table-dark table-hover" style="text-align: center; width: 65%;">
             <thead>
                 <tr class="table-dark">
-                    <th scope="col">Nro de prestamo</th>
-                    <th scope="col">Cantidad de dias </th>
-                    <th scope="col">Fecha del prestamo</th>
-                   <th scope="col">Libro</th>
-                    <th scope="col">Cliente</th>
-                    <th scope="col">Acción</th>
+                    <th scope="col">ISBN</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Fecha lanzamiento</th>
+                    <th scope="col">Idioma</th>
+                    <th scope="col">Cantidad de paginas</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Estado libro</th>
                 </tr>
             </thead>
             <tbody>
-					<c:forEach var="prestamo" items="${prestamoList}">
-					<tr class="table-dark">
-						<td class="table-dark">${prestamo.getId()}</td>
-						<td class="table-dark">${prestamo.getCantidadDias()}</td>
-						<td class="table-dark">${prestamo.getFechaPrestamo()}</td>
-						<td class="table-dark">${prestamo.biblioteca.libro.getTitulo()}</td>
-						<td class="table-dark">${prestamo.cliente.persona.getNombre()}</td>
-						<td class="table-dark">
-						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-top: 50px;">Devolución</button>
-
-						</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-			</table>
+                <tr class="table-dark">
+                    <td class="table-dark">${biblioteca.libro.getIsbn()}</td>
+                    <td class="table-dark">${biblioteca.libro.getTitulo()}</td>
+                    <td class="table-dark">${biblioteca.libro.getFechaLanzamiento()}</td>
+                    <td class="table-dark">${biblioteca.libro.getIdioma()}</td>
+                    <td class="table-dark">${biblioteca.libro.getCantidadPaginas()}</td>
+                    <td class="table-dark">${biblioteca.libro.autor.persona.toString()}</td>
+                    <td class="table-dark">${biblioteca.libro.getDescripcion()}</td>
+                    <td class="table-dark">${biblioteca.libro.getEstadoLibro()}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    
-
 
 </body>
 </html>
