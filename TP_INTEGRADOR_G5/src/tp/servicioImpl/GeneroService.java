@@ -23,7 +23,7 @@ public class GeneroService implements IGeneroService{
 	
 	@Override
 	public List<Genero> selectList() {
-		return null;
+		return _generoDao.selectList();
 	}
 
 }

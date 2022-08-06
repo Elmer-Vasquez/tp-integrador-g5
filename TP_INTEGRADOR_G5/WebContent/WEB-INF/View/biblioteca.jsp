@@ -52,16 +52,47 @@ i {
             </div>
         </div>
 	</nav>
+	
 	<div style="text-align: end; margin-right: 18%;">
 		<a type="button" class="btn btn-primary" style="margin-top: 50px;" href="crearLibro.html">+
 			Agregar libro</a>
 	</div>
+	
+	<div style="text-align: end; margin-right: 5%;">
+        <a type="button" class="btn btn-primary" style="margin-top: 50px;" href="crearLibro.html">+
+			Agregar libro</a>
+    </div>
+
+	<form action="search_cliente.html" method="get">
+    <div class="d-flex justify-content-end" style="margin-top: 10px;margin-right: 5%;">
+      <div style="max-width: 18%;margin-right: 12px;">
+          <input class="form-control" value ="${inputValue != null ? inputValue : ''} " name="inputText">
+      </div>
+      <div style="max-width: 13%;">
+          <select class="form-select" name="propertySelect">
+          <option value="default"></option>
+          <option value="libro.isbn">ISBN</option>
+          <option value="libro.titulo">Libro</option>
+          <option value="libro.idioma">Idioma</option>
+          <option value="libro.cantidadPaginas">Cantidad de Paginas</option>
+          <option value="libro.autor.persona.nombre">Autor</option>
+          <option value="libro.fechaLanzamiento">Fecha de alta</option>
+          <option value="libro.estadoLibro">Estado</option>
+          </select>
+      </div>
+		<div style="margin-left: 12px;">
+				<button type="submit" class="btn btn-primary">Buscar</button>
+		</div>
+	</div>
+	</form>
+	
 	<div class="col d-flex justify-content-center"
 		style="margin-top: 20px;">
 		<table class="table table-dark table-hover"
 			style="text-align: center; width: 65%;">
 			<thead>
 				<tr class="table-dark">
+					<th scope="col">ISBN</th>
 					<th scope="col">Libro</th>
 					<th scope="col">Idioma</th>
 					<th scope="col">Cantidad de Paginas</th>
@@ -74,6 +105,7 @@ i {
 			<tbody>
 				<c:forEach var="biblioteca" items="${bibliotecaList}">
 					<tr class="table-dark">
+						<td class="table-dark">${biblioteca.libro.getIsbn()}</td>
 						<td class="table-dark">${biblioteca.libro.getTitulo()}</td>
 						<td class="table-dark">${biblioteca.libro.getIdioma()}</td>
 						<td class="table-dark">

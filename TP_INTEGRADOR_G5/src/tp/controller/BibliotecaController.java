@@ -1,5 +1,6 @@
 package tp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import common.Dictionary;
+import common.Error;
 import tp.dominio.Biblioteca;
+import tp.dominio.Cliente;
 import tp.servicio.IBibliotecaService;
 import tp.servicio.ILibroService;
 
@@ -27,9 +31,32 @@ public class BibliotecaController {
 	public ModelAndView getListar() 
 	{
 		ModelAndView MV = new ModelAndView();
-		List<Biblioteca> lista = _bibliotecaService.selectList();
-		MV.addObject("bibliotecaList", lista);
-		MV.setViewName("biblioteca");
+		try {
+			List<Biblioteca> lista = _bibliotecaService.selectList();
+			MV.addObject("bibliotecaList", lista);
+			MV.setViewName("biblioteca");
+		} catch (Exception ex) {
+			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
+		}
+		return MV;
+	}
+	
+	@RequestMapping("search_biblioteca.html")
+	public ModelAndView getClienteByProperty(String inputText, String propertySelect) {
+		ModelAndView MV = new ModelAndView();
+		try {
+			List<Biblioteca> lista = new ArrayList<Biblioteca>();
+			if (propertySelect.equals("default") || inputText.isEmpty() || ((propertySelect.equals("persona.dni") || propertySelect.equals("persona.telefono")) && !Dictionary.isNumeric(inputText))) {
+				lista = _bibliotecaService.selectList();
+			} else {
+				lista = _bibliotecaService.selectListByProperty(propertySelect, inputText);
+				MV.addObject("inputValue", inputText);
+			}
+			MV.addObject("bibliotecaList", lista);
+			MV.setViewName("biblioteca");
+		} catch (Exception ex) {
+			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
+		}
 		return MV;
 	}
 
