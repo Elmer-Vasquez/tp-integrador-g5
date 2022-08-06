@@ -1,27 +1,24 @@
 package tp.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import common.Directory;
 import common.Error;
-import tp.dao.IAutorDao;
-import tp.daoImpl.AutorDao;
-import tp.daoImpl.GeneroDao;
-import tp.dominio.Autor;
-import tp.dominio.Genero;
+import tp.Request.CreateLibroRequest;
 import tp.dominio.Libro;
 import tp.servicio.IAutorService;
 import tp.servicio.IGeneroService;
 import tp.servicio.ILibroService;
-import tp.servicioImpl.AutorService;
-import tp.servicioImpl.GeneroService;
 
 @Controller
+@SessionAttributes({"newLibro"})
 public class LibroController {
 	
 	private ILibroService _libroService;
@@ -29,34 +26,37 @@ public class LibroController {
 	private IGeneroService _generoService;
 	
 	@Autowired
-	public LibroController(@Qualifier("libroService") ILibroService libroService) {
+	public LibroController(
+			@Qualifier("libroService") ILibroService libroService,
+			@Qualifier("autorService") IAutorService autorService,
+			@Qualifier("generoService") IGeneroService generoService
+			) {
 		_libroService = libroService;
+		_autorService = autorService;
+		_generoService = generoService;
 	}
 	
 	
-	@RequestMapping("crear_Libro.html")
-	public ModelAndView getAgregar()
+	@RequestMapping(value="crear_Libro.html", method=RequestMethod.GET)
+	public ModelAndView getLibroCrear(@ModelAttribute("libro") Libro libro)
 	{
 		ModelAndView MV = new ModelAndView();
 		try {
-			_autorService = new AutorService( new AutorDao());
-			_generoService = new GeneroService( new GeneroDao() );
-			List<Autor> autor = _autorService.selectList();
-			List<Genero> genero = _generoService.selectList();
-			MV.addObject("autor", autor);
-			MV.addObject("genero", genero);
-			MV.setViewName("crearLibro");
+			MV.addObject("autor", _autorService.selectList());
+			MV.addObject("genero", _generoService.selectList());
+			MV.setViewName("libro_create");
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}
 		return MV;
 	}
 	
-	@RequestMapping("agregar_libro.html")
-	public ModelAndView getAgregar(Libro libro) 
+	@RequestMapping(value="create_libro.html", method=RequestMethod.POST)
+	public ModelAndView postLibroCrear(CreateLibroRequest request) 
 	{
 		ModelAndView MV = new ModelAndView();
 		try {
+			 System.out.print(request);
 			MV.setViewName("lista_biblioteca");
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
@@ -64,25 +64,21 @@ public class LibroController {
 		return MV;
 	}
 	
-	@RequestMapping("editar_Libro.html")
+	@RequestMapping(value="editar_Libro.html", method=RequestMethod.GET)
 	public ModelAndView getEditarLibro() 
 	{
 		ModelAndView MV = new ModelAndView();
 		try {
-			_autorService = new AutorService( new AutorDao());
-			_generoService = new GeneroService( new GeneroDao() );
-			List<Autor> autor = _autorService.selectList();
-			List<Genero> genero = _generoService.selectList();
-			MV.addObject("autor", autor);
-			MV.addObject("genero", genero);
-			MV.setViewName("editarLibro");
+			MV.addObject("autor", _autorService.selectList());
+			MV.addObject("genero", _generoService.selectList());
+			MV.setViewName("libro_update");
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}
 		return MV;
 	}
 	
-	@RequestMapping("modificar_libro.html")
+	@RequestMapping(value="editar_libro.html", method=RequestMethod.POST)
 	public ModelAndView getModificar() 
 	{
 		ModelAndView MV = new ModelAndView();
@@ -94,19 +90,22 @@ public class LibroController {
 		return MV;
 	}
 	
-	@RequestMapping("eliminar_libro.html")
+	@RequestMapping(value="eliminar_libro.html", method=RequestMethod.GET)
 	public ModelAndView getEliminar(int id) 
 	{
 		ModelAndView MV = new ModelAndView();
 		try {
 			Libro libro = _libroService.readOne(id);
 			libro.setEstado(false);
-			_libroService.update(_libroService.readOne(id));
-			System.out.print(_libroService.readOne(id));
+			_libroService.update(libro);
 			MV.setViewName("lista_biblioteca");
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}
 		return MV;
+	}
+	
+	private String getPath(String jsp) {
+		return Directory.LIBRO + jsp;
 	}
 }

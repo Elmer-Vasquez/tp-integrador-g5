@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import common.Dictionary;
@@ -27,7 +28,7 @@ public class BibliotecaController {
 		_bibliotecaService = bibliotecaService;
 	}
 	
-	@RequestMapping("lista_biblioteca.html")
+	@RequestMapping(value="lista_biblioteca.html", method=RequestMethod.GET)
 	public ModelAndView getListar() 
 	{
 		ModelAndView MV = new ModelAndView();
@@ -41,7 +42,7 @@ public class BibliotecaController {
 		return MV;
 	}
 	
-	@RequestMapping("search_biblioteca.html")
+	@RequestMapping(value="search_biblioteca.html", method=RequestMethod.GET)
 	public ModelAndView getClienteByProperty(String inputText, String propertySelect) {
 		ModelAndView MV = new ModelAndView();
 		try {

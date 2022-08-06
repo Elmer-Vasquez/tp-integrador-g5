@@ -43,7 +43,7 @@ i {
 				<li class="nav-item"><a class="nav-link" href="#">Clientes</a>
 				</li>
 				<li class="nav-item"><a class="nav-link">Biblioteca</a></li>
-				<li class="nav-item"><a class="nav-link">Prestámos</a></li>
+				<li class="nav-item"><a class="nav-link">Prestamos</a></li>
 			</ul>
 		</div>
 	</div>
@@ -52,62 +52,66 @@ i {
 		<div class="modal-header">
 			<h5 class="modal-title" id="exampleModalLabel">Editar libro</h5>
 		</div>
-		<form>
+		<form action="agregar_libro.html" method="get">
 			<div id="agregarGenero" class="modal-body">
 				<div class="input-group input-group-sm mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-sm">ISBN</span>
 					<input type="text" class="form-control"
 						aria-label="Sizing example input"
 						aria-describedby="inputGroup-sizing-sm"
-						name="ISBN">
+						name="isbn">
 				</div>
 				<div class="input-group input-group-sm mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-sm">Titulo</span>
 					<input type="text" class="form-control"
 						aria-label="Sizing example input"
 						aria-describedby="inputGroup-sizing-sm"
-						name="Titulo">
+						name="titulo">
 				</div>
 				<div class="input-group input-group-sm mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-sm">Fecha
 						de lanzamiento</span> <input type="date" class="form-control"
 						aria-label="Sizing example input"
 						aria-describedby="inputGroup-sizing-sm"
-						name="Fecha">
+						name="fechaLanzamiento">
 				</div>
 				<div class="input-group input-group-sm mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-sm">Idioma</span>
 					<input type="text" class="form-control"
 						aria-label="Sizing example input"
 						aria-describedby="inputGroup-sizing-sm"
-						name="Idioma">
+						name="idioma">
 				</div>
 				<div class="input-group input-group-sm mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-sm">Cantidad
 						de paginas</span> <input type="text" class="form-control"
 						aria-label="Sizing example input"
 						aria-describedby="inputGroup-sizing-sm"
-						name="Cantidad">
+						name="cantidadPaginas">
 				</div>
 				<div class="input-group mb-3">
 					<label class="input-group-text" for="inputGroupSelect01">Autor</label>
-					<select class="form-select" id="inputGroupSelect01" name="Autor">
+					<select class="form-select" id="inputGroupSelect01" name="autor">
 						<option selected>Elegir...</option>
-						<option value="1">Argentina</option>
+						<c:forEach var="autor" items="${autor}">
+							<option value="${ autor.getId() }">${ autor.persona.getNombre() }</option>
+						</c:forEach>
 					</select>
 				</div>
 				<div id="generos" class="input-group mb-3">
 					<label class="input-group-text" for="inputGroupSelect01">Generos</label>
-					<select class="form-select" id="inputGroupSelect01" name="Generos">
+					<select class="form-select" id="inputGroupSelect01" name="genero">
 						<option selected>Elegir...</option>
-						<option value="1">Saavedra</option>
+						<c:forEach var="genero" items="${genero}">
+							<option value="${ genero.getId() }">${ genero.getDescripcion() }</option>
+						</c:forEach>
 					</select>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary"
 					onclick="agregarGenero()">Agregar genero</button>
-				<button type="button" class="btn btn-success">Guardar</button>
+				<input  type="submit" class="btn btn-success" value="Guardar" />
 			</div>
 		</form>
 	</div>
