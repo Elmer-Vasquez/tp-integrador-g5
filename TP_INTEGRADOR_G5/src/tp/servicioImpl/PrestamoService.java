@@ -1,5 +1,7 @@
 package tp.servicioImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -37,5 +39,10 @@ private IPrestamoDao _PrestamoDao;
 	@Override
 	public Prestamo readOne(int id) {
 		return _PrestamoDao.readOne(id);
+	}
+	
+	@Override
+	public List<Prestamo> selectList() {
+		return _PrestamoDao.selectList();
 	}
 }

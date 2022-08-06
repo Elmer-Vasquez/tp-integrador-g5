@@ -22,6 +22,10 @@ public class ClienteService implements IClienteService{
 	{
 		_clienteDao = clienteDao;
 	}
+	
+	public ClienteService() {
+		
+	}
 
 	@Override
 	public Response create(Cliente entity) {
@@ -50,9 +54,11 @@ public class ClienteService implements IClienteService{
 	}
 
 	@Override
-	public Response delete(Cliente entity) {
+	public Response delete(int id) {
 		try {
-			_clienteDao.delete(entity);
+			Cliente clienteTODelete = new Cliente();
+			clienteTODelete.setId(id);
+			_clienteDao.delete(clienteTODelete);
 			return Response.SUCCES;
 		} catch (Exception ex) {
 			return Response.ERROR;

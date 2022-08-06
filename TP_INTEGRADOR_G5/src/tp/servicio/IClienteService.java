@@ -12,7 +12,7 @@ public interface IClienteService {
 
 	Response update(Cliente entity);
 
-	Response delete(Cliente entity);
+	Response delete(int id);
 
 	List<Cliente> selectList();
 

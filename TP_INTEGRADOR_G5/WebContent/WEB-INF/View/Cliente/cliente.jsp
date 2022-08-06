@@ -49,8 +49,11 @@
 		</div>
 	</div>
     </nav>
+    
     <div style="text-align: end; margin-right: 5%;">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-top: 50px;">+ Agregar Cliente</button>
+    <form action="create_cliente.html" method="get">
+    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-top: 50px;">+ Agregar Cliente</button>
+    </form>
     </div>
 
 	<form action="search_cliente.html" method="get">
@@ -123,8 +126,10 @@
 						<td class="table-dark">${cliente.persona.getEmail()}</td>
 						<td class="table-dark">${cliente.persona.getTelefono()}</td>
 						<td class="table-dark">
-						<button class="btn" style="color: currentColor;" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt"></i></button>
-						<i class="fas fa-search"></i>
+						<a data-bs-toggle="modal" data-bs-target="#deleteModal"
+							onClick="eliminarCliente(${cliente.getId()})"> <i
+								class="fas fa-trash-alt"></i>
+						</a> <i class="fas fa-search"></i>
 						<i class="fas fa-pencil-alt"></i>
 						</td>
 					</tr>
@@ -132,91 +137,6 @@
 			</tbody>
 			</table>
     </div>
-    
-    <!-- MODALS -->
-    <!-- CREATE_CLIENTE -->
-    <form action="create_cliente.html" method="get">
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Agregar cliente</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">DNI</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="dni">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="nombre">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Apellido</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="apellido">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Fecha de nacimiento</span>
-                    <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="fechaNacimiento">
-                  </div>
-                  <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01">Nacionalidad</label>
-                    <select class="form-select" id="inputGroupSelect01">
-                      <option selected>Elegir...</option>
-                      <option value="1">Argentina</option>
-                      <option value="2">Brasil</option>
-                      <option value="4">Uruguay</option>
-                      <option value="5">Paraguay</option>
-                      <option value="6">Chile</option>
-                      <option value="7">Bolivia</option>
-                      <option value="8">Peru</option>
-                      <option value="9">Ecuador</option>
-                    </select>
-                  </div>
-                  <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01">Localidad</label>
-                    <select class="form-select" id="inputGroupSelect01">
-                      <option selected>Elegir...</option>
-                      <option value="1">Saavedra</option>
-                      <option value="2">Olivos</option>
-                      <option value="4">Munro</option>
-                      <option value="5">Nuñez</option>
-                      <option value="6">Pilar</option>
-                      <option value="7">Juan B Justo</option>
-                      <option value="8">Zarate</option>
-                      <option value="9">Tortuguitasr</option>
-                    </select>
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Correo electrónico</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Telefono</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                  </div>
-                  <div class="form-check mb-3">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                      Masculino
-                    </label>
-                  </div>
-                  <div class="form-check mb-3">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                    <label class="form-check-label" for="flexRadioDefault2">
-                      Femenino
-                    </label>
-                  </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-primary">Guardar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      </form>
       
  <!-- ELIMINAR CLIENTE -->     
 	<div class="modal fade" id="deleteModal" data-bs-backdrop="static"
@@ -231,13 +151,22 @@
 				</div>
 				<div class="modal-body">¿Esta seguro que desea eliminar al cliente?</div>
 				<div class="modal-footer">
+				<form action="delete_cliente.html" method="post" id="deleteCliente">
+				<input type="hidden" id="clienteId" name="clienteId">
+				</form>
 					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal">Cerrar</button>
-					<button type="button" class="btn btn-primary">Aceptar</button>
+					<button type="submit" form="deleteCliente" class="btn btn-primary">Aceptar</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<script>
+		function eliminarCliente(id){
+			document.getElementById("clienteId").value = id;
+		}
+	</script>
 
 </body>
 </html>
