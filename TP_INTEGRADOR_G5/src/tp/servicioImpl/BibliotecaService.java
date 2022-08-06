@@ -38,7 +38,7 @@ public class BibliotecaService implements IBibliotecaService{
 		List<Biblioteca> list = new ArrayList<Biblioteca>();
 		
 		List<Object[]> list2 = new ArrayList<Object[]>();
-		if(propertySelect.equals("persona.telefono") || propertySelect.equals("persona.dni")) {
+		if(propertySelect.equals("libro.isbn") || propertySelect.equals("libro.cantidadPaginas")) {
 			list2 = _bibliotecaDao.selectListByInnerIntegerProperty(propertySelect, inputText);
 		}else {
 			list2 = _bibliotecaDao.selectListByInnerStringProperty(propertySelect, inputText);

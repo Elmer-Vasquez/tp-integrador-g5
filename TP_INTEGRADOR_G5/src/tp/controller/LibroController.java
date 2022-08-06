@@ -44,7 +44,7 @@ public class LibroController {
 		try {
 			MV.addObject("autor", _autorService.selectList());
 			MV.addObject("genero", _generoService.selectList());
-			MV.setViewName("libro_create");
+			MV.setViewName(getPath("libro_create"));
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}
@@ -57,7 +57,7 @@ public class LibroController {
 		ModelAndView MV = new ModelAndView();
 		try {
 			 System.out.print(request);
-			MV.setViewName("lista_biblioteca");
+			MV.setViewName(getPath("lista_biblioteca"));
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}
@@ -65,13 +65,14 @@ public class LibroController {
 	}
 	
 	@RequestMapping(value="editar_Libro.html", method=RequestMethod.GET)
-	public ModelAndView getEditarLibro() 
+	public ModelAndView getEditarLibro(int id) 
 	{
 		ModelAndView MV = new ModelAndView();
 		try {
+			MV.addObject("libro", _libroService.readOne(id));
 			MV.addObject("autor", _autorService.selectList());
 			MV.addObject("genero", _generoService.selectList());
-			MV.setViewName("libro_update");
+			MV.setViewName(getPath("libro_update"));
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}
@@ -83,7 +84,7 @@ public class LibroController {
 	{
 		ModelAndView MV = new ModelAndView();
 		try {
-			MV.setViewName("lista_biblioteca");
+			MV.setViewName(getPath("lista_biblioteca"));
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}
@@ -91,14 +92,27 @@ public class LibroController {
 	}
 	
 	@RequestMapping(value="eliminar_libro.html", method=RequestMethod.GET)
-	public ModelAndView getEliminar(int id) 
+	public ModelAndView getEliminar(String id) 
 	{
 		ModelAndView MV = new ModelAndView();
 		try {
-			Libro libro = _libroService.readOne(id);
+			Libro libro = _libroService.readOne(Integer.parseInt(id));
 			libro.setEstado(false);
 			_libroService.update(libro);
-			MV.setViewName("lista_biblioteca");
+			MV.setViewName("biblioteca");
+		} catch (Exception ex) {
+			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
+		}
+		return MV;
+	}
+	
+	@RequestMapping(value="detalle_libro.html", method=RequestMethod.GET)
+	public ModelAndView getDetalle(int id) 
+	{
+		ModelAndView MV = new ModelAndView();
+		try {
+			MV.addObject("libro", _libroService.readOne(id));
+			MV.setViewName("libro");
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}

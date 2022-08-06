@@ -47,7 +47,7 @@ public class BibliotecaController {
 		ModelAndView MV = new ModelAndView();
 		try {
 			List<Biblioteca> lista = new ArrayList<Biblioteca>();
-			if (propertySelect.equals("default") || inputText.isEmpty() || ((propertySelect.equals("persona.dni") || propertySelect.equals("persona.telefono")) && !Dictionary.isNumeric(inputText))) {
+			if (propertySelect.equals("default") || inputText.isEmpty() || ((propertySelect.equals("libro.isbn") || propertySelect.equals("libro.cantidadPaginas")) && !Dictionary.isNumeric(inputText))) {
 				lista = _bibliotecaService.selectList();
 			} else {
 				lista = _bibliotecaService.selectListByProperty(propertySelect, inputText);

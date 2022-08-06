@@ -63,7 +63,6 @@ public class Libro implements Serializable {
 
 	public Libro(){
 		this.generos = new HashSet<Genero>();
-		this.estado= true;
 	}
 	
 	public Libro(int isbn, String titulo, Date fechaLanzamiento, String idioma, int cantidadPaginas, Autor autor,

@@ -28,27 +28,27 @@ i {
 </style>
 
 <body style="background-color: #f5f5f5;">
-	<nav class="navbar navbar-dark bg-dark">
-	<div class="container-fluid">
-		<a class="navbar-brand" href="#">Elmer Vasquez</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-			data-bs-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+	    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="principal.html">Elmer Vasquez</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item"><a class="nav-link active"
-					aria-current="page" href="#">Inicio</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Clientes</a>
-				</li>
-				<li class="nav-item"><a class="nav-link">Biblioteca</a></li>
-				<li class="nav-item"><a class="nav-link">Prestamos</a></li>
+					aria-current="page" href="principal.html">Inicio</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="lista_clientes.html">Clientes</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="lista_biblioteca.html">Biblioteca</a></li>
+				<li class="nav-item"><a class="nav-link">Préstamos</a></li>
 			</ul>
 		</div>
 	</div>
-	</nav>
+    </nav>
 	<div class="px-5 mx-5">
 		<div class="modal-header">
 			<h5 class="modal-title" id="exampleModalLabel">Agregar libro</h5>

@@ -49,6 +49,14 @@ public class UserController {
 		return MV;
 	}
 	
+	@RequestMapping(value="principal.html", method=RequestMethod.GET)
+	public ModelAndView getPrincipal() 
+	{
+		ModelAndView MV = new ModelAndView();
+		MV.setViewName("principal");
+		return MV;
+	}
+	
 	public ModelAndView logOut(HttpServletRequest request) {
 		HttpSession sesion = request.getSession();
 		sesion.invalidate();
