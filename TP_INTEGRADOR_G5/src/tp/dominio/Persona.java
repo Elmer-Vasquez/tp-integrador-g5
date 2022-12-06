@@ -127,6 +127,15 @@ public class Persona implements Serializable{
 	public Date getRealFechaNacimiento() {
 		return this.fechaNacimiento;
 	}
+	
+	public String getFechaNacimientoToInput() {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			return formatter.format(this.fechaNacimiento);
+		} catch (Exception ex) {
+			return this.fechaNacimiento.toString();
+		}
+	}
 
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
