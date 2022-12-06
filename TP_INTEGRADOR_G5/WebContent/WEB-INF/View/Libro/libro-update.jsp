@@ -27,7 +27,7 @@ i {
 </style>
 
 <body style="background-color: #f5f5f5;">
-	   <jsp:include page="nav-bar.jsp" />  
+	   <jsp:include page="../nav-bar.jsp" />  
 	<div class="px-5 mx-5">
 		<div class="modal-header">
 			<h5 class="modal-title" id="exampleModalLabel">Editar libro</h5>

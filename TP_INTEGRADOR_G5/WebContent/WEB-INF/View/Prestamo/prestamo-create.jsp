@@ -28,7 +28,7 @@
     }
 </style>
 <body style="background-color: #f5f5f5;">
-    <jsp:include page="nav-bar.jsp" />  
+    <jsp:include page="../nav-bar.jsp" />  
     
     <form id="goBack" action="lista_prestamo.html" method="get">
     </form>

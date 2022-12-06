@@ -28,7 +28,7 @@
     }
 </style>
 <body style="background-color: #f5f5f5;">
-    <jsp:include page="nav-bar.jsp" />  
+    <jsp:include page="../nav-bar.jsp" />  
     <div style="text-align: end; margin-right: 5%;">
     <form action="create_prestamo.html" method="get">
     <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-top: 50px;">+ Agregar Prestamo</button>

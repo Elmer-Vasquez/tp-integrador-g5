@@ -28,7 +28,7 @@ i {
 </style>
 
 <body style="background-color: #f5f5f5;">
-	   <jsp:include page="nav-bar.jsp" />  
+	   <jsp:include page="../nav-bar.jsp" />  
     
      <div class="col d-flex justify-content-center" style="margin-top: 20px;">
         <table class="table table-dark table-hover" style="text-align: center; width: 65%;">

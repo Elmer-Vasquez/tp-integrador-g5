@@ -26,7 +26,7 @@ i {
 }
 </style>
 <body style="background-color: #f5f5f5;">
-	   <jsp:include page="nav-bar.jsp" />  
+	   <jsp:include page="../nav-bar.jsp" />  
 	
 	<div style="text-align: end; margin-right: 5%;">
         <a type="button" class="btn btn-primary" style="margin-top: 50px;" href="crearLibro.html">+
