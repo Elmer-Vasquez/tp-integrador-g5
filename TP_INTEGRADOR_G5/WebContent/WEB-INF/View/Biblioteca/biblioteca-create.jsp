@@ -28,7 +28,7 @@ i {
 }
 </style>
 <body style="background-color: #f5f5f5;">
-	<jsp:include page="../nav-bar.jsp" />  
+	<jsp:include page="../nav-bar.jsp" />
 
 	<form id="goBack" action="lista_biblioteca.html" method="get"></form>
 
@@ -82,8 +82,8 @@ i {
 							</select>
 						</div>
 						<div class="input-group input-group-sm mb-3">
-							<span class="input-group-text" id="inputGroup-sizing-sm">Descripcion</span> <input
-								type="text" class="form-control"
+							<span class="input-group-text" id="inputGroup-sizing-sm">Descripcion</span>
+							<input type="text" class="form-control"
 								aria-label="Sizing example input"
 								aria-describedby="inputGroup-sizing-sm" name="descripcion">
 						</div>

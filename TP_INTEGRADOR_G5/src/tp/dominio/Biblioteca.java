@@ -57,18 +57,20 @@ public class Biblioteca implements Serializable {
 		this.fechaAlta = fechaAlta;
 		this.estado = estado;
 	}
-	
-	public Biblioteca(CreateBibliotecaRequest request, Libro libro, Genero genero) {
+
+	public Biblioteca(CreateBibliotecaRequest request, Libro libro, Genero genero, Autor autor) {
 		this.id = request.getId();
 		this.libro = libro;
+		this.libro.setAutor(autor);
 		this.libro.setGeneros(new HashSet<Genero>(Arrays.asList(genero)));
 		this.fechaAlta = request.getFechaAlta();
 		this.estado = request.getEstado();
 	}
-
-	public void update(Genero genero, Libro libro, UpdateBibliotecaRequest request) {
+	
+	public void update(Autor autor, Genero genero, Libro libro, UpdateBibliotecaRequest request) {
 		this.id = request.getId();
 		this.libro = libro;
+		this.libro.setAutor(autor);
 		this.libro.setGeneros(new HashSet<Genero>(Arrays.asList(genero)));
 		this.fechaAlta = request.getFechaAlta();
 		this.estado = request.getEstado();

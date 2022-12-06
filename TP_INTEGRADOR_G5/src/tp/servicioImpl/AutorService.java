@@ -25,4 +25,9 @@ public class AutorService implements IAutorService{
 		return _autorDao.selectList();
 	}
 
+	@Override
+	public Autor readOne(int id) {
+		return _autorDao.readOne(id);
+	}
+
 }
