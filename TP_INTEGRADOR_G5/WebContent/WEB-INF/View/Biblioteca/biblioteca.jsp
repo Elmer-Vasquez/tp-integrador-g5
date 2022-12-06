@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,36 +26,41 @@ i {
 }
 </style>
 <body style="background-color: #f5f5f5;">
-	   <jsp:include page="../nav-bar.jsp" />  
-	
-	<div style="text-align: end; margin-right: 5%;">
-        <a type="button" class="btn btn-primary" style="margin-top: 50px;" href="crearLibro.html">+
-			Agregar libro</a>
-    </div>
+	<jsp:include page="../nav-bar.jsp" />
+
+	<form action="create_biblioteca.html" method="get">
+		<div style="text-align: end; margin-right: 5%;">
+			<button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+				data-bs-target="#exampleModal" style="margin-top: 50px;">+
+				Agregar libro</button>
+		</div>
+	</form>
 
 	<form action="search_biblioteca.html" method="get">
-    <div class="d-flex justify-content-end" style="margin-top: 10px;margin-right: 5%;">
-      <div style="max-width: 18%;margin-right: 12px;">
-          <input class="form-control" value ="${inputValue != null ? inputValue : ''} " name="inputText">
-      </div>
-      <div style="max-width: 13%;">
-          <select class="form-select" name="propertySelect">
-          <option value="default"></option>
-          <option value="libro.isbn">ISBN</option>
-          <option value="libro.titulo">Libro</option>
-          <option value="libro.idioma">Idioma</option>
-          <option value="libro.cantidadPaginas">Cantidad de Paginas</option>
-          <option value="libro.autor.persona.nombre">Autor</option>
-          <option value="libro.fechaLanzamiento">Fecha de alta</option>
-          <option value="libro.estadoLibro">Estado</option>
-          </select>
-      </div>
-		<div style="margin-left: 12px;">
+		<div class="d-flex justify-content-end"
+			style="margin-top: 10px; margin-right: 5%;">
+			<div style="max-width: 18%; margin-right: 12px;">
+				<input class="form-control"
+					value="${inputValue != null ? inputValue : ''} " name="inputText">
+			</div>
+			<div style="max-width: 13%;">
+				<select class="form-select" name="propertySelect">
+					<option value="default"></option>
+					<option value="libro.isbn">ISBN</option>
+					<option value="libro.titulo">Libro</option>
+					<option value="libro.idioma">Idioma</option>
+					<option value="libro.cantidadPaginas">Cantidad de Paginas</option>
+					<option value="libro.autor.persona.nombre">Autor</option>
+					<option value="libro.fechaLanzamiento">Fecha de alta</option>
+					<option value="libro.estadoLibro">Estado</option>
+				</select>
+			</div>
+			<div style="margin-left: 12px;">
 				<button type="submit" class="btn btn-primary">Buscar</button>
+			</div>
 		</div>
-	</div>
 	</form>
-	
+
 	<div class="col d-flex justify-content-center"
 		style="margin-top: 20px;">
 		<table class="table table-dark table-hover"
@@ -85,22 +90,23 @@ i {
 								${biblioteca.libro.autor.persona.toString()}</td>
 							<td class="table-dark">${biblioteca.getFechaAlta()}</td>
 							<td class="table-dark">
-								${biblioteca.libro.getEstadoLibro().getNombre()}
-							</td>
+								${biblioteca.libro.getEstadoLibro().getNombre()}</td>
 							<td class="table-dark">
-								<button class="button" data-bs-toggle="modal" data-bs-target="#deleteModal" 
-									onClick="eliminarLibro(${biblioteca.libro.getId()})"
-								>
+								<button class="button" data-bs-toggle="modal"
+									data-bs-target="#deleteModal"
+									onClick="eliminarLibro(${biblioteca.libro.getId()})">
 									<i class="fas fa-trash-alt"></i>
 								</button>
 								<form action="detalle_libro.html" action="get">
-									<input type="text" class="d-none" name="id" value="${biblioteca.libro.getId()}">
+									<input type="text" class="d-none" name="id"
+										value="${biblioteca.libro.getId()}">
 									<button type="submit" class="button">
 										<i class="fas fa-search"></i>
 									</button>
 								</form>
 								<form action="editar_Libro.html" action="get">
-									<input type="text" class="d-none" name="id" value="${biblioteca.libro.getId()}">
+									<input type="text" class="d-none" name="id"
+										value="${biblioteca.libro.getId()}">
 									<button type="submit" class="button">
 										<i class="fas fa-pencil-alt"></i>
 									</button>
@@ -133,13 +139,13 @@ i {
 						data-bs-dismiss="modal">Cerrar</button>
 					<form action="eliminar_libro.html" method="get">
 						<input type="text" class="d-none" id="eliminar" name="id" value="">
-						<input type="submit" class="btn btn-primary" value="Aceptar"/>
+						<input type="submit" class="btn btn-primary" value="Aceptar" />
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<script>
 		function eliminarLibro(id){
 			const ancla = document.getElementById("eliminar");

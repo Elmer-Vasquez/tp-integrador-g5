@@ -55,6 +55,7 @@ public class Libro implements Serializable {
 	    inverseJoinColumns=
 	        @JoinColumn(name="genero_id")
     )
+	
 	private Set<Genero> generos;
 	
 	private EstadoLibro estadoLibro;

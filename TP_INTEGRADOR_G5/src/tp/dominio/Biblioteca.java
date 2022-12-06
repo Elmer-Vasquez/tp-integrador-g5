@@ -2,7 +2,10 @@ package tp.dominio;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -55,12 +58,22 @@ public class Biblioteca implements Serializable {
 		this.estado = estado;
 	}
 	
-	public void update(Libro libro, UpdateBibliotecaRequest request) {
+	public Biblioteca(CreateBibliotecaRequest request, Libro libro, Genero genero) {
 		this.id = request.getId();
 		this.libro = libro;
+		this.libro.setGeneros(new HashSet<Genero>(Arrays.asList(genero)));
 		this.fechaAlta = request.getFechaAlta();
 		this.estado = request.getEstado();
 	}
+
+	public void update(Genero genero, Libro libro, UpdateBibliotecaRequest request) {
+		this.id = request.getId();
+		this.libro = libro;
+		this.libro.setGeneros(new HashSet<Genero>(Arrays.asList(genero)));
+		this.fechaAlta = request.getFechaAlta();
+		this.estado = request.getEstado();
+	}
+	
 
 	public int getId() {
 		return id;

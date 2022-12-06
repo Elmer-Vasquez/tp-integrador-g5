@@ -20,8 +20,12 @@ import common.Status;
 import tp.Request.CreateBibliotecaRequest;
 import tp.Request.UpdateBibliotecaRequest;
 import tp.dominio.Biblioteca;
+import tp.dominio.Cliente;
+import tp.dominio.Genero;
 import tp.dominio.Libro;
+import tp.dominio.Nacionalidad;
 import tp.servicio.IBibliotecaService;
+import tp.servicio.IGeneroService;
 import tp.servicio.ILibroService;
 
 @Controller
@@ -30,15 +34,18 @@ public class BibliotecaController {
 	
 	private IBibliotecaService _bibliotecaService;
 	private ILibroService _libroService;
+	private IGeneroService _generoService;
 	
 	@Autowired
 	public BibliotecaController(
 			@Qualifier("bibliotecaService") IBibliotecaService bibliotecaService, 
-			@Qualifier("libroService") ILibroService libroService
+			@Qualifier("libroService") ILibroService libroService,
+			@Qualifier("generoService") IGeneroService generoService
 			)
 	{
 		_bibliotecaService = bibliotecaService;
 		_libroService = libroService;
+		_generoService = generoService;
 	}
 	
 	@RequestMapping(value="lista_biblioteca.html")
@@ -48,7 +55,7 @@ public class BibliotecaController {
 		try {
 			List<Biblioteca> lista = _bibliotecaService.selectList();
 			MV.addObject("bibliotecaList", lista);
-			MV.setViewName(getPath("bilbioteca"));
+			MV.setViewName(getPath("biblioteca"));
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}
@@ -59,6 +66,8 @@ public class BibliotecaController {
 	public ModelAndView getBibliotecaCreate(@ModelAttribute("biblioteca") Biblioteca biblioteca) {
 		ModelAndView MV = new ModelAndView();
 		try {
+			List<Genero> lista = _generoService.selectList();
+			MV.addObject("generoList", lista);
 			MV.addObject("libroList", _libroService.selectList());
 			MV.addObject("bibliotecaList", _bibliotecaService.selectList());
 			MV.setViewName(getPath("biblioteca-create"));
@@ -72,10 +81,10 @@ public class BibliotecaController {
 	public ModelAndView postBibliotecaCreate(CreateBibliotecaRequest request) {
 		ModelAndView MV = new ModelAndView();
 		try {
-			
+			Genero genero = _generoService.readOne(request.getId());
 			Libro libro = _libroService.readOne(request.getId());
 
-			MV.addObject("status", Status.getGenerateStatus(_bibliotecaService.create(new Biblioteca(request, libro))));
+			MV.addObject("status", Status.getGenerateStatus(_bibliotecaService.create(new Biblioteca(request, libro, genero))));
 			MV.addObject("bibliotecaList", _bibliotecaService.selectList());
 			MV.setViewName(getPath("biblioteca"));
 		} catch (Exception ex) {
@@ -107,6 +116,7 @@ public class BibliotecaController {
 	public ModelAndView updateBiblioteca(@RequestParam int id) {
 		ModelAndView MV = new ModelAndView();
 		try {
+			MV.addObject("generoList", _generoService.selectList());
 			MV.addObject("libroList", _libroService.selectList());
 			MV.addObject("biblioteca", _bibliotecaService.readOne(id));
 			MV.setViewName(getPath("biblioteca-update"));
@@ -120,10 +130,11 @@ public class BibliotecaController {
 	public ModelAndView updateBiblioteca(UpdateBibliotecaRequest request) {
 		ModelAndView MV = new ModelAndView();
 		try {
+			Genero genero = _generoService.readOne(request.getId());
 			Libro libro = _libroService.readOne(request.getId());
 			Biblioteca biblioteca = _bibliotecaService.readOne(request.getId());
 			
-			biblioteca.update(libro, request);
+			biblioteca.update(genero, libro, request);
 
 			MV.addObject("status", Status.getUpdateStatus(_bibliotecaService.update(biblioteca)));
 			

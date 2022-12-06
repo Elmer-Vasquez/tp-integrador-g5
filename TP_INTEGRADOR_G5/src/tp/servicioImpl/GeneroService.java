@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import tp.dao.IGeneroDao;
 import tp.dominio.Genero;
+import tp.dominio.Nacionalidad;
 import tp.servicio.IGeneroService;
 
 @Service("generoService")
@@ -24,6 +25,11 @@ public class GeneroService implements IGeneroService{
 	@Override
 	public List<Genero> selectList() {
 		return _generoDao.selectList();
+	}
+
+	@Override
+	public Genero readOne(int id) {
+		return _generoDao.readOne(id);
 	}
 
 }

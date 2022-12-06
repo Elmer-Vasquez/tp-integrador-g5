@@ -28,7 +28,7 @@ i {
 }
 </style>
 <body style="background-color: #f5f5f5;">
-	<jsp:include page="../nav-bar.jsp" />  
+	<jsp:include page="../nav-bar.jsp" />
 
 	<form id="goBack" action="lista_clientes.html" method="get"></form>
 
@@ -91,9 +91,9 @@ i {
 					<div class="input-group mb-3">
 						<label class="input-group-text" for="inputGroupSelect01">Generos</label>
 						<select class="form-select" id="inputGroupSelect01" name="generos">
-							<c:forEach var="localidad" items="${generosList}">
-								<option value="${generos.getId()}">
-									${generos.getDescripcion()}</option>
+							<c:forEach var="genero" items="${generoList}">
+								<option value="${genero.getId()}">
+									${genero.getDescripcion()}</option>
 							</c:forEach>
 						</select>
 					</div>
