@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import common.Response;
 import tp.dao.IBibliotecaDao;
 import tp.dominio.Biblioteca;
 import tp.dominio.Cliente;
@@ -17,6 +18,8 @@ public class BibliotecaService implements IBibliotecaService{
 	
 	private IBibliotecaDao _bibliotecaDao;
 	
+	public BibliotecaService() {}
+	
 	@Autowired
 	public BibliotecaService(@Qualifier("bibliotecaDao") IBibliotecaDao bibliotecaDao)
 	{
@@ -24,6 +27,42 @@ public class BibliotecaService implements IBibliotecaService{
 	}
 
 	@Override
+	public Response create(Biblioteca entity) {
+		try {
+			_bibliotecaDao.create(entity);
+			return Response.SUCCES;
+		} catch (Exception ex) {
+			return Response.ERROR;
+		}
+	}
+
+	@Override
+	public Biblioteca readOne(int id) {
+		return _bibliotecaDao.readOne(id);
+	}
+	
+	@Override
+	public Response update(Biblioteca entity) {
+		try {
+			_bibliotecaDao.update(entity);
+			return Response.SUCCES;
+		} catch (Exception ex) {
+			return Response.ERROR;
+		}
+	}
+
+	@Override
+	public Response delete(int id) {
+		try {
+			Biblioteca biblioteca = new Biblioteca();
+			biblioteca.setId(id);
+			_bibliotecaDao.delete(biblioteca);
+			return Response.SUCCES;
+		} catch (Exception ex) {
+			return Response.ERROR;
+		}
+	}
+
 	public List<Biblioteca> selectList() {
 		return _bibliotecaDao.selectList();
 	}
@@ -42,11 +81,6 @@ public class BibliotecaService implements IBibliotecaService{
 			list.add((Biblioteca) obj[0]);
 		}
 		return list;
-	}
-
-	@Override
-	public Biblioteca readOne(int id) {
-		return _bibliotecaDao.readOne(id);
 	}
 
 }
