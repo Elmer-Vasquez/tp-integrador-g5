@@ -16,6 +16,10 @@ import javax.persistence.OneToMany;
 
 import org.springframework.stereotype.Component;
 
+import tp.Request.CreateBibliotecaRequest;
+import tp.Request.UpdateBibliotecaRequest;
+import tp.Request.UpdateClienteRequest;
+
 @Component
 @Entity
 public class Biblioteca implements Serializable {
@@ -36,12 +40,26 @@ public class Biblioteca implements Serializable {
 	
 	public Biblioteca() {}
 	
+	public Biblioteca(CreateBibliotecaRequest request, Libro libro) {
+		this.id = request.getId();
+		this.fechaAlta = request.getFechaAlta();
+		this.estado = request.getEstado();
+		this.libro = libro;
+	}
+	
 	public Biblioteca(int id, Libro libro, Date fechaAlta, int estado) {
 		super();
 		this.id = id;
 		this.libro = libro;
 		this.fechaAlta = fechaAlta;
 		this.estado = estado;
+	}
+	
+	public void update(Libro libro, UpdateBibliotecaRequest request) {
+		this.id = request.getId();
+		this.libro = libro;
+		this.fechaAlta = request.getFechaAlta();
+		this.estado = request.getEstado();
 	}
 
 	public int getId() {
