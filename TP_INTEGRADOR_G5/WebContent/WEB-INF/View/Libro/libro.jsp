@@ -41,7 +41,6 @@ i {
                     <th scope="col">Cantidad de paginas</th>
                     <th scope="col">Autor</th>
                     <th scope="col">Descripcion</th>
-                    <th scope="col">Estado libro</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,7 +52,6 @@ i {
                     <td class="table-dark">${libro.getCantidadPaginas()}</td>
                     <td class="table-dark">${libro.autor.persona.toString()}</td>
                     <td class="table-dark">${libro.getDescripcion()}</td>
-                    <td class="table-dark">${libro.getEstadoLibro()}</td>
                 </tr>
             </tbody>
         </table>

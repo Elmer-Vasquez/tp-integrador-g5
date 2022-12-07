@@ -34,9 +34,9 @@ i {
 
 	<!-- MODALS -->
 	<!-- CREATE_CLIENTE -->
-	<form action="update_cliente.html" modelAttribute="request"
+	<form action="editar_libro.html" modelAttribute="request"
 		method="POST">
-		<input type="hidden" value="${biblioteca.getId()}" name="id">
+		<input type="hidden" value="${biblioteca.getLibro().getId()}" name="id">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -45,7 +45,7 @@ i {
 				<div class="modal-body">
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">ISBN</span>
-						<input value="${biblioteca.getLibro().getIsbn()}" type="text" class="form-control"
+						<input value="${biblioteca.getLibro().getIsbn()}" type="number" min="1000" max="10000" class="form-control"
 							aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-sm" name="isbn">
 					</div>
@@ -53,35 +53,35 @@ i {
 						<span class="input-group-text" id="inputGroup-sizing-sm">Titulo</span>
 						<input value="${biblioteca.getLibro().getTitulo()}" type="text" class="form-control"
 							aria-label="Sizing example input"
+							minlength="4" maxlength="254
 							aria-describedby="inputGroup-sizing-sm" name="titulo">
 					</div>
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Fecha
 							de lanzamiento</span>
-							<input value="${biblioteca.getLibro().getFechaLanzamiento()}" type="date" class="form-control"
+							<input type="date" class="form-control"
+							name="fechaLanzamiento"
 							aria-label="Sizing example input"
-							aria-describedby="inputGroup-sizing-sm" name="fechaLanzamiento">
+							aria-describedby="inputGroup-sizing-sm"
+							value="${biblioteca.getLibro().getFechaLanzamientoString()}">
 					</div>
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Idioma</span>
 						<input value="${biblioteca.getLibro().getIdioma()}" type="text" class="form-control"
 							aria-label="Sizing example input"
+							minlength="4" maxlength="254
 							aria-describedby="inputGroup-sizing-sm" name="idioma">
 					</div>
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Cantidad
 							de paginas</span>
-							<input value="${biblioteca.getLibro().getCantidadPaginas()}" type="text" class="form-control"
+							<input value="${biblioteca.getLibro().getCantidadPaginas()}" type="number" min="10" max="10000" class="form-control"
 							aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-sm" name="cantidadPaginas">
 					</div>
 					<div class="input-group mb-3">
 						<label class="input-group-text" for="inputGroupSelect01">Autor</label>
-						<select class="form-select" id="inputGroupSelect01" name="autor">
-							<option selected="true" disabled="disabled"
-								value="${biblioteca.getLibro().getAutor().getPersona().getId()}">
-								${biblioteca.getLibro().getAutor().getPersona().toString()}
-							</option>
+						<select class="form-select" id="inputGroupSelect01" name="idAutor">
 							<c:forEach var="autor" items="${autorList}">
 								<option value="${autor.getId()}">
 									${autor.getPersona().toString()}</option>
@@ -93,27 +93,17 @@ i {
 						<input
 							value="${biblioteca.getLibro().getDescripcion()}"
 							type="text" class="form-control"
+							minlength="4" maxlength="254
 							aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-sm" name="descripcion">
 					</div>
 					<div class="input-group mb-3">
 						<label class="input-group-text" for="inputGroupSelect01">Generos</label>
-						<select class="form-select" id="inputGroupSelect01" name="generos">
-							<option selected="true" disabled="disabled"
-								value="${biblioteca.getLibro().getGeneros()}">
-								${biblioteca.getLibro().getGeneros()}
-							</option>
+						<select class="form-select" id="inputGroupSelect01" name="idGeneros">
 							<c:forEach var="genero" items="${generoList}">
 								<option value="${genero.getId()}">
 									${genero.getDescripcion()}</option>
 							</c:forEach>
-						</select>
-					</div>
-					<div class="input-group mb-3">
-						<label class="input-group-text" for="inputGroupSelect01">Estado</label>
-						<select class="form-select" id="inputGroupSelect01" name="generos">
-							<option selected="true" value="0">En biblioteca</option>
-							<option value="1">Prestado</option>
 						</select>
 					</div>
 				</div>
@@ -124,6 +114,12 @@ i {
 			</div>
 		</div>
 	</form>
-
+	<script>
+		const input = document.getElementById("fechaLanzamiento"); 
+		const data = input.name;
+		input.setAttribute("name", "fechaLanzamiento")
+		input.setAttribute("value", data.split(" ")[0]);
+		console.log(data);
+	</script>
 </body>
 </html>

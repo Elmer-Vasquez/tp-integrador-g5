@@ -1,6 +1,7 @@
 package tp.dominio;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -19,7 +20,9 @@ import javax.persistence.OneToMany;
 
 import org.springframework.stereotype.Component;
 
+import common.EstadoLibro;
 import tp.Request.CreateBibliotecaRequest;
+import tp.Request.CreateLibroRequest;
 import tp.Request.UpdateBibliotecaRequest;
 import tp.Request.UpdateClienteRequest;
 
@@ -57,6 +60,14 @@ public class Biblioteca implements Serializable {
 		this.fechaAlta = fechaAlta;
 		this.estado = estado;
 	}
+	
+	public Biblioteca(Libro libro, Genero genero, Autor autor) {
+		this.libro = libro;
+		this.libro.setGeneros(new HashSet<Genero>(Arrays.asList(genero)));
+		this.libro.setAutor(autor);
+		this.fechaAlta = new Date();
+		this.estado = 0;
+	}
 
 	public Biblioteca(CreateBibliotecaRequest request, Libro libro, Genero genero, Autor autor) {
 		this.id = request.getId();
@@ -66,7 +77,7 @@ public class Biblioteca implements Serializable {
 		this.fechaAlta = request.getFechaAlta();
 		this.estado = request.getEstado();
 	}
-	
+
 	public void update(Autor autor, Genero genero, Libro libro, UpdateBibliotecaRequest request) {
 		this.id = request.getId();
 		this.libro = libro;
@@ -93,8 +104,13 @@ public class Biblioteca implements Serializable {
 		this.libro = libro;
 	}
 
-	public Date getFechaAlta() {
-		return fechaAlta;
+	public String getFechaAlta() {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			return formatter.format(this.fechaAlta);
+		} catch (Exception ex) {
+			return this.fechaAlta.toString();
+		}
 	}
 
 	public void setFechaAlta(Date fechaAlta) {
@@ -109,6 +125,10 @@ public class Biblioteca implements Serializable {
 		this.estado = estado;
 	}
 
+	public String getEstadoReal() {
+		return (this.estado == EstadoLibro.biblioteca.getPosicion()) ? "En biblioteca" : "Prestado";
+	}
+	
 	public String GetDatosPunto2() {
 		return "\nId: " + id + "\nFecha alta: " + fechaAlta + "\nTitulo libro: " + libro.getTitulo() + "\n";
 	}

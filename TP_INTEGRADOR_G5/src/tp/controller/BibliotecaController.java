@@ -17,6 +17,7 @@ import common.Directory;
 import common.Error;
 import common.Status;
 import tp.Request.CreateBibliotecaRequest;
+import tp.Request.CreateLibroRequest;
 import tp.Request.UpdateBibliotecaRequest;
 import tp.dominio.Autor;
 import tp.dominio.Biblioteca;
@@ -65,7 +66,7 @@ public class BibliotecaController {
 	}
 	
 	@RequestMapping(value="create_biblioteca.html", method=RequestMethod.GET)
-	public ModelAndView getBibliotecaCreate(@ModelAttribute("biblioteca") Biblioteca biblioteca) {
+	public ModelAndView getBibliotecaCreate(@ModelAttribute("libro") Libro libro) {
 		ModelAndView MV = new ModelAndView();
 		try {
 			List<Genero> listaGenero = _generoService.selectList();
@@ -82,16 +83,16 @@ public class BibliotecaController {
 	}
 
 	@RequestMapping(value="create_biblioteca.html", method=RequestMethod.POST)
-	public ModelAndView postBibliotecaCreate(CreateBibliotecaRequest request) {
+	public ModelAndView postBibliotecaCreate(CreateLibroRequest request) {
 		ModelAndView MV = new ModelAndView();
 		try {
-			Genero genero = _generoService.readOne(request.getId());
-			Autor autor = _autorService.readOne(request.getId());
+			Genero genero = _generoService.readOne(request.getIdGeneros());
+			Autor autor = _autorService.readOne(request.getIdAutor());
+			int id = _libroService.create(new Libro(request));
 			
-			int id = _libroService.create(new Libro(request, genero, autor));
 			Libro libro = _libroService.readOne(id);
 			
-			MV.addObject("status", Status.getGenerateStatus(_bibliotecaService.create(new Biblioteca(request, libro, genero, autor))));
+			MV.addObject("status", Status.getGenerateStatus(_bibliotecaService.create(new Biblioteca(libro, genero, autor))));
 			MV.addObject("bibliotecaList", _bibliotecaService.selectList());
 			MV.setViewName(getPath("biblioteca"));
 		} catch (Exception ex) {
@@ -110,6 +111,7 @@ public class BibliotecaController {
 	public ModelAndView deleteBiblioteca(String bibliotecaId) {
 		ModelAndView MV = new ModelAndView();
 		try {
+			//Biblioteca biblioteca = _bibliotecaService.readOne(Integer.parseInt(bibliotecaId));
 			MV.addObject("status", Status.getDeleteStatus(_bibliotecaService.delete(Integer.parseInt(bibliotecaId))));
 			List<Biblioteca> lista = _bibliotecaService.selectList();
 			MV.addObject("bibliotecaList", lista);

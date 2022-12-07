@@ -48,6 +48,10 @@ public class Persona implements Serializable{
 	
 	public Persona() { }
 	
+	public Persona(int id) {
+		this.id = id;
+	}
+	
 	public Persona(String nombre, String apellido, String email, String sexo, Date fechaNac, int dni, int telefono, Nacionalidad nac) {
 		super();
 		this.nombre = nombre;
@@ -154,5 +158,6 @@ public class Persona implements Serializable{
 	public String toString() {
 		return nombre +" "+ apellido;
 	}
+	
 	
 }

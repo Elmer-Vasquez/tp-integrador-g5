@@ -20,6 +20,27 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
+	
+<script>
+/*debugger
+
+function checkform()
+{
+    var f = document.forms["createCliente"].elements;
+    var cansubmit = true;
+
+    for (var i = 0; i < f.length; i++) {
+        if (f[i].value.length == 0) cansubmit = false;
+    }
+
+    if (cansubmit) {
+        document.getElementById('guardar').disabled = false;
+    }
+    else {
+        document.getElementById('guardar').disabled = 'disabled';
+    }
+}*/
+</script>
 <title>Crear Cliente</title>
 </head>
 <style>
@@ -32,7 +53,7 @@
     <form id="goBack" action="lista_clientes.html" method="get">
     </form>
     
-    <form action="create_cliente.html" method="post" id="createCliente" modelAttribute="request">
+    <form action="create_cliente.html" method="post" id="createCliente" name="createCliente" modelAttribute="request">
     <div id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -42,19 +63,19 @@
             <div class="modal-body">
                 <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">DNI</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="dni">
+                    <input type="number" min="8" max="11" class="form-control" aria-label="Sizing example input" min="0" step="1" aria-describedby="inputGroup-sizing-sm" name="dni" required>
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="nombre">
+                    <input type="text" minlength="4" maxlength="254" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="nombre" required>
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Apellido</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="apellido">
+                    <input type="text" minlength="4" maxlength="254" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="apellido" required>
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Fecha de nacimiento</span>
-                    <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="fechaNacimiento">
+                    <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="fechaNacimiento" required>
                   </div>
                   <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Nacionalidad</label>
@@ -74,11 +95,11 @@
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Correo electrónico</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="email">
+                    <input type="email" minlength="4" maxlength="254" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="email" required>
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Telefono</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="telefono">
+                    <input type="number" min="10" max="16" class="form-control" aria-label="Sizing example input" min="0" step="1" aria-describedby="inputGroup-sizing-sm" name="telefono" required>
                   </div>
                   <select class="form-select" id="inputGroupSelect01" name="sexo">
                   <option value="Masculino">Masculino</option>
@@ -87,12 +108,11 @@
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-secondary" form="goBack">Cancelar</button>
-              <button type="submit" class="btn btn-primary" form="createCliente">Guardar</button>
+              <button id="guardar" type="submit" class="btn btn-primary" form="createCliente">Guardar</button>
             </div>
           </div>
         </div>
       </div>
       </form>
-
 </body>
 </html>

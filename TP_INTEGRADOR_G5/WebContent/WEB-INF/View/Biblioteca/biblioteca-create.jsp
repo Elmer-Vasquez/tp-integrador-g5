@@ -32,7 +32,7 @@ i {
 
 	<form id="goBack" action="lista_biblioteca.html" method="get"></form>
 
-	<form action="create_biblioteca.html" method="post" id="createCliente"
+	<form action="create_biblioteca.html" method="post" id="createBiblioteca"
 		modelAttribute="request">
 		<div id="exampleModal" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -44,37 +44,37 @@ i {
 					<div class="modal-body">
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text" id="inputGroup-sizing-sm">ISBN</span>
-							<input type="text" class="form-control"
+							<input type="number" min="1000" max="10000" class="form-control"
 								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" name="isbn">
+								aria-describedby="inputGroup-sizing-sm" name="isbn" required>
 						</div>
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Titulo</span>
-							<input type="text" class="form-control"
+							<input type="text" minlength="4" maxlength="254" class="form-control"
 								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" name="titulo">
+								aria-describedby="inputGroup-sizing-sm" name="titulo" required>
 						</div>
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Fecha
 								de lanzamiento</span> <input type="date" class="form-control"
 								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" name="fechaLanzamiento">
+								aria-describedby="inputGroup-sizing-sm" name="fechaLanzamiento" required>
 						</div>
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Idioma</span>
-							<input type="text" class="form-control"
+							<input type="text" minlength="4" maxlength="254" class="form-control"
 								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" name="idioma">
+								aria-describedby="inputGroup-sizing-sm" name="idioma" required>
 						</div>
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Cantidad
-								de paginas</span> <input type="text" class="form-control"
+								de paginas</span> <input type="number" min="10" max="10000" class="form-control"
 								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" name="cantidadPaginas">
+								aria-describedby="inputGroup-sizing-sm" name="cantidadPaginas" required>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="inputGroupSelect01">Autor</label>
-							<select class="form-select" id="inputGroupSelect01" name="autor">
+							<select class="form-select" id="idAutor" name="idAutor">
 								<c:forEach var="autor" items="${autorList}">
 									<option value="${autor.getId()}">
 										${autor.getPersona().toString()}</option>
@@ -83,14 +83,14 @@ i {
 						</div>
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Descripcion</span>
-							<input type="text" class="form-control"
+							<input type="text" minlength="4" maxlength="254" class="form-control"
 								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" name="descripcion">
+								aria-describedby="inputGroup-sizing-sm" name="descripcion" required>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="inputGroupSelect01">Generos</label>
-							<select class="form-select" id="inputGroupSelect01"
-								name="generos">
+							<select class="form-select" id="idGeneros"
+								name="idGeneros">
 								<c:forEach var="genero" items="${generoList}">
 									<option value="${genero.getId()}">
 										${genero.getDescripcion()}</option>
@@ -100,12 +100,11 @@ i {
 					</div>
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-secondary" form="goBack">Cancelar</button>
-						<button type="submit" class="btn btn-primary" form="createCliente">Guardar</button>
+						<button type="submit" class="btn btn-primary" form="createBiblioteca">Guardar</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
-
 </body>
 </html>

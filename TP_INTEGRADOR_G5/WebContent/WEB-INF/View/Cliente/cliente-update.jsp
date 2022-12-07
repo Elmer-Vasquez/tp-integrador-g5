@@ -45,19 +45,19 @@
             <div class="modal-body">
                 <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">DNI</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getDni()}" name="dni">
+                    <input type="number" min="8" max="11" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getDni()}" name="dni" required>
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getNombre()}" name="nombre">
+                    <input type="text" minlength="4" maxlength="254" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getNombre()}" name="nombre" required>
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Apellido</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getApellido()}" name="apellido">
+                    <input type="text" minlength="4" maxlength="254" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getApellido()}" name="apellido" required>
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Fecha de nacimiento</span>
-                    <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getFechaNacimientoToInput()}" name="fechaNacimiento">
+                    <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getFechaNacimientoToInput()}" name="fechaNacimiento" required>
                   </div>
                   <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Nacionalidad</label>
@@ -83,11 +83,11 @@
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Correo electrónico</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getEmail()}" name="email">
+                    <input type="email" minlength="4" maxlength="254" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getEmail()}" name="email" required>
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Telefono</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getTelefono()}" name="telefono">
+                    <input type="number" min="10" max="16" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getTelefono()}" name="telefono" required>
                   </div>
                   <select class="form-select" id="inputGroupSelect01" name="sexo">
                   <c:if test="${cliente.getPersona().getSexo().equals('Masculino')}">

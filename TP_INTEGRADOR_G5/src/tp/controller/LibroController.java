@@ -13,8 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import common.Directory;
 import common.Error;
+import common.Status;
 import tp.Request.CreateLibroRequest;
+import tp.Request.UpdateLibroRequest;
+import tp.dominio.Autor;
 import tp.dominio.Biblioteca;
+import tp.dominio.Genero;
 import tp.dominio.Libro;
 import tp.servicio.IAutorService;
 import tp.servicio.IBibliotecaService;
@@ -42,7 +46,6 @@ public class LibroController {
 		_generoService = generoService;
 		_bibliotecaService = bibliotecaService;
 	}
-	
 	
 	@RequestMapping(value="crear_Libro.html", method=RequestMethod.GET)
 	public ModelAndView getLibroCrear(@ModelAttribute("libro") Libro libro)
@@ -87,11 +90,20 @@ public class LibroController {
 	}
 	
 	@RequestMapping(value="editar_libro.html", method=RequestMethod.POST)
-	public ModelAndView getModificar() 
+	public ModelAndView updateLibro(UpdateLibroRequest request) 
 	{
 		ModelAndView MV = new ModelAndView();
 		try {
-			MV.setViewName(getPath("lista_biblioteca"));
+			Genero genero = _generoService.readOne(request.getIdGeneros());
+			Autor autor = _autorService.readOne(request.getIdAutor());
+			Libro libro = _libroService.readOne(request.getId());
+			
+			libro.update(request, genero, autor);
+			
+			MV.addObject("status", Status.getUpdateStatus(_libroService.update1(libro)));
+			List<Biblioteca> lista = _bibliotecaService.selectList();
+			MV.addObject("bibliotecaList", lista);
+			MV.setViewName("Biblioteca/biblioteca");
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}
@@ -103,9 +115,10 @@ public class LibroController {
 	{
 		ModelAndView MV = new ModelAndView();
 		try {
-			
 			Libro libro = _libroService.readOne(Integer.parseInt(id));
-			_libroService.update(libro);
+			
+			//Tengo que eliminar libros por generos
+			_libroService.delete(libro);
 			
 			List<Biblioteca> lista = _bibliotecaService.selectList();
 			MV.addObject("bibliotecaList", lista);
