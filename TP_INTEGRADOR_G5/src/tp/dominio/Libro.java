@@ -78,6 +78,17 @@ public class Libro implements Serializable {
 		this.descripcion = request.getLibro().getDescripcion();
 	}
 	
+	public void update(UpdateLibroRequest request, Genero genero, Autor autor) {
+		this.isbn = request.getIsbn();
+		this.titulo = request.getTitulo();
+		//this.fechaLanzamiento = request.getFechaLanzamiento();
+		this.idioma = request.getIdioma();
+		this.cantidadPaginas = request.getCantidadPaginas();
+		this.descripcion = request.getDescripcion();
+		this.generos = new HashSet<Genero>(Arrays.asList(genero));
+		this.autor = autor;
+	}
+	
 	public Libro(CreateLibroRequest request) {
 		this.isbn = request.getIsbn();
 		this.titulo = request.getTitulo();
@@ -116,8 +127,7 @@ public class Libro implements Serializable {
 		this.idioma = request.getIdioma();
 		this.cantidadPaginas = request.getCantidadPaginas();
 		this.descripcion = request.getDescripcion();
-		this.autor.setPersona(new Persona(request.getIdAutor()));
-		this.generos = (Set<Genero>)genero;
+		this.generos = new HashSet<Genero>(Arrays.asList(genero));
 		this.autor = autor;
 	}
 
@@ -203,11 +213,6 @@ public class Libro implements Serializable {
 		return "\nLibro [id=" + id + ", isbn=" + isbn + ", titulo=" + titulo + ", fechaLanzamiento=" + fechaLanzamiento
 				+ ", idioma=" + idioma + ", cantidadPaginas=" + cantidadPaginas + ", autor=" + autor + ", descripcion="
 				+ descripcion + ", generos=" + generos + "]";
-	}
-
-	public void update(Libro libro) {
-		
-		
 	}
 	
 }

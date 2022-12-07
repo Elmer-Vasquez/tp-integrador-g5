@@ -4,8 +4,6 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import common.EstadoLibro;
-
 public class UpdateLibroRequest {
 private int id;
 	
@@ -21,8 +19,6 @@ private int id;
 	private int cantidadPaginas;
 	
 	private String descripcion;
-	
-	private EstadoLibro estadoLibro;
 	
 	private int idGeneros;
 	
@@ -100,13 +96,5 @@ private int id;
 
 	public void setIdAutor(int idAutor) {
 		this.idAutor = idAutor;
-	}
-
-	public EstadoLibro getEstadoLibro() {
-		return estadoLibro;
-	}
-
-	public void setEstadoLibro(EstadoLibro estadoLibro) {
-		this.estadoLibro = estadoLibro;
 	}
 }

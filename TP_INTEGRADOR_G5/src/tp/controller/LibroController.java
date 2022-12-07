@@ -98,10 +98,11 @@ public class LibroController {
 			Autor autor = _autorService.readOne(request.getIdAutor());
 			Libro libro = _libroService.readOne(request.getId());
 			
-			libro.update(new Libro(request, genero, autor));
+			libro.update(request, genero, autor);
 			
 			MV.addObject("status", Status.getUpdateStatus(_libroService.update1(libro)));
-			
+			List<Biblioteca> lista = _bibliotecaService.selectList();
+			MV.addObject("bibliotecaList", lista);
 			MV.setViewName("Biblioteca/biblioteca");
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
