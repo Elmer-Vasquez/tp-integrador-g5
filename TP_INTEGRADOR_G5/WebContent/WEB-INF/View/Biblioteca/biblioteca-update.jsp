@@ -112,8 +112,8 @@ i {
 					<div class="input-group mb-3">
 						<label class="input-group-text" for="inputGroupSelect01">Estado</label>
 						<select class="form-select" id="inputGroupSelect01" name="generos">
-							<option selected="true" disabled="disabled" value="0">En biblioteca</option>
-							<option selected="true" disabled="disabled" value="1">Prestado</option>
+							<option selected="true" value="0">En biblioteca</option>
+							<option value="1">Prestado</option>
 						</select>
 					</div>
 				</div>
