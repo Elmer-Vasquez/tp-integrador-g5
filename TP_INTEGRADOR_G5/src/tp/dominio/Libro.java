@@ -23,6 +23,7 @@ import org.springframework.stereotype.Component;
 import common.EstadoLibro;
 import tp.Request.CreateBibliotecaRequest;
 import tp.Request.CreateLibroRequest;
+import tp.Request.UpdateLibroRequest;
 
 @Component
 @Entity
@@ -77,6 +78,26 @@ public class Libro implements Serializable {
 		this.descripcion = request.getLibro().getDescripcion();
 	}
 	
+	public void update(UpdateLibroRequest request, Genero genero, Autor autor) {
+		this.isbn = request.getIsbn();
+		this.titulo = request.getTitulo();
+		this.fechaLanzamiento = request.getFechaLanzamiento();
+		this.idioma = request.getIdioma();
+		this.cantidadPaginas = request.getCantidadPaginas();
+		this.descripcion = request.getDescripcion();
+		this.generos = new HashSet<Genero>(Arrays.asList(genero));
+		this.autor = autor;
+	}
+	
+	public Libro(CreateLibroRequest request) {
+		this.isbn = request.getIsbn();
+		this.titulo = request.getTitulo();
+		this.fechaLanzamiento = request.getFechaLanzamiento();
+		this.idioma = request.getIdioma();
+		this.cantidadPaginas = request.getCantidadPaginas();
+		this.descripcion = request.getDescripcion();
+	}
+	
 	public Libro(int isbn, String titulo, Date fechaLanzamiento, String idioma, int cantidadPaginas, Autor autor,
 			String descripcion, Set<Genero> generos, EstadoLibro estadoLibro, boolean estado) {
 		this.isbn = isbn;
@@ -88,7 +109,28 @@ public class Libro implements Serializable {
 		this.descripcion = descripcion;
 		this.generos = generos;
 	}
-	
+
+	public Libro(UpdateLibroRequest request) {
+		this.isbn = request.getIsbn();
+		this.titulo = request.getTitulo();
+		this.fechaLanzamiento = request.getFechaLanzamiento();
+		this.idioma = request.getIdioma();
+		this.cantidadPaginas = request.getCantidadPaginas();
+		this.descripcion = request.getDescripcion();
+		this.autor.setPersona(new Persona(request.getIdAutor()));
+	}
+
+	public Libro(UpdateLibroRequest request, Genero genero, Autor autor) {
+		this.isbn = request.getIsbn();
+		this.titulo = request.getTitulo();
+		this.fechaLanzamiento = request.getFechaLanzamiento();
+		this.idioma = request.getIdioma();
+		this.cantidadPaginas = request.getCantidadPaginas();
+		this.descripcion = request.getDescripcion();
+		this.generos = new HashSet<Genero>(Arrays.asList(genero));
+		this.autor = autor;
+	}
+
 	public int getId() {
 		return id;
 	}

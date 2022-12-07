@@ -1,19 +1,11 @@
 package tp.Request;
 
 import java.util.Date;
-import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Component;
 
-import common.EstadoLibro;
-import tp.dominio.Autor;
-import tp.dominio.Genero;
-
-@Component
-public class CreateLibroRequest {
-
-	private int id;
+public class UpdateLibroRequest {
+private int id;
 	
 	private int isbn;
 	
@@ -28,15 +20,11 @@ public class CreateLibroRequest {
 	
 	private String descripcion;
 	
-	private EstadoLibro estadoLibro;
-
-	private boolean estado;
-	
 	private int idGeneros;
 	
 	private int idAutor;
 	
-	public CreateLibroRequest(){ estado = true; }
+	public UpdateLibroRequest(){ }
 
 	public int getId() {
 		return id;
@@ -108,21 +96,5 @@ public class CreateLibroRequest {
 
 	public void setIdAutor(int idAutor) {
 		this.idAutor = idAutor;
-	}
-
-	public EstadoLibro getEstadoLibro() {
-		return estadoLibro;
-	}
-
-	public void setEstadoLibro(EstadoLibro estadoLibro) {
-		this.estadoLibro = estadoLibro;
-	}
-
-	public boolean isEstado() {
-		return estado;
-	}
-
-	public void setEstado(boolean estado) {
-		this.estado = estado;
 	}
 }

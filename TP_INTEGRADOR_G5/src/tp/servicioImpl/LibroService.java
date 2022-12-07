@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import common.Response;
 import tp.dao.ILibroDao;
 import tp.dominio.Libro;
 import tp.servicio.ILibroService;
@@ -45,6 +46,16 @@ public class LibroService implements ILibroService{
 	@Override
 	public List<Libro> selectList() {
 		return _LibroDao.selectList();
+	}
+
+	@Override
+	public Response update1(Libro entity) {
+		try {
+			_LibroDao.update(entity);
+			return Response.SUCCES;
+		} catch (Exception ex) {
+			return Response.ERROR;
+		}
 	}
 
 }
