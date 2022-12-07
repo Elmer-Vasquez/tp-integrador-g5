@@ -8,16 +8,28 @@ import org.springframework.format.annotation.DateTimeFormat;
 import common.EstadoLibro;
 import tp.dominio.Autor;
 import tp.dominio.Genero;
+import tp.dominio.Libro;
 
 public class CreateBibliotecaRequest {
 	private int id;
-	
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaAlta;
-	
+
+	private Libro libro;
+
+	public Libro getLibro() {
+		return libro;
+	}
+
+	public void setLibro(Libro libro) {
+		this.libro = libro;
+	}
+
 	private int estado;
 
-	public CreateBibliotecaRequest() {}
+	public CreateBibliotecaRequest() {
+	}
 
 	public int getId() {
 		return id;
@@ -42,5 +54,5 @@ public class CreateBibliotecaRequest {
 	public void setEstado(int estado) {
 		this.estado = estado;
 	}
-	
+
 }

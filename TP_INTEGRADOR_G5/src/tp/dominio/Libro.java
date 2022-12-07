@@ -1,6 +1,7 @@
 package tp.dominio;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,6 +21,8 @@ import javax.persistence.ManyToOne;
 import org.springframework.stereotype.Component;
 
 import common.EstadoLibro;
+import tp.Request.CreateBibliotecaRequest;
+import tp.Request.CreateLibroRequest;
 
 @Component
 @Entity
@@ -66,6 +69,19 @@ public class Libro implements Serializable {
 		this.generos = new HashSet<Genero>();
 	}
 	
+	public Libro(CreateBibliotecaRequest request, Genero genero, Autor autor) {
+		this.generos = new HashSet<Genero>(Arrays.asList(genero));
+		this.autor = autor;
+		this.isbn = request.getLibro().getIsbn();
+		this.titulo = request.getLibro().getTitulo();
+		this.fechaLanzamiento = request.getLibro().getFechaLanzamiento();
+		this.idioma = request.getLibro().getIdioma();
+		this.cantidadPaginas = request.getLibro().getCantidadPaginas();
+		this.descripcion = request.getLibro().getDescripcion();
+		this.estadoLibro = EstadoLibro.biblioteca;
+		this.estado= true;
+	}
+	
 	public Libro(int isbn, String titulo, Date fechaLanzamiento, String idioma, int cantidadPaginas, Autor autor,
 			String descripcion, Set<Genero> generos, EstadoLibro estadoLibro, boolean estado) {
 		this.isbn = isbn;
@@ -79,7 +95,7 @@ public class Libro implements Serializable {
 		this.estadoLibro = estadoLibro;
 		this.estado= estado;
 	}
-
+	
 	public int getId() {
 		return id;
 	}

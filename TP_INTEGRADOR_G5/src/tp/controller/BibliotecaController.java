@@ -21,10 +21,8 @@ import tp.Request.CreateBibliotecaRequest;
 import tp.Request.UpdateBibliotecaRequest;
 import tp.dominio.Autor;
 import tp.dominio.Biblioteca;
-import tp.dominio.Cliente;
 import tp.dominio.Genero;
 import tp.dominio.Libro;
-import tp.dominio.Nacionalidad;
 import tp.servicio.IAutorService;
 import tp.servicio.IBibliotecaService;
 import tp.servicio.IGeneroService;
@@ -90,8 +88,10 @@ public class BibliotecaController {
 		try {
 			Genero genero = _generoService.readOne(request.getId());
 			Autor autor = _autorService.readOne(request.getId());
-			Libro libro = _libroService.readOne(request.getId());
-
+			
+			int id = _libroService.create(new Libro(request, genero, autor));
+			Libro libro = _libroService.readOne(id);
+			
 			MV.addObject("status", Status.getGenerateStatus(_bibliotecaService.create(new Biblioteca(request, libro, genero, autor))));
 			MV.addObject("bibliotecaList", _bibliotecaService.selectList());
 			MV.setViewName(getPath("biblioteca"));
