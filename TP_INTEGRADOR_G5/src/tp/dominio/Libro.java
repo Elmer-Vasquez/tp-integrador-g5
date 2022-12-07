@@ -57,7 +57,7 @@ public class Libro implements Serializable {
     )
 	private Set<Genero> generos;
 	
-	private EstadoLibro estadoLibro;
+	private int estadoLibro;
 
 	private boolean estado;
 
@@ -75,7 +75,7 @@ public class Libro implements Serializable {
 		this.autor = autor;
 		this.descripcion = descripcion;
 		this.generos = generos;
-		this.estadoLibro = estadoLibro;
+		this.estadoLibro = 0;
 		this.estado= estado;
 	}
 
@@ -155,11 +155,11 @@ public class Libro implements Serializable {
 		this.generos.add(genero);
 	}
 	
-	public EstadoLibro getEstadoLibro() {
+	public int getEstadoLibro() {
 		return estadoLibro;
 	}
 
-	public void setEstadoLibro(EstadoLibro estadoLibro) {
+	public void setEstadoLibro(int estadoLibro) {
 		this.estadoLibro = estadoLibro;
 	}
 	
