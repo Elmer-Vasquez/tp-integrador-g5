@@ -23,6 +23,7 @@ import org.springframework.stereotype.Component;
 import common.EstadoLibro;
 import tp.Request.CreateBibliotecaRequest;
 import tp.Request.CreateLibroRequest;
+import tp.Request.UpdateLibroRequest;
 
 @Component
 @Entity
@@ -82,6 +83,15 @@ public class Libro implements Serializable {
 		this.estado= true;
 	}
 	
+	public Libro(CreateLibroRequest request) {
+		this.isbn = request.getIsbn();
+		this.titulo = request.getTitulo();
+		this.fechaLanzamiento = request.getFechaLanzamiento();
+		this.idioma = request.getIdioma();
+		this.cantidadPaginas = request.getCantidadPaginas();
+		this.descripcion = request.getDescripcion();
+	}
+	
 	public Libro(int isbn, String titulo, Date fechaLanzamiento, String idioma, int cantidadPaginas, Autor autor,
 			String descripcion, Set<Genero> generos, EstadoLibro estadoLibro, boolean estado) {
 		this.isbn = isbn;
@@ -95,7 +105,17 @@ public class Libro implements Serializable {
 		this.estadoLibro = estadoLibro;
 		this.estado= estado;
 	}
-	
+
+	public Libro(UpdateLibroRequest request) {
+		this.isbn = request.getIsbn();
+		this.titulo = request.getTitulo();
+		this.fechaLanzamiento = request.getFechaLanzamiento();
+		this.idioma = request.getIdioma();
+		this.cantidadPaginas = request.getCantidadPaginas();
+		this.descripcion = request.getDescripcion();
+		this.autor.setPersona(new Persona(request.getIdAutor()));
+	}
+
 	public int getId() {
 		return id;
 	}

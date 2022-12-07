@@ -36,7 +36,7 @@ i {
 	<!-- CREATE_CLIENTE -->
 	<form action="update_cliente.html" modelAttribute="request"
 		method="POST">
-		<input type="hidden" value="${biblioteca.getId()}" name="id">
+		<input type="hidden" value="${biblioteca.getLibro().getId()}" name="id">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -58,9 +58,10 @@ i {
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Fecha
 							de lanzamiento</span>
-							<input value="${biblioteca.getLibro().getFechaLanzamiento()}" type="date" class="form-control"
+							<input type="date" class="form-control"
 							aria-label="Sizing example input"
-							aria-describedby="inputGroup-sizing-sm" name="fechaLanzamiento">
+							aria-describedby="inputGroup-sizing-sm" name="fechaLanzamiento" 
+							value="${biblioteca.getLibro().getFechaLanzamiento()}">
 					</div>
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Idioma</span>
@@ -78,10 +79,6 @@ i {
 					<div class="input-group mb-3">
 						<label class="input-group-text" for="inputGroupSelect01">Autor</label>
 						<select class="form-select" id="inputGroupSelect01" name="autor">
-							<option selected="true" disabled="disabled"
-								value="${biblioteca.getLibro().getAutor().getPersona().getId()}">
-								${biblioteca.getLibro().getAutor().getPersona().toString()}
-							</option>
 							<c:forEach var="autor" items="${autorList}">
 								<option value="${autor.getId()}">
 									${autor.getPersona().toString()}</option>
@@ -99,21 +96,10 @@ i {
 					<div class="input-group mb-3">
 						<label class="input-group-text" for="inputGroupSelect01">Generos</label>
 						<select class="form-select" id="inputGroupSelect01" name="generos">
-							<option selected="true" disabled="disabled"
-								value="${biblioteca.getLibro().getGeneros()}">
-								${biblioteca.getLibro().getGeneros()}
-							</option>
 							<c:forEach var="genero" items="${generoList}">
 								<option value="${genero.getId()}">
 									${genero.getDescripcion()}</option>
 							</c:forEach>
-						</select>
-					</div>
-					<div class="input-group mb-3">
-						<label class="input-group-text" for="inputGroupSelect01">Estado</label>
-						<select class="form-select" id="inputGroupSelect01" name="generos">
-							<option selected="true" value="0">En biblioteca</option>
-							<option value="1">Prestado</option>
 						</select>
 					</div>
 				</div>

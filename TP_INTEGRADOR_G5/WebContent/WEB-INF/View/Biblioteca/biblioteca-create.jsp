@@ -32,7 +32,7 @@ i {
 
 	<form id="goBack" action="lista_biblioteca.html" method="get"></form>
 
-	<form action="create_biblioteca.html" method="post" id="createCliente"
+	<form action="create_biblioteca.html" method="post" id="createBiblioteca"
 		modelAttribute="request">
 		<div id="exampleModal" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -74,7 +74,7 @@ i {
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="inputGroupSelect01">Autor</label>
-							<select class="form-select" id="inputGroupSelect01" name="autor">
+							<select class="form-select" id="idAutor" name="idAutor">
 								<c:forEach var="autor" items="${autorList}">
 									<option value="${autor.getId()}">
 										${autor.getPersona().toString()}</option>
@@ -89,8 +89,8 @@ i {
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="inputGroupSelect01">Generos</label>
-							<select class="form-select" id="inputGroupSelect01"
-								name="generos">
+							<select class="form-select" id="idGeneros"
+								name="idGeneros">
 								<c:forEach var="genero" items="${generoList}">
 									<option value="${genero.getId()}">
 										${genero.getDescripcion()}</option>
@@ -100,7 +100,7 @@ i {
 					</div>
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-secondary" form="goBack">Cancelar</button>
-						<button type="submit" class="btn btn-primary" form="createCliente">Guardar</button>
+						<button type="submit" class="btn btn-primary" form="createBiblioteca">Guardar</button>
 					</div>
 				</div>
 			</div>

@@ -52,7 +52,6 @@ i {
 					<option value="libro.cantidadPaginas">Cantidad de Paginas</option>
 					<option value="libro.autor.persona.nombre">Autor</option>
 					<option value="libro.fechaLanzamiento">Fecha de alta</option>
-					<option value="libro.estadoLibro">Estado</option>
 				</select>
 			</div>
 			<div style="margin-left: 12px;">
@@ -92,7 +91,6 @@ i {
 			</thead>
 			<tbody>
 				<c:forEach var="biblioteca" items="${bibliotecaList}">
-					<c:if test="${biblioteca.libro.getEstado() == true}">
 						<tr class="table-dark">
 							<td class="table-dark">${biblioteca.libro.getIsbn()}</td>
 							<td class="table-dark">${biblioteca.libro.getTitulo()}</td>
@@ -103,11 +101,11 @@ i {
 								${biblioteca.libro.autor.persona.toString()}</td>
 							<td class="table-dark">${biblioteca.getFechaAlta()}</td>
 							<td class="table-dark">
-								${biblioteca.libro.getEstadoLibro().getNombre()}</td>
+								${biblioteca.getEstadoReal()}</td>
 							<td class="table-dark">
 								<button class="button" data-bs-toggle="modal"
 									data-bs-target="#deleteModal"
-									onClick="eliminarLibro(${biblioteca.libro.getId()})">
+									onClick="eliminarLibro(${biblioteca.getId()})">
 									<i class="fas fa-trash-alt"></i>
 								</button>
 								<form  action="detalle_libro.html" action="get">
@@ -122,7 +120,6 @@ i {
 								</a>
 							</td>
 						</tr>
-					</c:if>
 				</c:forEach>
 			</tbody>
 		</table>
@@ -146,8 +143,8 @@ i {
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal">Cerrar</button>
-					<form action="eliminar_libro.html" method="get">
-						<input type="text" class="d-none" id="eliminar" name="id" value="">
+					<form action="delete_biblioteca.html" method="get">
+						<input type="text" class="d-none" id="eliminar" name="bibliotecaId" value="">
 						<input type="submit" class="btn btn-primary" value="Aceptar" />
 					</form>
 				</div>

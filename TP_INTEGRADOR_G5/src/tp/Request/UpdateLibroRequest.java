@@ -1,19 +1,13 @@
 package tp.Request;
 
 import java.util.Date;
-import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Component;
 
 import common.EstadoLibro;
-import tp.dominio.Autor;
-import tp.dominio.Genero;
 
-@Component
-public class CreateLibroRequest {
-
-	private int id;
+public class UpdateLibroRequest {
+private int id;
 	
 	private int isbn;
 	
@@ -36,7 +30,7 @@ public class CreateLibroRequest {
 	
 	private int idAutor;
 	
-	public CreateLibroRequest(){ estado = true; }
+	public UpdateLibroRequest(){ estado = true; }
 
 	public int getId() {
 		return id;
