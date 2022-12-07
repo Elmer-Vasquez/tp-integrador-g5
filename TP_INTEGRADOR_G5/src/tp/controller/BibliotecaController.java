@@ -165,14 +165,14 @@ public class BibliotecaController {
 		ModelAndView MV = new ModelAndView();
 		try {
 			List<Biblioteca> lista = new ArrayList<Biblioteca>();
-			if (propertySelect.equals("default") || inputText.isEmpty() || ((propertySelect.equals("libro.isbn") || propertySelect.equals("libro.cantidadPaginas")) && !Dictionary.isNumeric(inputText))) {
+			if (propertySelect.equals("default") || inputText.isEmpty()) {
 				lista = _bibliotecaService.selectList();
 			} else {
 				lista = _bibliotecaService.selectListByProperty(propertySelect, inputText);
 				MV.addObject("inputValue", inputText);
 			}
 			MV.addObject("bibliotecaList", lista);
-			MV.setViewName("biblioteca");
+			MV.setViewName(getPath("biblioteca"));
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}
