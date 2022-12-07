@@ -77,17 +77,26 @@ public class ClienteController {
 	@RequestMapping(value = "create_cliente.html", method = RequestMethod.POST)
 	public ModelAndView postClienteCreate(CreateClienteRequest request) {
 		ModelAndView MV = new ModelAndView();
+		String status = null;
 		try {
-
+			final Boolean correoExistente = !_clienteService.selectListByProperty("persona.email", request.getEmail()).isEmpty();
 			Nacionalidad nac = _nacionalidadService.readOne(request.getNacionalidadId());
 			Localidad loc = _localidadService.readOne(request.getLocalidadId());
-
-			MV.addObject("status", Status.getGenerateStatus(_clienteService.create(new Cliente(request, nac, loc))));
-			MV.addObject("clientesList", _clienteService.selectList());
-			MV.setViewName(getPath("cliente"));
+			if (correoExistente) {
+				status = "El correo indicado ya se encuentra en uso.";
+				MV.addObject("nacionalidadList", _nacionalidadService.selectList());
+				MV.addObject("localidadList", _localidadService.selectList());
+				MV.addObject("clienteForm", request);
+				MV.setViewName(getPath("cliente-create"));
+			} else {
+				status = Status.getGenerateStatus(_clienteService.create(new Cliente(request, nac, loc)));
+				MV.addObject("clientesList", _clienteService.selectList());
+				MV.setViewName(getPath("cliente"));
+			}
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}
+		MV.addObject("status", status);
 		return MV;
 	}
 
@@ -156,6 +165,7 @@ public class ClienteController {
 				MV.addObject("inputValue", inputText);
 			}
 			MV.addObject("clientesList", lista);
+			MV.addObject("propertySelect", propertySelect);
 			MV.setViewName(getPath("cliente"));
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
