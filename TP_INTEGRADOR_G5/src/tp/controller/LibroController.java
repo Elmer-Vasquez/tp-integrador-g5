@@ -105,7 +105,6 @@ public class LibroController {
 		try {
 			
 			Libro libro = _libroService.readOne(Integer.parseInt(id));
-			libro.setEstado(false);
 			_libroService.update(libro);
 			
 			List<Biblioteca> lista = _bibliotecaService.selectList();
