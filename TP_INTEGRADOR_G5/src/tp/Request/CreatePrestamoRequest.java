@@ -8,9 +8,9 @@ public class CreatePrestamoRequest {
 	private int bibliotecaId;
 	private int clienteId;
 	private int cantDias;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fecha;
-	
+
 	public int getBibliotecaId() {
 		return bibliotecaId;
 	}
@@ -43,5 +43,6 @@ public class CreatePrestamoRequest {
 		this.fecha = fecha;
 	}
 
-	public CreatePrestamoRequest() { }
+	public CreatePrestamoRequest() {
+	}
 }

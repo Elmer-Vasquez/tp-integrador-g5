@@ -87,6 +87,10 @@ public class Cliente implements Serializable {
 		this.localidad = localidad;
 	}
 	
+	public String getNombreComplete() {
+		return this.persona.getNombre() + " " + this.persona.getApellido();
+	}
+	
 
 	//Metodo sin implementar, a futuro se puede buscar las propiedades por nombre y devolver una lista para manipular
 	//Para que funcione es necesario tener las propiedades en public

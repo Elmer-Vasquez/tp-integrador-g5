@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import common.EstadoLibro;
 import common.Response;
 import tp.dao.IBibliotecaDao;
 import tp.dominio.Biblioteca;
@@ -81,6 +82,11 @@ public class BibliotecaService implements IBibliotecaService{
 			list.add((Biblioteca) obj[0]);
 		}
 		return list;
+	}
+
+	@Override
+	public List<Biblioteca> selectListByEstado(EstadoLibro estado) {
+		return _bibliotecaDao.selectListByIntegerProperty("estado", String.valueOf(estado.getPosicion()));
 	}
 
 }

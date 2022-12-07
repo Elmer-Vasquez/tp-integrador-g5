@@ -1,6 +1,7 @@
 
 package tp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import common.Directory;
 import common.Error;
+import common.EstadoLibro;
+import common.Status;
 import tp.Request.CreatePrestamoRequest;
 import tp.dominio.Biblioteca;
 import tp.dominio.Cliente;
@@ -61,8 +64,7 @@ public class PrestamoController {
 		try {
 			List<Cliente> lista = _clienteService.selectList();
 			MV.addObject("clienteList", lista );
-			MV.addObject("libroList", _libroService.selectList());
-			MV.addObject("bibliotecaList", _bibliotecaService.selectList());
+			MV.addObject("bibliotecaList", _bibliotecaService.selectListByEstado(EstadoLibro.biblioteca));
 			MV.setViewName(getPath("prestamo-create"));
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
@@ -78,9 +80,54 @@ public class PrestamoController {
 			Biblioteca bib = _bibliotecaService.readOne(request.getBibliotecaId());
 			Cliente cli = _clienteService.readOne(request.getClienteId());
 			
-			MV.addObject("status", _prestamoService.create(new Prestamo(bib, cli, request.getCantDias(), request.getFecha())));
+			bib.setEstado(EstadoLibro.prestado.getPosicion());
+			
+			_bibliotecaService.update(bib);
+			
+			MV.addObject("status", Status.getGenerateStatus(_prestamoService.create(new Prestamo(bib, cli, request.getCantDias(), request.getFecha()))));
+			List<Prestamo> lista = _prestamoService.selectList();
+			MV.addObject("prestamoList", lista);
 			MV.setViewName(getPath("prestamo"));
 			
+		} catch (Exception ex) {
+			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
+		}
+		return MV;
+	}
+	
+	@RequestMapping("devolucion_prestamo.html")
+	public ModelAndView deleteCliente(String prestamoId) {
+		ModelAndView MV = new ModelAndView();
+		try {
+			Prestamo prest = _prestamoService.readOne(Integer.parseInt(prestamoId));
+			Biblioteca bib = _bibliotecaService.readOne(prest.getBiblioteca().getId());
+			
+			bib.setEstado(EstadoLibro.biblioteca.getPosicion());
+			
+			_bibliotecaService.update(bib);
+			
+			MV.addObject("status", Status.getDeleteStatus(_prestamoService.delete(Integer.parseInt(prestamoId))));
+			MV.addObject("prestamoList", _prestamoService.selectList());
+			MV.setViewName(getPath("prestamo"));
+		} catch (Exception ex) {
+			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
+		}
+		return MV;
+	}
+	
+	@RequestMapping("search_prestamo.html")
+	public ModelAndView getPrestamoByProperty(String inputText, String propertySelect) {
+		ModelAndView MV = new ModelAndView();
+		try {
+			List<Prestamo> lista = new ArrayList<Prestamo>();
+			if (propertySelect.equals("default") || inputText.isEmpty()) {
+				lista = _prestamoService.selectList();
+			} else {
+				lista = _prestamoService.selectListByProperty(propertySelect, inputText);
+				MV.addObject("inputValue", inputText);
+			}
+			MV.addObject("prestamoList", lista);
+			MV.setViewName(getPath("prestamo"));
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}

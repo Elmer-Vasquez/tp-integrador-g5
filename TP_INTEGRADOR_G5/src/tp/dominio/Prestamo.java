@@ -1,6 +1,7 @@
 package tp.dominio;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -23,7 +24,7 @@ public class Prestamo implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne(cascade= {CascadeType.ALL}, fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name="biblioteca_id")
 	private Biblioteca biblioteca;
 	
@@ -31,13 +32,14 @@ public class Prestamo implements Serializable {
 	
 	private int cantidadDias;
 	
-	@ManyToOne(cascade= {CascadeType.ALL}, fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
 	
 	public Prestamo() {}
 	
 	public Prestamo(Biblioteca biblioteca, Cliente cli, int cantidadDias, Date fechaPrestamo) {
+		super();
 		this.biblioteca = biblioteca;
 		this.cliente = cli;
 		this.cantidadDias = cantidadDias;
@@ -73,6 +75,15 @@ public class Prestamo implements Serializable {
 	}
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+	
+	public String getFechaPrestamoReal() {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			return formatter.format(this.fechaPrestamo);
+		} catch (Exception ex) {
+			return this.fechaPrestamo.toString();
+		}
 	}
 	@Override
 	public String toString() {

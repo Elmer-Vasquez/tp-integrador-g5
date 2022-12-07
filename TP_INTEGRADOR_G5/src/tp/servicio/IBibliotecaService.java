@@ -2,6 +2,7 @@ package tp.servicio;
 
 import java.util.List;
 
+import common.EstadoLibro;
 import common.Response;
 import tp.dominio.Biblioteca;
 import tp.dominio.Cliente;
@@ -19,4 +20,6 @@ public interface IBibliotecaService {
 	List<Biblioteca> selectList();
 
 	List<Biblioteca> selectListByProperty(String property, String value);
+	
+	List<Biblioteca> selectListByEstado(EstadoLibro estado);
 }
