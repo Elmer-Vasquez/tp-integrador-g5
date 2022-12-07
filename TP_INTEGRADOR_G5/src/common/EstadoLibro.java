@@ -2,7 +2,7 @@ package common;
 
 public enum EstadoLibro {
 	biblioteca("En biblioteca", 0),
-	prestado("Presto", 1);
+	prestado("Prestado", 1);
 	
 	private String nombre;
 	private int posicion;

@@ -6,4 +6,5 @@ import tp.dominio.Autor;
 
 public interface IAutorService {
 	List<Autor> selectList();
+	Autor readOne(int id);
 }

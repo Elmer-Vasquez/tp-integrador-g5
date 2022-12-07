@@ -1,6 +1,7 @@
 package tp.dominio;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,6 +21,8 @@ import javax.persistence.ManyToOne;
 import org.springframework.stereotype.Component;
 
 import common.EstadoLibro;
+import tp.Request.CreateBibliotecaRequest;
+import tp.Request.CreateLibroRequest;
 
 @Component
 @Entity
@@ -55,6 +58,7 @@ public class Libro implements Serializable {
 	    inverseJoinColumns=
 	        @JoinColumn(name="genero_id")
     )
+	
 	private Set<Genero> generos;
 	
 	private int estadoLibro;
@@ -63,6 +67,19 @@ public class Libro implements Serializable {
 
 	public Libro(){
 		this.generos = new HashSet<Genero>();
+	}
+	
+	public Libro(CreateBibliotecaRequest request, Genero genero, Autor autor) {
+		this.generos = new HashSet<Genero>(Arrays.asList(genero));
+		this.autor = autor;
+		this.isbn = request.getLibro().getIsbn();
+		this.titulo = request.getLibro().getTitulo();
+		this.fechaLanzamiento = request.getLibro().getFechaLanzamiento();
+		this.idioma = request.getLibro().getIdioma();
+		this.cantidadPaginas = request.getLibro().getCantidadPaginas();
+		this.descripcion = request.getLibro().getDescripcion();
+		this.estadoLibro = EstadoLibro.biblioteca;
+		this.estado= true;
 	}
 	
 	public Libro(int isbn, String titulo, Date fechaLanzamiento, String idioma, int cantidadPaginas, Autor autor,
@@ -78,7 +95,7 @@ public class Libro implements Serializable {
 		this.estadoLibro = 0;
 		this.estado= estado;
 	}
-
+	
 	public int getId() {
 		return id;
 	}

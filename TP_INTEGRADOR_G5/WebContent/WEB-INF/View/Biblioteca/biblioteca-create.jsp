@@ -28,11 +28,11 @@ i {
 }
 </style>
 <body style="background-color: #f5f5f5;">
-	<jsp:include page="../nav-bar.jsp" />  
+	<jsp:include page="../nav-bar.jsp" />
 
-	<form id="goBack" action="lista_clientes.html" method="get"></form>
+	<form id="goBack" action="lista_biblioteca.html" method="get"></form>
 
-	<form action="create_cliente.html" method="post" id="createCliente"
+	<form action="create_biblioteca.html" method="post" id="createCliente"
 		modelAttribute="request">
 		<div id="exampleModal" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -77,13 +77,13 @@ i {
 							<select class="form-select" id="inputGroupSelect01" name="autor">
 								<c:forEach var="autor" items="${autorList}">
 									<option value="${autor.getId()}">
-										${autor.getPersona().getNombre()}</option>
+										${autor.getPersona().toString()}</option>
 								</c:forEach>
 							</select>
 						</div>
 						<div class="input-group input-group-sm mb-3">
-							<span class="" id="inputGroup-sizing-sm">Descripcion</span> <input
-								type="text" class="form-control"
+							<span class="input-group-text" id="inputGroup-sizing-sm">Descripcion</span>
+							<input type="text" class="form-control"
 								aria-label="Sizing example input"
 								aria-describedby="inputGroup-sizing-sm" name="descripcion">
 						</div>
@@ -91,9 +91,9 @@ i {
 							<label class="input-group-text" for="inputGroupSelect01">Generos</label>
 							<select class="form-select" id="inputGroupSelect01"
 								name="generos">
-								<c:forEach var="localidad" items="${generosList}">
-									<option value="${generos.getId()}">
-										${generos.getDescripcion()}</option>
+								<c:forEach var="genero" items="${generoList}">
+									<option value="${genero.getId()}">
+										${genero.getDescripcion()}</option>
 								</c:forEach>
 							</select>
 						</div>

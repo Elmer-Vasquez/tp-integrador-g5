@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,62 +28,70 @@ i {
 }
 </style>
 <body style="background-color: #f5f5f5;">
-	<jsp:include page="../nav-bar.jsp" />  
+	<jsp:include page="../nav-bar.jsp" />
 
-	<form id="goBack" action="lista_clientes.html" method="get"></form>
+	<form id="goBack" action="lista_biblioteca.html" method="get"></form>
 
 	<!-- MODALS -->
 	<!-- CREATE_CLIENTE -->
 	<form action="update_cliente.html" modelAttribute="request"
 		method="POST">
-		<input type="hidden" value="${cliente.getId()}" name="id">
+		<input type="hidden" value="${biblioteca.getId()}" name="id">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Agregar libro</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Editar libro</h5>
 				</div>
 				<div class="modal-body">
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">ISBN</span>
-						<input type="text" class="form-control"
+						<input value="${biblioteca.getLibro().getIsbn()}" type="text" class="form-control"
 							aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-sm" name="isbn">
 					</div>
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Titulo</span>
-						<input type="text" class="form-control"
+						<input value="${biblioteca.getLibro().getTitulo()}" type="text" class="form-control"
 							aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-sm" name="titulo">
 					</div>
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Fecha
-							de lanzamiento</span> <input type="date" class="form-control"
+							de lanzamiento</span>
+							<input value="${biblioteca.getLibro().getFechaLanzamiento()}" type="date" class="form-control"
 							aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-sm" name="fechaLanzamiento">
 					</div>
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Idioma</span>
-						<input type="text" class="form-control"
+						<input value="${biblioteca.getLibro().getIdioma()}" type="text" class="form-control"
 							aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-sm" name="idioma">
 					</div>
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Cantidad
-							de paginas</span> <input type="text" class="form-control"
+							de paginas</span>
+							<input value="${biblioteca.getLibro().getCantidadPaginas()}" type="text" class="form-control"
 							aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-sm" name="cantidadPaginas">
 					</div>
 					<div class="input-group mb-3">
 						<label class="input-group-text" for="inputGroupSelect01">Autor</label>
 						<select class="form-select" id="inputGroupSelect01" name="autor">
+							<option selected="true" disabled="disabled"
+								value="${biblioteca.getLibro().getAutor().getPersona().getId()}">
+								${biblioteca.getLibro().getAutor().getPersona().toString()}
+							</option>
 							<c:forEach var="autor" items="${autorList}">
 								<option value="${autor.getId()}">
-									${autor.getPersona().getNombre()}</option>
+									${autor.getPersona().toString()}</option>
 							</c:forEach>
 						</select>
 					</div>
 					<div class="input-group input-group-sm mb-3">
-						<span class="" id="inputGroup-sizing-sm">Descripcion</span> <input
+						<span class="input-group-text" id="inputGroup-sizing-sm">Descripcion</span>
+						<input
+							value="${biblioteca.getLibro().getDescripcion()}"
 							type="text" class="form-control"
 							aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-sm" name="descripcion">
@@ -91,10 +99,21 @@ i {
 					<div class="input-group mb-3">
 						<label class="input-group-text" for="inputGroupSelect01">Generos</label>
 						<select class="form-select" id="inputGroupSelect01" name="generos">
-							<c:forEach var="localidad" items="${generosList}">
-								<option value="${generos.getId()}">
-									${generos.getDescripcion()}</option>
+							<option selected="true" disabled="disabled"
+								value="${biblioteca.getLibro().getGeneros()}">
+								${biblioteca.getLibro().getGeneros()}
+							</option>
+							<c:forEach var="genero" items="${generoList}">
+								<option value="${genero.getId()}">
+									${genero.getDescripcion()}</option>
 							</c:forEach>
+						</select>
+					</div>
+					<div class="input-group mb-3">
+						<label class="input-group-text" for="inputGroupSelect01">Estado</label>
+						<select class="form-select" id="inputGroupSelect01" name="generos">
+							<option selected="true" value="0">En biblioteca</option>
+							<option value="1">Prestado</option>
 						</select>
 					</div>
 				</div>
