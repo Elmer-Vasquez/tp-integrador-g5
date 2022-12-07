@@ -77,7 +77,7 @@ i {
 							<select class="form-select" id="inputGroupSelect01" name="autor">
 								<c:forEach var="autor" items="${autorList}">
 									<option value="${autor.getId()}">
-										${autor.getPersona().getNombre()}</option>
+										${autor.getPersona().toString()}</option>
 								</c:forEach>
 							</select>
 						</div>

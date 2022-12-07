@@ -61,6 +61,19 @@ i {
 		</div>
 	</form>
 
+	<!-- Alertas para recibir, se evalua con IF -->
+	<c:if test="${ status != null }">
+		<div class="d-flex justify-content-end"
+			style="margin-top: 10px; margin-right: 5%;">
+			<div class="alert alert-primary alert-dismissible fade show"
+				role="alert" style="margin-bottom: -5px;">
+				<c:out value="${ status }"></c:out>
+				<button type="button" class="btn-close" data-bs-dismiss="alert"
+					aria-label="Close"></button>
+			</div>
+		</div>
+	</c:if>
+
 	<div class="col d-flex justify-content-center"
 		style="margin-top: 20px;">
 		<table class="table table-dark table-hover"
@@ -97,20 +110,16 @@ i {
 									onClick="eliminarLibro(${biblioteca.libro.getId()})">
 									<i class="fas fa-trash-alt"></i>
 								</button>
-								<form action="detalle_libro.html" action="get">
+								<form  action="detalle_libro.html" action="get">
 									<input type="text" class="d-none" name="id"
 										value="${biblioteca.libro.getId()}">
 									<button type="submit" class="button">
 										<i class="fas fa-search"></i>
 									</button>
 								</form>
-								<form action="editar_Libro.html" action="get">
-									<input type="text" class="d-none" name="id"
-										value="${biblioteca.libro.getId()}">
-									<button type="submit" class="button">
-										<i class="fas fa-pencil-alt"></i>
-									</button>
-								</form>
+								<a href="update_biblioteca.html?id=${biblioteca.getId()}"> 
+									<i class="fas fa-pencil-alt"></i>
+								</a>
 							</td>
 						</tr>
 					</c:if>

@@ -79,17 +79,17 @@ i {
 						<label class="input-group-text" for="inputGroupSelect01">Autor</label>
 						<select class="form-select" id="inputGroupSelect01" name="autor">
 							<option selected="true" disabled="disabled"
-								value="${biblioteca.getLibro().getGeneros()}">
-								${biblioteca.getLibro().getGeneros()}
+								value="${biblioteca.getLibro().getAutor().getPersona().getId()}">
+								${biblioteca.getLibro().getAutor().getPersona().toString()}
 							</option>
 							<c:forEach var="autor" items="${autorList}">
 								<option value="${autor.getId()}">
-									${autor.getPersona().getNombre()}</option>
+									${autor.getPersona().toString()}</option>
 							</c:forEach>
 						</select>
 					</div>
 					<div class="input-group input-group-sm mb-3">
-						<span class="" id="inputGroup-sizing-sm">Descripcion</span>
+						<span class="input-group-text" id="inputGroup-sizing-sm">Descripcion</span>
 						<input
 							value="${biblioteca.getLibro().getDescripcion()}"
 							type="text" class="form-control"
@@ -107,6 +107,13 @@ i {
 								<option value="${genero.getId()}">
 									${genero.getDescripcion()}</option>
 							</c:forEach>
+						</select>
+					</div>
+					<div class="input-group mb-3">
+						<label class="input-group-text" for="inputGroupSelect01">Estado</label>
+						<select class="form-select" id="inputGroupSelect01" name="generos">
+							<option selected="true" disabled="disabled" value="0">En biblioteca</option>
+							<option selected="true" disabled="disabled" value="1">Prestado</option>
 						</select>
 					</div>
 				</div>

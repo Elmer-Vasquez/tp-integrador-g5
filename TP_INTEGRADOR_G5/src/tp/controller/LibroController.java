@@ -111,7 +111,7 @@ public class LibroController {
 			List<Biblioteca> lista = _bibliotecaService.selectList();
 			MV.addObject("bibliotecaList", lista);
 			
-			MV.setViewName("biblioteca");
+			MV.setViewName("Biblioteca/biblioteca");
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}

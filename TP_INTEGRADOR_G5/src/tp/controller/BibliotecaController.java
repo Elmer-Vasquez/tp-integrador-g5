@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import common.Dictionary;
 import common.Directory;
 import common.Error;
 import common.Status;
@@ -130,7 +129,6 @@ public class BibliotecaController {
 			Biblioteca biblioteca = _bibliotecaService.readOne(id);
 			MV.addObject("generoList", listaGenero);
 			MV.addObject("autorList", listaAutor);
-			MV.addObject("libroList", _libroService.selectList());
 			MV.addObject("biblioteca", biblioteca);
 			MV.setViewName(getPath("biblioteca-update"));
 		} catch (Exception ex) {
