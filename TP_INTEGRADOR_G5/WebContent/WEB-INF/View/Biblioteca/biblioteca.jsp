@@ -51,7 +51,7 @@ i {
 					<option value="libro.idioma">Idioma</option>
 					<option value="libro.cantidadPaginas">Cantidad de Paginas</option>
 					<option value="libro.autor.persona.nombre">Autor</option>
-					<option value="libro.fechaLanzamiento">Fecha de alta</option>
+					<option value="libro.fechaLanzamiento">Fecha Lanzamiento</option>
 				</select>
 			</div>
 			<div style="margin-left: 12px;">
@@ -84,7 +84,7 @@ i {
 					<th scope="col">Idioma</th>
 					<th scope="col">Cantidad de Paginas</th>
 					<th scope="col">Autor</th>
-					<th scope="col">Fecha de alta</th>
+					<th scope="col">Fecha Lanzamiento</th>
 					<th scope="col">Estado</th>
 					<th scope="col">Accion</th>
 				</tr>
@@ -99,7 +99,7 @@ i {
 								${biblioteca.libro.getCantidadPaginas()}</td>
 							<td class="table-dark">
 								${biblioteca.libro.autor.persona.toString()}</td>
-							<td class="table-dark">${biblioteca.getFechaAlta()}</td>
+							<td class="table-dark">${biblioteca.libro.getFechaLanzamientoString()}</td>
 							<td class="table-dark">
 								${biblioteca.getEstadoReal()}</td>
 							<td class="table-dark">

@@ -47,7 +47,7 @@ i {
                 <tr class="table-dark">
                     <td class="table-dark">${libro.getIsbn()}</td>
                     <td class="table-dark">${libro.getTitulo()}</td>
-                    <td class="table-dark">${libro.getFechaLanzamiento()}</td>
+                    <td class="table-dark">${libro.getFechaLanzamientoString()}</td>
                     <td class="table-dark">${libro.getIdioma()}</td>
                     <td class="table-dark">${libro.getCantidadPaginas()}</td>
                     <td class="table-dark">${libro.autor.persona.toString()}</td>

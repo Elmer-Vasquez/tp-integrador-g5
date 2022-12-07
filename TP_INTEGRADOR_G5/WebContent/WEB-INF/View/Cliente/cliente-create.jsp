@@ -63,7 +63,7 @@ function checkform()
             <div class="modal-body">
                 <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">DNI</span>
-                    <input type="number" min="8" max="11" class="form-control" aria-label="Sizing example input" min="0" step="1" aria-describedby="inputGroup-sizing-sm" name="dni" required>
+                    <input type="number" min="11111111" max="99999999" class="form-control" aria-label="Sizing example input" step="1" aria-describedby="inputGroup-sizing-sm" name="dni" required>
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
@@ -99,7 +99,7 @@ function checkform()
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Telefono</span>
-                    <input type="number" min="10" max="16" class="form-control" aria-label="Sizing example input" min="0" step="1" aria-describedby="inputGroup-sizing-sm" name="telefono" required>
+                    <input type="number" min="1111111111" max="9999999999" class="form-control" aria-label="Sizing example input" min="0" step="1" aria-describedby="inputGroup-sizing-sm" name="telefono" required>
                   </div>
                   <select class="form-select" id="inputGroupSelect01" name="sexo">
                   <option value="Masculino">Masculino</option>
