@@ -1,6 +1,7 @@
 package tp.dominio;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
@@ -158,6 +159,15 @@ public class Libro implements Serializable {
 	public Date getFechaLanzamiento() {
 		return fechaLanzamiento;
 	}
+
+	public String getFechaLanzamientoString() {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			return formatter.format(this.fechaLanzamiento);
+		} catch (Exception ex) {
+			return this.fechaLanzamiento.toString();
+		}
+	}
 	
 	public void setFechaLanzamiento(Date fechaLanzamiento) {
 		this.fechaLanzamiento = fechaLanzamiento;
@@ -206,7 +216,6 @@ public class Libro implements Serializable {
 	public void agregarGenero(Genero genero) {
 		this.generos.add(genero);
 	}
-	
 
 	@Override
 	public String toString() {

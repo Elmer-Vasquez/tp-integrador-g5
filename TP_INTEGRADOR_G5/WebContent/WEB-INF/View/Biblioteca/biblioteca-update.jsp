@@ -59,11 +59,10 @@ i {
 						<span class="input-group-text" id="inputGroup-sizing-sm">Fecha
 							de lanzamiento</span>
 							<input type="date" class="form-control"
-							id="fechaLanzamiento"
+							name="fechaLanzamiento"
 							aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-sm"
-							name="${biblioteca.getLibro().getFechaLanzamiento()}"
-							value="">
+							value="${biblioteca.getLibro().getFechaLanzamientoString()}">
 					</div>
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Idioma</span>
