@@ -13,9 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import common.Directory;
 import common.Error;
+import common.Status;
 import tp.Request.CreateLibroRequest;
 import tp.Request.UpdateLibroRequest;
+import tp.dominio.Autor;
 import tp.dominio.Biblioteca;
+import tp.dominio.Genero;
 import tp.dominio.Libro;
 import tp.servicio.IAutorService;
 import tp.servicio.IBibliotecaService;
@@ -43,7 +46,6 @@ public class LibroController {
 		_generoService = generoService;
 		_bibliotecaService = bibliotecaService;
 	}
-	
 	
 	@RequestMapping(value="crear_Libro.html", method=RequestMethod.GET)
 	public ModelAndView getLibroCrear(@ModelAttribute("libro") Libro libro)
@@ -92,10 +94,15 @@ public class LibroController {
 	{
 		ModelAndView MV = new ModelAndView();
 		try {
+			Genero genero = _generoService.readOne(request.getIdGeneros());
+			Autor autor = _autorService.readOne(request.getIdAutor());
+			Libro libro = _libroService.readOne(request.getId());
 			
-			_libroService.update(new Libro(request));
+			libro.update(new Libro(request, genero, autor));
 			
-			MV.setViewName(getPath("lista_biblioteca"));
+			MV.addObject("status", Status.getUpdateStatus(_libroService.update1(libro)));
+			
+			MV.setViewName("Biblioteca/biblioteca");
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}

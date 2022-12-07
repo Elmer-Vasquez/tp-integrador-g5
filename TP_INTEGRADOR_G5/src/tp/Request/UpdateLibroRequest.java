@@ -23,14 +23,12 @@ private int id;
 	private String descripcion;
 	
 	private EstadoLibro estadoLibro;
-
-	private boolean estado;
 	
 	private int idGeneros;
 	
 	private int idAutor;
 	
-	public UpdateLibroRequest(){ estado = true; }
+	public UpdateLibroRequest(){ }
 
 	public int getId() {
 		return id;
@@ -110,13 +108,5 @@ private int id;
 
 	public void setEstadoLibro(EstadoLibro estadoLibro) {
 		this.estadoLibro = estadoLibro;
-	}
-
-	public boolean isEstado() {
-		return estado;
-	}
-
-	public void setEstado(boolean estado) {
-		this.estado = estado;
 	}
 }

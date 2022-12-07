@@ -34,7 +34,7 @@ i {
 
 	<!-- MODALS -->
 	<!-- CREATE_CLIENTE -->
-	<form action="update_cliente.html" modelAttribute="request"
+	<form action="editar_libro.html" modelAttribute="request"
 		method="POST">
 		<input type="hidden" value="${biblioteca.getLibro().getId()}" name="id">
 		<div class="modal-dialog">
@@ -59,9 +59,11 @@ i {
 						<span class="input-group-text" id="inputGroup-sizing-sm">Fecha
 							de lanzamiento</span>
 							<input type="date" class="form-control"
+							id="fechaLanzamiento"
 							aria-label="Sizing example input"
-							aria-describedby="inputGroup-sizing-sm" name="fechaLanzamiento" 
-							value="${biblioteca.getLibro().getFechaLanzamiento()}">
+							aria-describedby="inputGroup-sizing-sm"
+							name="${biblioteca.getLibro().getFechaLanzamiento()}"
+							value="">
 					</div>
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Idioma</span>
@@ -78,7 +80,7 @@ i {
 					</div>
 					<div class="input-group mb-3">
 						<label class="input-group-text" for="inputGroupSelect01">Autor</label>
-						<select class="form-select" id="inputGroupSelect01" name="autor">
+						<select class="form-select" id="inputGroupSelect01" name="idAutor">
 							<c:forEach var="autor" items="${autorList}">
 								<option value="${autor.getId()}">
 									${autor.getPersona().toString()}</option>
@@ -95,7 +97,7 @@ i {
 					</div>
 					<div class="input-group mb-3">
 						<label class="input-group-text" for="inputGroupSelect01">Generos</label>
-						<select class="form-select" id="inputGroupSelect01" name="generos">
+						<select class="form-select" id="inputGroupSelect01" name="idGeneros">
 							<c:forEach var="genero" items="${generoList}">
 								<option value="${genero.getId()}">
 									${genero.getDescripcion()}</option>
@@ -110,6 +112,12 @@ i {
 			</div>
 		</div>
 	</form>
-
+	<script>
+		const input = document.getElementById("fechaLanzamiento"); 
+		const data = input.name;
+		input.setAttribute("name", "fechaLanzamiento")
+		input.setAttribute("value", data.split(" ")[0]);
+		console.log(data);
+	</script>
 </body>
 </html>
