@@ -124,8 +124,10 @@ public class BibliotecaController {
 	public ModelAndView updateBiblioteca(@RequestParam int id) {
 		ModelAndView MV = new ModelAndView();
 		try {
-			MV.addObject("autorList", _autorService.selectList());
-			MV.addObject("generoList", _generoService.selectList());
+			List<Genero> listaGenero = _generoService.selectList();
+			List<Autor> listaAutor = _autorService.selectList();
+			MV.addObject("generoList", listaGenero);
+			MV.addObject("autorList", listaAutor);
 			MV.addObject("libroList", _libroService.selectList());
 			MV.addObject("biblioteca", _bibliotecaService.readOne(id));
 			MV.setViewName(getPath("biblioteca-update"));

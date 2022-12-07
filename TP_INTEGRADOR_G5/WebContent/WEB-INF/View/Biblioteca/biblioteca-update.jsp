@@ -30,17 +30,17 @@ i {
 <body style="background-color: #f5f5f5;">
 	<jsp:include page="../nav-bar.jsp" />
 
-	<form id="goBack" action="lista_clientes.html" method="get"></form>
+	<form id="goBack" action="lista_biblioteca.html" method="get"></form>
 
 	<!-- MODALS -->
 	<!-- CREATE_CLIENTE -->
 	<form action="update_cliente.html" modelAttribute="request"
 		method="POST">
-		<input type="hidden" value="${cliente.getId()}" name="id">
+		<input type="hidden" value="${biblioteca.getId()}" name="id">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Agregar libro</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Editar libro</h5>
 				</div>
 				<div class="modal-body">
 					<div class="input-group input-group-sm mb-3">
