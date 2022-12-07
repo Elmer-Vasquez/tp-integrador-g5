@@ -57,6 +57,14 @@ public class UserController {
 		return MV;
 	}
 	
+	@RequestMapping(value="index.html", method=RequestMethod.GET)
+	public ModelAndView getIndex() 
+	{
+		ModelAndView MV = new ModelAndView();
+		MV.setViewName("index");
+		return MV;
+	}
+	
 	public ModelAndView logOut(HttpServletRequest request) {
 		HttpSession sesion = request.getSession();
 		sesion.invalidate();

@@ -29,6 +29,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="lista_prestamo.html">Préstamos</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Cerrar sesión</a>
+                    </li>
                 </ul>
             </div>
         </div>
