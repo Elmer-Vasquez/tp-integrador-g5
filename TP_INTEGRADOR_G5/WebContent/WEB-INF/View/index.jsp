@@ -103,11 +103,11 @@
           </c:if>
           
           <div class="form-floating">
-            <input required type="email" class="form-control" id="floatingInput" name="email">
+            <input type="email" class="form-control" id="floatingInput" name="email">
             <label for="floatingInput">Usuario</label>
           </div>
           <div class="form-floating">
-            <input required type="password" class="form-control" id="floatingPassword" name="password">
+            <input type="password" class="form-control" id="floatingPassword" name="password">
             <label for="floatingPassword">Contraseña</label>
           </div>
           <input class="w-100 btn btn-lg btn-primary" type="submit" name="btnInicio" value="Iniciar sesión"/>
