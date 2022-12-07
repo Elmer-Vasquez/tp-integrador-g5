@@ -62,9 +62,6 @@ public class Libro implements Serializable {
 	
 	private Set<Genero> generos;
 	
-	private EstadoLibro estadoLibro;
-
-	private boolean estado;
 
 	public Libro(){
 		this.generos = new HashSet<Genero>();
@@ -79,8 +76,6 @@ public class Libro implements Serializable {
 		this.idioma = request.getLibro().getIdioma();
 		this.cantidadPaginas = request.getLibro().getCantidadPaginas();
 		this.descripcion = request.getLibro().getDescripcion();
-		this.estadoLibro = EstadoLibro.biblioteca;
-		this.estado= true;
 	}
 	
 	public Libro(CreateLibroRequest request) {
@@ -102,8 +97,6 @@ public class Libro implements Serializable {
 		this.autor = autor;
 		this.descripcion = descripcion;
 		this.generos = generos;
-		this.estadoLibro = estadoLibro;
-		this.estado= estado;
 	}
 
 	public Libro(UpdateLibroRequest request) {
@@ -192,21 +185,6 @@ public class Libro implements Serializable {
 		this.generos.add(genero);
 	}
 	
-	public EstadoLibro getEstadoLibro() {
-		return estadoLibro;
-	}
-
-	public void setEstadoLibro(EstadoLibro estadoLibro) {
-		this.estadoLibro = estadoLibro;
-	}
-	
-	public boolean getEstado() {
-		return estado;
-	}
-
-	public void setEstado(boolean estado) {
-		this.estado = estado;
-	}
 
 	@Override
 	public String toString() {
