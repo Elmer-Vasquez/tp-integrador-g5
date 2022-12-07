@@ -45,19 +45,19 @@
             <div class="modal-body">
                 <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">DNI</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getDni()}" name="dni">
+                    <input required type="number" min="8" max="11" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getDni()}" name="dni">
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getNombre()}" name="nombre">
+                    <input required type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getNombre()}" name="nombre">
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Apellido</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getApellido()}" name="apellido">
+                    <input required type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getApellido()}" name="apellido">
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Fecha de nacimiento</span>
-                    <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getFechaNacimientoToInput()}" name="fechaNacimiento">
+                    <input required type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getFechaNacimientoToInput()}" name="fechaNacimiento">
                   </div>
                   <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Nacionalidad</label>
@@ -83,11 +83,11 @@
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Correo electrónico</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getEmail()}" name="email">
+                    <input required type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getEmail()}" name="email">
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Telefono</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getTelefono()}" name="telefono">
+                    <input required type="number" min="10" max="16" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${cliente.getPersona().getTelefono()}" name="telefono">
                   </div>
                   <select class="form-select" id="inputGroupSelect01" name="sexo">
                   <c:if test="${cliente.getPersona().getSexo().equals('Masculino')}">
