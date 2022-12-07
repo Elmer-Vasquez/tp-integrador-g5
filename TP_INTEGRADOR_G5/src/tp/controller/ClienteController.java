@@ -32,25 +32,22 @@ import common.Error;
 import common.Status;
 
 @Controller
-@SessionAttributes({"newCliente"})
+@SessionAttributes({ "newCliente" })
 public class ClienteController {
-	
+
 	private IClienteService _clienteService;
 	private INacionalidadService _nacionalidadService;
 	private ILocalidadService _localidadService;
-	
+
 	@Autowired
-	public ClienteController(
-			@Qualifier("clienteService") IClienteService clienteService, 
-			@Qualifier("nacionalidadService") INacionalidadService nacionalidadService, 
-			@Qualifier("localidadService") ILocalidadService localidadService
-			)
-	{
+	public ClienteController(@Qualifier("clienteService") IClienteService clienteService,
+			@Qualifier("nacionalidadService") INacionalidadService nacionalidadService,
+			@Qualifier("localidadService") ILocalidadService localidadService) {
 		_clienteService = clienteService;
 		_nacionalidadService = nacionalidadService;
 		_localidadService = localidadService;
 	}
-	
+
 	@RequestMapping("lista_clientes.html")
 	public ModelAndView getMenuPrincipal() {
 		ModelAndView MV = new ModelAndView();
@@ -63,8 +60,8 @@ public class ClienteController {
 		}
 		return MV;
 	}
-	
-	@RequestMapping(value="create_cliente.html", method=RequestMethod.GET)
+
+	@RequestMapping(value = "create_cliente.html", method = RequestMethod.GET)
 	public ModelAndView getClienteCreate(@ModelAttribute("persona") Persona persona) {
 		ModelAndView MV = new ModelAndView();
 		try {
@@ -76,15 +73,14 @@ public class ClienteController {
 		}
 		return MV;
 	}
-	
-	@RequestMapping(value="create_cliente.html", method=RequestMethod.POST)
+
+	@RequestMapping(value = "create_cliente.html", method = RequestMethod.POST)
 	public ModelAndView postClienteCreate(CreateClienteRequest request) {
 		ModelAndView MV = new ModelAndView();
 		try {
-			
+
 			Nacionalidad nac = _nacionalidadService.readOne(request.getNacionalidadId());
 			Localidad loc = _localidadService.readOne(request.getLocalidadId());
-			
 
 			MV.addObject("status", Status.getGenerateStatus(_clienteService.create(new Cliente(request, nac, loc))));
 			MV.addObject("clientesList", _clienteService.selectList());
@@ -94,13 +90,13 @@ public class ClienteController {
 		}
 		return MV;
 	}
-	
+
 	@ModelAttribute("newCliente")
 	public Persona postEmptyCliente() {
 		Persona emptyCliente = new Persona();
 		return emptyCliente;
 	}
-	
+
 	@RequestMapping("delete_cliente.html")
 	public ModelAndView deleteCliente(String clienteId) {
 		ModelAndView MV = new ModelAndView();
@@ -113,8 +109,8 @@ public class ClienteController {
 		}
 		return MV;
 	}
-	
-	@RequestMapping(value="update_cliente.html", method=RequestMethod.GET)
+
+	@RequestMapping(value = "update_cliente.html", method = RequestMethod.GET)
 	public ModelAndView updateCliente(@RequestParam int id) {
 		ModelAndView MV = new ModelAndView();
 		try {
@@ -127,19 +123,19 @@ public class ClienteController {
 		}
 		return MV;
 	}
-	
-	@RequestMapping(value="update_cliente.html", method=RequestMethod.POST)
+
+	@RequestMapping(value = "update_cliente.html", method = RequestMethod.POST)
 	public ModelAndView updateCliente(UpdateClienteRequest request) {
 		ModelAndView MV = new ModelAndView();
 		try {
 			Nacionalidad nac = _nacionalidadService.readOne(request.getNacionalidadId());
 			Localidad loc = _localidadService.readOne(request.getLocalidadId());
 			Cliente cli = _clienteService.readOne(Integer.parseInt(request.getId()));
-			
+
 			cli.update(nac, loc, request);
 
 			MV.addObject("status", Status.getUpdateStatus(_clienteService.update(cli)));
-			
+
 			MV.addObject("clientesList", _clienteService.selectList());
 			MV.setViewName(getPath("cliente"));
 		} catch (Exception ex) {
@@ -147,7 +143,7 @@ public class ClienteController {
 		}
 		return MV;
 	}
-	
+
 	@RequestMapping("search_cliente.html")
 	public ModelAndView getClienteByProperty(String inputText, String propertySelect) {
 		ModelAndView MV = new ModelAndView();
@@ -166,7 +162,7 @@ public class ClienteController {
 		}
 		return MV;
 	}
-	
+
 	private String getPath(String jsp) {
 		return Directory.CLIENTE + jsp;
 	}

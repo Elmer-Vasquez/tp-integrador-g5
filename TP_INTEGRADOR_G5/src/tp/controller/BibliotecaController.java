@@ -48,7 +48,7 @@ public class BibliotecaController {
 		try {
 			List<Biblioteca> lista = _bibliotecaService.selectList();
 			MV.addObject("bibliotecaList", lista);
-			MV.setViewName(getPath("bilbioteca"));
+			MV.setViewName(getPath("biblioteca"));
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
 		}
