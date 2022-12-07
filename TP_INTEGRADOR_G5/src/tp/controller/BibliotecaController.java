@@ -112,7 +112,8 @@ public class BibliotecaController {
 		ModelAndView MV = new ModelAndView();
 		try {
 			MV.addObject("status", Status.getDeleteStatus(_bibliotecaService.delete(Integer.parseInt(bibliotecaId))));
-			MV.addObject("bibliotecaList", _bibliotecaService.selectList());
+			List<Biblioteca> lista = _bibliotecaService.selectList();
+			MV.addObject("bibliotecaList", lista);
 			MV.setViewName(getPath("biblioteca"));
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
@@ -126,10 +127,11 @@ public class BibliotecaController {
 		try {
 			List<Genero> listaGenero = _generoService.selectList();
 			List<Autor> listaAutor = _autorService.selectList();
+			Biblioteca biblioteca = _bibliotecaService.readOne(id);
 			MV.addObject("generoList", listaGenero);
 			MV.addObject("autorList", listaAutor);
 			MV.addObject("libroList", _libroService.selectList());
-			MV.addObject("biblioteca", _bibliotecaService.readOne(id));
+			MV.addObject("biblioteca", biblioteca);
 			MV.setViewName(getPath("biblioteca-update"));
 		} catch (Exception ex) {
 			MV.addObject("error", Error.INTERNAL_CONTROLLER_ERROR);
