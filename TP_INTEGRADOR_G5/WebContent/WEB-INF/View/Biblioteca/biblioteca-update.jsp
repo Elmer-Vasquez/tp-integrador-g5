@@ -45,7 +45,7 @@ i {
 				<div class="modal-body">
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">ISBN</span>
-						<input value="${biblioteca.getLibro().getIsbn()}" type="text" class="form-control"
+						<input value="${biblioteca.getLibro().getIsbn()}" type="number" min="1000" max="10000" class="form-control"
 							aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-sm" name="isbn">
 					</div>
@@ -53,6 +53,7 @@ i {
 						<span class="input-group-text" id="inputGroup-sizing-sm">Titulo</span>
 						<input value="${biblioteca.getLibro().getTitulo()}" type="text" class="form-control"
 							aria-label="Sizing example input"
+							minlength="4" maxlength="254
 							aria-describedby="inputGroup-sizing-sm" name="titulo">
 					</div>
 					<div class="input-group input-group-sm mb-3">
@@ -68,12 +69,13 @@ i {
 						<span class="input-group-text" id="inputGroup-sizing-sm">Idioma</span>
 						<input value="${biblioteca.getLibro().getIdioma()}" type="text" class="form-control"
 							aria-label="Sizing example input"
+							minlength="4" maxlength="254
 							aria-describedby="inputGroup-sizing-sm" name="idioma">
 					</div>
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Cantidad
 							de paginas</span>
-							<input value="${biblioteca.getLibro().getCantidadPaginas()}" type="text" class="form-control"
+							<input value="${biblioteca.getLibro().getCantidadPaginas()}" type="number" min="10" max="10000" class="form-control"
 							aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-sm" name="cantidadPaginas">
 					</div>
@@ -91,6 +93,7 @@ i {
 						<input
 							value="${biblioteca.getLibro().getDescripcion()}"
 							type="text" class="form-control"
+							minlength="4" maxlength="254
 							aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-sm" name="descripcion">
 					</div>

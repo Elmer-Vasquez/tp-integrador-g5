@@ -44,13 +44,13 @@ i {
 					<div class="modal-body">
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text" id="inputGroup-sizing-sm">ISBN</span>
-							<input type="number" class="form-control"
+							<input type="number" min="1000" max="10000" class="form-control"
 								aria-label="Sizing example input"
 								aria-describedby="inputGroup-sizing-sm" name="isbn" required>
 						</div>
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Titulo</span>
-							<input type="text" class="form-control"
+							<input type="text" minlength="4" maxlength="254" class="form-control"
 								aria-label="Sizing example input"
 								aria-describedby="inputGroup-sizing-sm" name="titulo" required>
 						</div>
@@ -62,13 +62,13 @@ i {
 						</div>
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Idioma</span>
-							<input type="text" class="form-control"
+							<input type="text" minlength="4" maxlength="254" class="form-control"
 								aria-label="Sizing example input"
 								aria-describedby="inputGroup-sizing-sm" name="idioma" required>
 						</div>
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Cantidad
-								de paginas</span> <input type="number" class="form-control"
+								de paginas</span> <input type="number" min="10" max="10000" class="form-control"
 								aria-label="Sizing example input"
 								aria-describedby="inputGroup-sizing-sm" name="cantidadPaginas" required>
 						</div>
@@ -83,7 +83,7 @@ i {
 						</div>
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Descripcion</span>
-							<input type="text" class="form-control"
+							<input type="text" minlength="4" maxlength="254" class="form-control"
 								aria-label="Sizing example input"
 								aria-describedby="inputGroup-sizing-sm" name="descripcion" required>
 						</div>
