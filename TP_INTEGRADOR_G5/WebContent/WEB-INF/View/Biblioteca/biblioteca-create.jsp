@@ -44,33 +44,39 @@ i {
 					<div class="modal-body">
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text" id="inputGroup-sizing-sm">ISBN</span>
-							<input type="text" class="form-control"
+							<input required type="number" class="form-control"
 								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" name="isbn">
+								aria-describedby="inputGroup-sizing-sm" name="isbn"
+								min="1000" max="10000">
 						</div>
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Titulo</span>
-							<input type="text" class="form-control"
+							<input required type="text" class="form-control"
 								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" name="titulo">
+								aria-describedby="inputGroup-sizing-sm" name="titulo"
+								minlength="4" maxlength="254">
 						</div>
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Fecha
-								de lanzamiento</span> <input type="date" class="form-control"
+								de lanzamiento</span> 
+							<input required type="date" class="form-control"
 								aria-label="Sizing example input"
 								aria-describedby="inputGroup-sizing-sm" name="fechaLanzamiento">
 						</div>
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Idioma</span>
-							<input type="text" class="form-control"
+							<input required type="text" class="form-control"
 								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" name="idioma">
+								aria-describedby="inputGroup-sizing-sm" name="idioma"
+								minlength="4" maxlength="254">
 						</div>
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Cantidad
-								de paginas</span> <input type="text" class="form-control"
+								de paginas</span>
+								<input required type="number" class="form-control"
 								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" name="cantidadPaginas">
+								aria-describedby="inputGroup-sizing-sm" name="cantidadPaginas"
+								min="10" max="10000">
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="inputGroupSelect01">Autor</label>
@@ -83,9 +89,10 @@ i {
 						</div>
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Descripcion</span>
-							<input type="text" class="form-control"
+							<input required type="text" class="form-control"
 								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" name="descripcion">
+								aria-describedby="inputGroup-sizing-sm" name="descripcion"
+								minlength="4" maxlength="254">
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="inputGroupSelect01">Generos</label>
