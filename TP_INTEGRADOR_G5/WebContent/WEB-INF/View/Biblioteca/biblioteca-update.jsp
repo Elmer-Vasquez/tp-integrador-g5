@@ -45,22 +45,20 @@ i {
 				<div class="modal-body">
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">ISBN</span>
-						<input required value="${biblioteca.getLibro().getIsbn()}" type="number" class="form-control"
+						<input value="${biblioteca.getLibro().getIsbn()}" type="text" class="form-control"
 							aria-label="Sizing example input"
-							aria-describedby="inputGroup-sizing-sm" name="isbn"
-							min="1000" max="10000">
+							aria-describedby="inputGroup-sizing-sm" name="isbn">
 					</div>
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Titulo</span>
-						<input required value="${biblioteca.getLibro().getTitulo()}" type="text" class="form-control"
+						<input value="${biblioteca.getLibro().getTitulo()}" type="text" class="form-control"
 							aria-label="Sizing example input"
-							aria-describedby="inputGroup-sizing-sm" name="titulo"
-							minlength="4" maxlength="254">
+							aria-describedby="inputGroup-sizing-sm" name="titulo">
 					</div>
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Fecha
 							de lanzamiento</span>
-							<input required type="date" class="form-control"
+							<input type="date" class="form-control"
 							id="fechaLanzamiento"
 							aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-sm"
@@ -69,18 +67,16 @@ i {
 					</div>
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Idioma</span>
-						<input required value="${biblioteca.getLibro().getIdioma()}" type="text" class="form-control"
+						<input value="${biblioteca.getLibro().getIdioma()}" type="text" class="form-control"
 							aria-label="Sizing example input"
-							aria-describedby="inputGroup-sizing-sm" name="idioma"
-							minlength="4" maxlength="254">
+							aria-describedby="inputGroup-sizing-sm" name="idioma">
 					</div>
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Cantidad
 							de paginas</span>
-							<input required value="${biblioteca.getLibro().getCantidadPaginas()}" type="number" class="form-control"
+							<input value="${biblioteca.getLibro().getCantidadPaginas()}" type="text" class="form-control"
 							aria-label="Sizing example input"
-							aria-describedby="inputGroup-sizing-sm" name="cantidadPaginas"
-							min="10" max="10000">
+							aria-describedby="inputGroup-sizing-sm" name="cantidadPaginas">
 					</div>
 					<div class="input-group mb-3">
 						<label class="input-group-text" for="inputGroupSelect01">Autor</label>
@@ -93,12 +89,11 @@ i {
 					</div>
 					<div class="input-group input-group-sm mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Descripcion</span>
-						<input required
+						<input
 							value="${biblioteca.getLibro().getDescripcion()}"
 							type="text" class="form-control"
 							aria-label="Sizing example input"
-							aria-describedby="inputGroup-sizing-sm" name="descripcion"
-							minlength="4" maxlength="254">
+							aria-describedby="inputGroup-sizing-sm" name="descripcion">
 					</div>
 					<div class="input-group mb-3">
 						<label class="input-group-text" for="inputGroupSelect01">Generos</label>
