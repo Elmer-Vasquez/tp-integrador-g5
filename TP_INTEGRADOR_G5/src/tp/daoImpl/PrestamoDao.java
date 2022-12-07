@@ -37,11 +37,11 @@ public class PrestamoDao extends GenericDao<Prestamo> implements IPrestamoDao {
 	}
 	
 	private String queryBiblioteca(String value) {
-		return "FROM prestamo AS PR INNER JOIN PR.biblioteca AS BIB INNER JOIN BIB.libro AS LIB WHERE LIB.titulo LIKE " + "'%" + value + "%'";
+		return "FROM Prestamo AS PR INNER JOIN PR.biblioteca AS BIB INNER JOIN BIB.libro AS LIB WHERE LIB.titulo LIKE " + "'%" + value + "%'";
 	}
 	
 	private String queryCliente(String value) {
-		return "FROM prestamo AS PR INNER JOIN PR.cliente AS CL INNER JOIN CL.persona AS PER WHERE PER.nombre LIKE " + "'%" + value + "%' OR PER.apellido LIKE '%" + value + "%'";
+		return "FROM Prestamo AS PR INNER JOIN PR.cliente AS CL INNER JOIN CL.persona AS PER WHERE PER.nombre LIKE " + "'%" + value + "%' OR PER.apellido LIKE '%" + value + "%'";
 	}
 
 }

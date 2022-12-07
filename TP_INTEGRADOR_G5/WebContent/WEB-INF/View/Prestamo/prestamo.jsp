@@ -45,7 +45,7 @@
           <option value="default"></option>
           <option value="cantidadDias">Cantidad dias</option>
           <option value="fechaPrestamo">Fecha</option>
-          <option value="biblioteca">Biblioteca</option>
+          <option value="biblioteca">Libro</option>
           <option value="cliente">Cliente</option>
           </select>
       </div>
