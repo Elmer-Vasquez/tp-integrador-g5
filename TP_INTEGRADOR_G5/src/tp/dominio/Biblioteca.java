@@ -1,6 +1,7 @@
 package tp.dominio;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -103,8 +104,13 @@ public class Biblioteca implements Serializable {
 		this.libro = libro;
 	}
 
-	public Date getFechaAlta() {
-		return fechaAlta;
+	public String getFechaAlta() {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			return formatter.format(this.fechaAlta);
+		} catch (Exception ex) {
+			return this.fechaAlta.toString();
+		}
 	}
 
 	public void setFechaAlta(Date fechaAlta) {

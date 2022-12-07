@@ -106,6 +106,5 @@ i {
 			</div>
 		</div>
 	</form>
-
 </body>
 </html>

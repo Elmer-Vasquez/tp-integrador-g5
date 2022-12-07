@@ -81,7 +81,7 @@ public class Libro implements Serializable {
 	public void update(UpdateLibroRequest request, Genero genero, Autor autor) {
 		this.isbn = request.getIsbn();
 		this.titulo = request.getTitulo();
-		//this.fechaLanzamiento = request.getFechaLanzamiento();
+		this.fechaLanzamiento = request.getFechaLanzamiento();
 		this.idioma = request.getIdioma();
 		this.cantidadPaginas = request.getCantidadPaginas();
 		this.descripcion = request.getDescripcion();

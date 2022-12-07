@@ -103,21 +103,19 @@ i {
 							<td class="table-dark">
 								${biblioteca.getEstadoReal()}</td>
 							<td class="table-dark">
-								<button class="button" data-bs-toggle="modal"
+							<div class="btn-group" role="group" aria-label="Basic example">
+								<a class="btn btn-danger" data-bs-toggle="modal"
 									data-bs-target="#deleteModal"
 									onClick="eliminarLibro(${biblioteca.getId()})">
 									<i class="fas fa-trash-alt"></i>
-								</button>
-								<form  action="detalle_libro.html" action="get">
-									<input type="text" class="d-none" name="id"
-										value="${biblioteca.libro.getId()}">
-									<button type="submit" class="button">
+								</a>
+								<a class="btn btn-info" href="detalle_libro.html?id=${biblioteca.libro.getId()}"> 
 										<i class="fas fa-search"></i>
-									</button>
-								</form>
-								<a href="update_biblioteca.html?id=${biblioteca.getId()}"> 
+								</a>
+								<a class="btn btn-success" href="update_biblioteca.html?id=${biblioteca.getId()}"> 
 									<i class="fas fa-pencil-alt"></i>
 								</a>
+							</div>
 							</td>
 						</tr>
 				</c:forEach>
